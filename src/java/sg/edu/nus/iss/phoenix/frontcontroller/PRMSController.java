@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Milan
  */
-@WebServlet(name = "PRMSController", urlPatterns = {"/"})
+//@WebServlet(name = "PRMSController", urlPatterns = {"/"})
 public class PRMSController extends HttpServlet {
 
     /**

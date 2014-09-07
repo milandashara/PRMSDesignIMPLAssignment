@@ -17,5 +17,15 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
-
+  <servlet>
+    <servlet-name>frontController</servlet-name>
+    <servlet-class>
+			sg.edu.nus.iss.phoenix.frontcontroller.PRMSController
+		</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>frontController</servlet-name>
+    <url-pattern>/controller/*</url-pattern>
+  </servlet-mapping>
 </web-app>
