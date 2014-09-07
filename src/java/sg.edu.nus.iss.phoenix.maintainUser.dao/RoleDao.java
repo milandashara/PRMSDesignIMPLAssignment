@@ -3,6 +3,7 @@ package sg.edu.nus.iss.phoenix.maintainUser;
 import java.sql.SQLException;
 import java.util.List;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
+import sg.edu.nus.iss.phoenix.maintainUser.entity.Role;
 
 public interface RoleDao {
 

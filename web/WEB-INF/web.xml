@@ -4,10 +4,10 @@
   <welcome-file-list>
     <welcome-file>/pages/home.jsp</welcome-file>
   </welcome-file-list>
-<!--  <context-param>
+ <context-param>
     <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-    <param-value>ApplicationResource</param-value>
-  </context-param>-->
+    <param-value>ApplicationResources</param-value>
+  </context-param>
   <servlet>
     <servlet-name>tiles</servlet-name>
     <servlet-class>org.apache.tiles.web.startup.simple.SimpleTilesInitializerServlet</servlet-class>

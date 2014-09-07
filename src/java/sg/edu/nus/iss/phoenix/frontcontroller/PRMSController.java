@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sg.edu.nus.iss.phoenix.frontcontroller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,18 +33,20 @@ public class PRMSController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PRMSController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PRMSController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        String pathInfo = request.getPathInfo();
+        System.out.println("PATH" + pathInfo);
+        if (pathInfo == null) {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/home.jsp");
+            rd.forward(request, response);
+        } else {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher(pathInfo);
+            rd.forward(request, response);
         }
+
+//        String action = FCUtilities.stripPath(pathInfo);
+//        
+//	System.out.println("ACTION" + action);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

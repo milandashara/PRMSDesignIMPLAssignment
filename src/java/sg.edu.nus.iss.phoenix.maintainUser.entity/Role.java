@@ -1,4 +1,4 @@
-package sg.edu.nus.iss.phoenix.maintainUser;
+package sg.edu.nus.iss.phoenix.maintainUser.entity;
 
 import java.io.Serializable;
 
