@@ -1,10 +1,10 @@
-package sg.edu.nus.iss.phoenix.maintainUser.entity;
+package sg.edu.nus.iss.phoenix.authenticate.entity;
 
 import java.io.Serializable;
 
 /**
  * Role Value Object. This class is value object representing database table
- * role This class is intended to be used together with associated Dao object.
+ * role This class is intented to be used together with associated Dao object.
  */
 
 public class Role implements Cloneable, Serializable {

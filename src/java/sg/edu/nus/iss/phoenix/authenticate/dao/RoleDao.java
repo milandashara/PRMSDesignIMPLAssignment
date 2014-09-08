@@ -1,9 +1,10 @@
-package sg.edu.nus.iss.phoenix.maintainUser.entity;
+package sg.edu.nus.iss.phoenix.authenticate.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
-import sg.edu.nus.iss.phoenix.maintainUser.entity.Role;
 
 public interface RoleDao {
 
@@ -11,7 +12,7 @@ public interface RoleDao {
 	 * createValueObject-method. This method is used when the Dao class needs
 	 * to create new value object instance. The reason why this method exists
 	 * is that sometimes the programmer may want to extend also the valueObject
-	 * and then this method can be overridden to return extended valueObject.
+	 * and then this method can be overrided to return extended valueObject.
 	 * NOTE: If you extend the valueObject class, make sure to override the
 	 * clone() method in it!
 	 */
@@ -23,7 +24,8 @@ public interface RoleDao {
 	 * for the real load-method which accepts the valueObject as a parameter. Returned
 	 * valueObject will be created using the createValueObject() method.
 	 */
-	public abstract Role getObject(String role)throws NotFoundException, SQLException;
+	public abstract Role getObject(String role)
+			throws NotFoundException, SQLException;
 
 	/**
 	 * load-method. This will load valueObject contents from database using

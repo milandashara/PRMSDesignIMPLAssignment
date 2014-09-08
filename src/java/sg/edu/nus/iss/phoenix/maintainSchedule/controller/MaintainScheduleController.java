@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Milan
  */
-@WebServlet(name = "MaintainScheduleController", urlPatterns = {"/maintainSchedule"})
+@WebServlet(name = "MaintainScheduleController", urlPatterns = {"/maintainSchedule/*"})
 public class MaintainScheduleController extends HttpServlet {
 
     /**

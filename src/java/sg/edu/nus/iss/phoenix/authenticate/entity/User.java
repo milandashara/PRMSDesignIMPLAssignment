@@ -1,11 +1,11 @@
-package sg.edu.nus.iss.phoenix.maintainUser.entity;
+package sg.edu.nus.iss.phoenix.authenticate.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * User Value Object. This class is value object representing database table
- * user This class is intended to be used together with associated Dao object.
+ * user This class is intented to be used together with associated Dao object.
  */
 public class User implements Cloneable, Serializable {
 
