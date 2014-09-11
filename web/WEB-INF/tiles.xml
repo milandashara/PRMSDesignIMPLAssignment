@@ -9,7 +9,7 @@
 		<put-attribute name="body" value="/pages/layout/body.jsp" />
 		<put-attribute name="footer" value="/pages/layout/footer.jsp" />
 	</definition>
-<!--	<definition name="loginPage" extends="homePage">
+	<definition name="loginPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/login.jsp" />
 	</definition>
 	<definition name="errorPage" extends="homePage">
@@ -23,5 +23,5 @@
 	</definition>
 	<definition name="setuprpPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/setuprp.jsp" />
-	</definition>-->
+	</definition>
 </tiles-definitions>
