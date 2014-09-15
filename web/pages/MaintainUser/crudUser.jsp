@@ -64,8 +64,8 @@
                         
                         <a href="${updurl}"><fmt:message key="label.crudu.edit"/></a>
                         &nbsp;&nbsp;&nbsp;
-                        <c:url var="delurl" scope="page" value="/controller/deleterp">
-                            <c:param name="name" value="${crudu.name}"/>
+                        <c:url var="delurl" scope="page" value="/controller/deleteUser">
+                            <c:param name="id" value="${crudu.id}"/>
                         </c:url>
                         <a href="${delurl}"><fmt:message key="label.crudu.delete"/></a>
                                  

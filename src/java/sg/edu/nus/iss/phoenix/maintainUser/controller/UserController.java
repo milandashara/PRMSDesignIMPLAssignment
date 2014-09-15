@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
 import sg.edu.nus.iss.phoenix.maintainUser.delegate.MaintainUserDelegate;
 import sg.edu.nus.iss.phoenix.reviewSelectUser.controller.ReviewSelectUserController;
@@ -40,16 +41,25 @@ public class UserController extends HttpServlet {
 protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   
      
-        MaintainUserDelegate mu=new MaintainUserDelegate();
-       //String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();
-	String selection="load";
+        
+       String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();
+	
        switch (selection) {
                     case "load":
                         RequestDispatcher rd=request.getRequestDispatcher("/ReviewSelectUserController");
                         rd.forward(request,response);	
                         break;
+                    case "delete":
+                        MaintainUserDelegate mu=new MaintainUserDelegate();
+                        String Id=request.getParameter("id");
+                        User u=new User(Id);
+                        mu.deleteUser(u);
+                        RequestDispatcher rd2=request.getRequestDispatcher("/ReviewSelectUserController");
+                        rd2.forward(request,response);	
+                        break;
+                    
                     default:
-                             RequestDispatcher rd1=request.getRequestDispatcher("/ReviewSelectUserController");
+                        RequestDispatcher rd1=request.getRequestDispatcher("/ReviewSelectUserController");
                         rd1.forward(request,response);	
                         break;
                         

@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.phoenix.authenticate.dao.impl;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.BasisLibrary;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -192,6 +193,8 @@ public class UserDaoImpl implements UserDao {
 		try {
 			stmt = this.connection.prepareStatement(sql);
 			stmt.setString(1, valueObject.getId());
+                        
+                     
 
 			int rowcount = databaseUpdate(stmt);
 			if (rowcount == 0) {
