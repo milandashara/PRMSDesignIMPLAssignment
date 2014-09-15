@@ -92,7 +92,9 @@ public class PRMSController extends HttpServlet {
 		case "crudrp":
 			return "/CRUDRpController";
 		case "loadrp":
-			return "/ProcessController/load";	
+			return "/ProcessController/load";
+                case "loadUser":
+			return "/UserController/load";
 		case "deleterp":
 			return "/ProcessController/delete";
 		case "logout":

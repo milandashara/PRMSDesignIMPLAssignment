@@ -41,12 +41,17 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
   
      
         MaintainUserDelegate mu=new MaintainUserDelegate();
-       String selection = FCUtilities.stripPath(request.getPathInfo())
-				.toLowerCase();
-		switch (selection) {
-                    case "delete":
+       //String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();
+	String selection="load";
+       switch (selection) {
+                    case "load":
                         RequestDispatcher rd=request.getRequestDispatcher("/ReviewSelectUserController");
-                        rd.forward(request,response);
+                        rd.forward(request,response);	
+                        break;
+                    default:
+                             RequestDispatcher rd1=request.getRequestDispatcher("/ReviewSelectUserController");
+                        rd1.forward(request,response);	
+                        break;
                         
                 }
 }

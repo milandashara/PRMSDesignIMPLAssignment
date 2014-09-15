@@ -21,7 +21,7 @@ import sg.edu.nus.iss.phoenix.reviewSelectUser.delegate.UserListDelegate;
  *
  * @author Siva
  */
-@WebServlet("/ReviewSelectUserController/*")
+@WebServlet("/ReviewSelectUserController")
 public class ReviewSelectUserController extends HttpServlet {
     
     
@@ -50,8 +50,10 @@ public class ReviewSelectUserController extends HttpServlet {
     ArrayList<User> data = ul.getUserList();
 			request.setAttribute("userlist", data);
 			RequestDispatcher rd = request
-					.getRequestDispatcher("/UserController/");
+					.getRequestDispatcher("/pages/crudUser.jsp");
 			rd.forward(request, response);
+                        
+                        
     }
 
 }
