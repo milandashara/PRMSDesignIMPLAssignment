@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import sg.edu.nus.iss.phoenix.authenticate.dao.UserDao;
 import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
+import sg.edu.nus.iss.phoenix.core.dao.DBConstants;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 
 /**
@@ -461,8 +462,8 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/phoenix", "phoenix",
-					"password");
+					                           DBConstants.dbUrl, DBConstants.dbUserName,
+					DBConstants.dbPassword);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
