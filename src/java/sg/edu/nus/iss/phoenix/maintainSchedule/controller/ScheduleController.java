@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sg.edu.nus.iss.phoenix.maintainSchedule.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
 
 /**
  *
  * @author Milan
  */
-@WebServlet(name = "MaintainScheduleController", urlPatterns = {"/maintainSchedule/*"})
-public class MaintainScheduleController extends HttpServlet {
+@WebServlet(name = "ScheduleController", urlPatterns = {"/ScheduleController/*"})
+public class ScheduleController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,19 +33,12 @@ public class MaintainScheduleController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MaintainScheduleController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MaintainScheduleController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("load")) {
+
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/schedule.jsp");;
+            rd.forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

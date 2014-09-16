@@ -101,6 +101,9 @@ public class PRMSController extends HttpServlet {
 			return "/UserController/delete";
                 case "logout":
 			return "/LoginController/logout";
+                case "scheduleScreen":
+			return "/ScheduleController/load";    
+                    
 		default:
 			return "/welcome.jsp";
 		}

@@ -9,6 +9,10 @@
 		<put-attribute name="body" value="/pages/layout/body.jsp" />
 		<put-attribute name="footer" value="/pages/layout/footer.jsp" />
 	</definition>
+       <definition name="schedulePage" extends="homePage">
+		<put-attribute name="body" value="/pages/tilepages/schedule.jsp" />
+	</definition>
+        
 	<definition name="loginPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/login.jsp" />
 	</definition>
