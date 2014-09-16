@@ -10,11 +10,14 @@
 	<fmt:message key="caption.menu" />
 </h3>
 <table class="framed">
+    
+    <c:if test="${sessionScope.user==null}">
 	<tr>
 		<td><a href="<c:url value="/pages/login.jsp"/>"> <fmt:message
 					key="caption.menu.login" />
 		</a></td>
 	</tr>
+    </c:if>
 	<c:if test="${sessionScope.user.roles[0].role=='manager'}">
 	<tr>
 		<td>
