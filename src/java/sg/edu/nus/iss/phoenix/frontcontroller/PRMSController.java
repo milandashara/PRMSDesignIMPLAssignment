@@ -92,18 +92,13 @@ public class PRMSController extends HttpServlet {
 		case "crudrp":
 			return "/CRUDRpController";
 		case "loadrp":
-			return "/ProcessController/load";
-                case "loadUser":
-			return "/UserController/load";
+			return "/ProcessController/load";	
 		case "deleterp":
 			return "/ProcessController/delete";
-		case "deleteUser":
-			return "/UserController/delete";
-                case "logout":
+		case "logout":
 			return "/LoginController/logout";
-                case "scheduleScreen":
-			return "/ScheduleController/load";    
-                    
+                case "reviewselectspyear":
+                    return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
 		default:
 			return "/welcome.jsp";
 		}
