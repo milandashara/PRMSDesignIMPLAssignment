@@ -6,7 +6,6 @@
 package sg.edu.nus.iss.phoenix.maintainSchedule.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
+import sg.edu.nus.iss.phoenix.maintainSchedule.delegate.ScheduleDelegate;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.ProgramSlot;
 
 /**
  *
@@ -38,6 +39,22 @@ public class ScheduleController extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/schedule.jsp");;
             rd.forward(request, response);
         }
+        else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("deleteSchedule") ) {
+			ScheduleDelegate sd = new ScheduleDelegate();
+			ProgramSlot pSlot = new ProgramSlot();
+                        
+//			user.setId(request.getParameter("id"));
+//			user.setPassword(request.getParameter("password"));
+//			user = ad.validateUserIdPassword(user);
+//			RequestDispatcher rd;
+//			if (null != user) {
+//				request.getSession().setAttribute("user", user);
+//				rd = getServletContext().getRequestDispatcher("/pages/home.jsp");;
+//			} else
+//				rd = getServletContext().getRequestDispatcher("/pages/error.jsp");;
+//		    rd.forward(request, response);
+		}
+     
 
     }
 
