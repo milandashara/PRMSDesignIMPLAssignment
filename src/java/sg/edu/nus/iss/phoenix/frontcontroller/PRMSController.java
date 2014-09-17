@@ -82,9 +82,8 @@ public class PRMSController extends HttpServlet {
 
     private String chooseUseCase(String action) {
         switch (action) {
-            case "scheduleScreen":
+            case "schedulescreen":
                 return "/ScheduleController/load";
-
             case "login":
                 return "/LoginController/login";
             case "searchrp":
@@ -100,7 +99,7 @@ public class PRMSController extends HttpServlet {
             case "logout":
                 return "/LoginController/logout";
             case "loadUser":
-                return "/UserController/";
+                return "/UserController/loadUser";
             case "reviewselectspyear":
                 return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
             default:

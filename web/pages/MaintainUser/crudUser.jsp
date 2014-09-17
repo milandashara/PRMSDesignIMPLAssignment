@@ -17,7 +17,7 @@
     </head>
     <body>
         <h1><fmt:message key="label.crudu"/></h1>
-        <c:url var="url" scope="page" value="/pages/MaintainUser/setupUser.jsp">
+        <c:url var="url" scope="page" value="/pages/setupUser.jsp">
             <c:param name="Id" value=""/>
             <c:param name="Name" value=""/>
             <c:param name="Password" value=""/>
@@ -48,7 +48,7 @@
                         </select>
                     </td>
                     <td class="nowrap">
-                        <c:url var="updurl" scope="page" value="/pages/MaintainUser/setupUser.jsp">
+                        <c:url var="updurl" scope="page" value="/pages/setupUser.jsp">
                             <c:param name="Id" value="${crudu.id}"/>
                             <c:param name="Name" value="${crudu.name}"/>
                             <c:param name="Password" value="${crudu.password}"/>

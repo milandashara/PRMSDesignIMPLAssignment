@@ -34,14 +34,14 @@
 
         <tr>
             <td>
-                <a href="<c:url value="/controller/scheduleScreen"/>"> <fmt:message
+                <a href="<c:url value="/controller/schedulescreen"/>"> <fmt:message
                         key="caption.menu.scheduleScreen" />
                 </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="<c:url value="/controller/loadUser"/>"> <fmt:message
+                <a href="<c:url value="/controller/loaduser"/>"> <fmt:message
                         key="caption.menu.manageUser" />
                 </a>
             </td>

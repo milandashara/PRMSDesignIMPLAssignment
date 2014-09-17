@@ -44,10 +44,10 @@ public class UserController extends HttpServlet {
         String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();
 
         switch (selection) {
-            case "load":
-                RequestDispatcher rd = request.getRequestDispatcher("/ReviewSelectUserController");
-                rd.forward(request, response);
-                break;
+//            case "createuser":
+//                RequestDispatcher rd = request.getRequestDispatcher("/ReviewSelectUserController");
+//                rd.forward(request, response);
+//                break;
             case "delete":
                 MaintainUserDelegate mu = new MaintainUserDelegate();
                 String Id = request.getParameter("id");
