@@ -20,38 +20,34 @@
 </head>
 <body>
 	<form action="${pageContext.request.contextPath}/ReviewSelectUserController" method=post>
-		<center>
-			<table cellpadding=4 cellspacing=2 border=0>
-				<tr>
-					<th width="30%"><fmt:message key="label.crudu.id" /></th>
-					<th width="45%"><fmt:message key="label.crudu.name" /></th>
-					<th width="25%"><fmt:message key="label.crudu.password" /></th>
-                                        <th width="45%"><fmt:message key="label.crudu.roles" /></th>
-				</tr>
-				<tr>
-					<td><fmt:message key="label.crudu.id" /></td>
-					<td><input type="text" name="id"
-						value="${param['id']}" size=45 maxlength=20></td>
-				</tr>
-				<tr>
-					<td><fmt:message key="label.crudu.name" /></td>
-					<td><input type="text" name="name"
-						value="${param['name']}" size=45 maxlength=20></td>
-				</tr>
-				<tr>
-					<td><fmt:message key="label.crudu.password" /></td>
-					<td><input type="text" name="password"
-						value="${param['password']}" size=15 maxlength=20></td>
-				</tr>
-                                <tr>
-					<td><fmt:message key="label.crudu.roles" /></td>
-                                        <td><input type="text" name="roles"
-						value="${param['roles']}" size=15 maxlength=20></td>
-                                </tr>
-			</table>
-		</center>
-		<input type="submit" value="Submit"> <input type="reset"
-			value="Reset">
+            <center>
+            <table cellpadding=4 cellspacing=1 border=1>
+               <center>
+                <tr>
+                    <td><fmt:message key="label.crudu.id" /></td>
+                    <td><input type="text" name="id"
+                               value="${param['id']}" size=45 maxlength=20></td>
+                </tr>
+                <tr>
+                    <td><fmt:message key="label.crudu.name" /></td>
+                    <td><input type="text" name="name"
+                               value="${param['name']}" size=45 maxlength=20></td>
+                </tr>
+                <tr>
+                    <td><fmt:message key="label.crudu.password" /></td>
+                    <td><input type="text" name="password"
+                               value="${param['password']}" size=15 maxlength=20></td>
+                </tr>
+                <tr>
+                    <td><fmt:message key="label.crudu.roles" /></td>
+                    <td><input type="text" name="roles"
+                               value="${param['roles']}" size=15 maxlength=20></td>
+                </tr>
+            </table>
+          </center>
+        <br>
+        <input type="submit" value="Submit"> <input type="reset"
+                                                    value="Reset">
 	</form>
 
 </body>

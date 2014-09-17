@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sg.edu.nus.iss.phoenix.reviewSelectUser.controller;
 
 import java.io.IOException;
@@ -23,37 +22,35 @@ import sg.edu.nus.iss.phoenix.reviewSelectUser.delegate.UserListDelegate;
  */
 @WebServlet("/ReviewSelectUserController")
 public class ReviewSelectUserController extends HttpServlet {
-    
-    
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		processRequest(request, response);
-	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		processRequest(request, response);
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        processRequest(request, response);
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        processRequest(request, response);
+    }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        UserListDelegate ul=new UserListDelegate();
-        
-    ArrayList<User> data = ul.getUserList();
-			request.setAttribute("userlist", data);
-			RequestDispatcher rd = request
-					.getRequestDispatcher("/pages/crudUser.jsp");
-			rd.forward(request, response);
-                        
-                        
+
+        UserListDelegate ul = new UserListDelegate();
+
+        ArrayList<User> data = ul.getUserList();
+        request.setAttribute("userlist", data);
+        RequestDispatcher rd = request
+                .getRequestDispatcher("/pages/crudUser.jsp");
+        rd.forward(request, response);
+
     }
 
 }

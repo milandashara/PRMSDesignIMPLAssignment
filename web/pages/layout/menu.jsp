@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td>
-                <a href="<c:url value="/controller/loaduser"/>"> <fmt:message
+                <a href="<c:url value="/controller/loadUser"/>"> <fmt:message
                         key="caption.menu.manageUser" />
                 </a>
             </td>
