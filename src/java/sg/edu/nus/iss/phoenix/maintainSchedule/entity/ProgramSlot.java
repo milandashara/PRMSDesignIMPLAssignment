@@ -17,6 +17,7 @@ import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 public class ProgramSlot {
     
     private Integer duration;
+    private Integer id;
     private Date dateOfProgram;
     private Date startTime;
     private RadioProgram radioProgram;
@@ -114,6 +115,20 @@ public class ProgramSlot {
      */
     public void setProducer(User producer) {
         this.producer = producer;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     
