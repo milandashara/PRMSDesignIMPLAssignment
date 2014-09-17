@@ -41,7 +41,7 @@ public class ScheduleController extends HttpServlet {
         }
         else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("deleteSchedule") ) {
 			ScheduleDelegate sd = new ScheduleDelegate();
-			ProgramSlot pSlot = new ProgramSlot();
+			//ProgramSlot pSlot = new ProgramSlot();
                         
 //			user.setId(request.getParameter("id"));
 //			user.setPassword(request.getParameter("password"));
