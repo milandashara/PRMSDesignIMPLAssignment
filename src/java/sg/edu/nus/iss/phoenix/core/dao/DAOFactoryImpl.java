@@ -14,35 +14,36 @@ import sg.edu.nus.iss.phoenix.radioprogram.dao.RadioProgramDAO;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.impl.RadioProgramDAOImpl;
 
 public class DAOFactoryImpl implements DAOFactory {
-	private UserDao userDAO = new UserDaoImpl();
-	private RoleDao roleDAO = new RoleDaoImpl();
-	private RadioProgramDAO rpdao = new RadioProgramDAOImpl();
-        private AnnualScheduleDao annualscheduledao = new AnnualScheduleDaoImpl();
-        private WeeklyScheduleDao weeklyscheduledao = new WeeklyScheduleDaoImpl();
-        private ProgramSlotDao programslotdao = new ProgramSlotDaoImpl();
-	@Override
-	public UserDao getUserDAO() {
-		// TODO Auto-generated method stub
-		return userDAO;
-	}
 
-	@Override
-	public RoleDao getRoleDAO() {
-		// TODO Auto-generated method stub
-		return roleDAO;
-	}
+    private UserDao userDAO = new UserDaoImpl();
+    private RoleDao roleDAO = new RoleDaoImpl();
+    private RadioProgramDAO rpdao = new RadioProgramDAOImpl();
+    private AnnualScheduleDao annualscheduledao = new AnnualScheduleDaoImpl();
+    private WeeklyScheduleDao weeklyscheduledao = new WeeklyScheduleDaoImpl();
+    private ProgramSlotDao programslotdao = new ProgramSlotDaoImpl();
 
-	@Override
-	public RadioProgramDAO getRadioProgramDAO() {
-		// TODO Auto-generated method stub
-		return rpdao;
-	}
-        
-        @Override
-        public AnnualScheduleDao getAnnualScheduleDAO() {
-            return annualscheduledao;
-        }
+    @Override
+    public UserDao getUserDAO() {
+        // TODO Auto-generated method stub
+        return userDAO;
+    }
 
+    @Override
+    public RoleDao getRoleDAO() {
+        // TODO Auto-generated method stub
+        return roleDAO;
+    }
+
+    @Override
+    public RadioProgramDAO getRadioProgramDAO() {
+        // TODO Auto-generated method stub
+        return rpdao;
+    }
+
+    @Override
+    public AnnualScheduleDao getAnnualScheduleDAO() {
+        return annualscheduledao;
+    }
 
     @Override
     public WeeklyScheduleDao getWeeklyScheduleDAO() {

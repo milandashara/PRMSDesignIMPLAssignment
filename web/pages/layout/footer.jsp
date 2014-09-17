@@ -3,7 +3,7 @@
 <TABLE class="footer">
 	<tr>
 		<TD ALIGN="CENTER" VALIGN="MIDDLE"><font class="small">&nbsp;
-				Copyright 2012 &nbsp; Institute of Systems Science &nbsp; Singapore
+				Copyright 2014 &nbsp; Institute of Systems Science &nbsp; Singapore
 		</font></TD>
 	</TR>
 </TABLE>
