@@ -33,12 +33,12 @@ public class PRMSController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-		String action = FCUtilities.stripPath(pathInfo);
-		System.out.println("PATH" + pathInfo);
-		System.out.println("ACTION" + action);
-		String result = chooseUseCase(action);
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(result);
-		rd.forward(request, response);
+        String action = FCUtilities.stripPath(pathInfo);
+        System.out.println("PATH" + pathInfo);
+        System.out.println("ACTION" + action);
+        String result = chooseUseCase(action);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(result);
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,30 +80,31 @@ public class PRMSController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
     private String chooseUseCase(String action) {
-		switch (action) {
-                case "scheduleScreen":
-			return "/ScheduleController/load";    
-                    
-		case "login":
-			return "/LoginController/login";
-		case "searchrp":
-			return "/ProcessController/search";
-		case "setuprp":
-			return "/ProcessController/process";
-		case "crudrp":
-			return "/CRUDRpController";
-		case "loadrp":
-			return "/ProcessController/load";	
-		case "deleterp":
-			return "/ProcessController/delete";
-		case "logout":
-			return "/LoginController/logout";
-                case "reviewselectspyear":
-                    return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
-		default:
-			return "/welcome.jsp";
-		}
-	}
+        switch (action) {
+            case "scheduleScreen":
+                return "/ScheduleController/load";
+
+            case "login":
+                return "/LoginController/login";
+            case "searchrp":
+                return "/ProcessController/search";
+            case "setuprp":
+                return "/ProcessController/process";
+            case "crudrp":
+                return "/CRUDRpController";
+            case "loadrp":
+                return "/ProcessController/load";
+            case "deleterp":
+                return "/ProcessController/delete";
+            case "logout":
+                return "/LoginController/logout";
+            case "loadUser":
+                return "/UserController/";
+            case "reviewselectspyear":
+                return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
+            default:
+                return "/welcome.jsp";
+        }
+    }
 }

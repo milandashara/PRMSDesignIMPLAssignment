@@ -8,7 +8,7 @@
 <title><fmt:message key="title.login" /></title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/controller/login"
+    <form action="${pageContext.request.contextPath}/controller/login"
 		method=post>
 		<h2>
 			<fmt:message key="title.login" />
