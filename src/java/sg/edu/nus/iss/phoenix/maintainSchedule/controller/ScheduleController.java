@@ -6,15 +6,23 @@
 package sg.edu.nus.iss.phoenix.maintainSchedule.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
 import sg.edu.nus.iss.phoenix.maintainSchedule.delegate.ScheduleDelegate;
-import sg.edu.nus.iss.phoenix.maintainSchedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
 
 /**
  *
@@ -34,15 +42,38 @@ public class ScheduleController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("load")) {
-
+        if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("loadAllAnnualSchedule")) {
+            ScheduleDelegate scheduleDelegate = new ScheduleDelegate();
+            List<AnnualSchedule> annualScheduleList = scheduleDelegate.getAllAnnualScheduleList();
+            request.setAttribute("annualScheduleList", annualScheduleList);
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/schedule.jsp");;
             rd.forward(request, response);
-        }
-        else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("deleteSchedule") ) {
-			ScheduleDelegate sd = new ScheduleDelegate();
+        } else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("loadAllWeeklySchedule")) {
+            ScheduleDelegate scheduleDelegate = new ScheduleDelegate();
+            Integer year = Integer.parseInt(request.getParameter("year").toString());
+            List<WeeklySchedule> weeklyScheduleList = scheduleDelegate.getAllWeeklySchedule(year);
+            JSONArray jsonArray = new JSONArray();
+            for (WeeklySchedule weeklySchedule : weeklyScheduleList) {
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    
+                    jsonObject.put("startDate", new SimpleDateFormat("dd-MM-yyyy").format(weeklySchedule.getStartDate()));
+                } catch (JSONException ex) {
+                    Logger.getLogger(ScheduleController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                jsonArray.put(jsonObject);
+            }
+            JSONObject jo=new JSONObject();
+            try {
+                jo.put("weeklySchedules", jsonArray);
+            } catch (JSONException ex) {
+                Logger.getLogger(ScheduleController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            response.getWriter().println(jsonArray.toString());
+        } else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("deleteSchedule")) {
+            ScheduleDelegate sd = new ScheduleDelegate();
 			//ProgramSlot pSlot = new ProgramSlot();
-                        
+
 //			user.setId(request.getParameter("id"));
 //			user.setPassword(request.getParameter("password"));
 //			user = ad.validateUserIdPassword(user);
@@ -53,8 +84,7 @@ public class ScheduleController extends HttpServlet {
 //			} else
 //				rd = getServletContext().getRequestDispatcher("/pages/error.jsp");;
 //		    rd.forward(request, response);
-		}
-     
+        }
 
     }
 

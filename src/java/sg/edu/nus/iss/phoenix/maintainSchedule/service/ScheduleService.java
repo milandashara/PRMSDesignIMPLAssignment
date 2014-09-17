@@ -3,46 +3,76 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sg.edu.nus.iss.phoenix.maintainSchedule.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sg.edu.nus.iss.phoenix.core.dao.DAOFactoryImpl;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.maintainSchedule.dao.AnnualScheduleDao;
 import sg.edu.nus.iss.phoenix.maintainSchedule.dao.ProgramSlotDao;
 import sg.edu.nus.iss.phoenix.maintainSchedule.dao.WeeklyScheduleDao;
+import sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.AnnualScheduleDaoImpl;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
 
 /**
  *
  * @author Milan,like
  */
 public class ScheduleService {
-    
-    
-	DAOFactoryImpl factory;
-	AnnualScheduleDao adao;
-	ProgramSlotDao pdao;
-        WeeklyScheduleDao wdao;
-	public ScheduleService() {
-		super();
-		// TODO Auto-generated constructor stub
-		factory = new DAOFactoryImpl();
-		adao = factory.getAnnualScheduleDAO();
-		pdao = factory.getProgramSlotDAO();
-                wdao = factory.getWeeklyScheduleDAO();
-	}
 
-        public boolean deleteProgramSlot(ProgramSlot programSlot){
-            
-            try{
-                pdao.delete(programSlot);
-                return true;
-            }catch( NotFoundException| SQLException e){
-                 return false;
-            }
-      
-            
+    DAOFactoryImpl factory;
+    AnnualScheduleDao annualScheduleDao;
+    ProgramSlotDao programSlotDao;
+    WeeklyScheduleDao weeklyScheduleDao;
+
+    public ScheduleService() {
+        super();
+        // TODO Auto-generated constructor stub
+        factory = new DAOFactoryImpl();
+        annualScheduleDao = factory.getAnnualScheduleDAO();
+        programSlotDao = factory.getProgramSlotDAO();
+        weeklyScheduleDao = factory.getWeeklyScheduleDAO();
+    }
+
+    public List<AnnualSchedule> getAllAnnualSchedulelist() {
+        try {
+            return annualScheduleDao.loadAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleService.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return new ArrayList<AnnualSchedule>();
+    }
+
+    public List<WeeklySchedule> getAllWeeklySchedulelist(Integer year) {
+        try {
+
+            return weeklyScheduleDao.getAllWeeklySchedule(year);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new ArrayList<WeeklySchedule>();
+    }
+
+    public boolean deleteProgramSlot(ProgramSlot programSlot) {
+
+        try {
+            programSlotDao.delete(programSlot);
+            return true;
+        } catch (NotFoundException | SQLException e) {
+            return false;
+        }
+
+    }
+
+    private void getObject(Integer year) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

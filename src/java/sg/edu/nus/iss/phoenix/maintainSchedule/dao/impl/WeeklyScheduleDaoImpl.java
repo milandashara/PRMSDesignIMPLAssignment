@@ -6,11 +6,17 @@
 
 package sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import sg.edu.nus.iss.phoenix.core.dao.DBUtility;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.maintainSchedule.dao.WeeklyScheduleDao;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
 
 /**
@@ -20,9 +26,18 @@ import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
 
 public class WeeklyScheduleDaoImpl implements WeeklyScheduleDao{
 
+    Connection connection;
+
+    public WeeklyScheduleDaoImpl() {
+         super();
+            connection = DBUtility.openConnection();
+    }
+    
+    
+    
     @Override
-    public WeeklySchedule createValueObject() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public WeeklySchedule createValueObject(Date startDate,String assignedBy) {
+        return new WeeklySchedule(startDate, assignedBy);
     }
 
     @Override
@@ -35,11 +50,67 @@ public class WeeklyScheduleDaoImpl implements WeeklyScheduleDao{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param year
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public List<WeeklySchedule> getAllWeeklySchedule(Integer year) throws SQLException
+    {
+        String sql = "SELECT * FROM phoenix.`weekly-schedule` a where YEAR(a.startDate) ="+year;
+		List<WeeklySchedule> searchResults = listQuery(this.connection
+				.prepareStatement(sql));
+        return searchResults;
+    }
     @Override
     public List<WeeklySchedule> loadAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         String sql = "SELECT * FROM `weekly-schedule` ORDER BY year ASC ";
+		List<WeeklySchedule> searchResults = listQuery(this.connection
+				.prepareStatement(sql));
+        return searchResults;
     }
 
+     /**
+	 * databaseQuery-method. This method is a helper method for internal use. It
+	 * will execute all database queries that will return multiple rows. The
+	 * resultset will be converted to the List of valueObjects. If no rows were
+	 * found, an empty List will be returned.
+	 * 
+	 * @param conn
+	 *            This method requires working database connection.
+	 * @param stmt
+	 *            This parameter contains the SQL statement to be excuted.
+	 */
+	protected List<WeeklySchedule> listQuery(PreparedStatement stmt) throws SQLException {
+
+		ArrayList<WeeklySchedule> searchResults = new ArrayList<WeeklySchedule>();
+		ResultSet result = null;
+
+		try {
+			result = stmt.executeQuery();
+
+			while (result.next()) {
+				WeeklySchedule temp = createValueObject(result.getDate("startDate"),result.getString("assignedBy"));
+
+			
+				
+
+				searchResults.add(temp);
+			}
+
+		} finally {
+			if (result != null)
+				result.close();
+			if (stmt != null)
+				stmt.close();
+		}
+
+		return (List<WeeklySchedule>) searchResults;
+	}
+
+    
     @Override
     public void create(WeeklySchedule valueObject) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

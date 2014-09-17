@@ -17,6 +17,9 @@ import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
  */
 public interface AnnualScheduleDao {
     
+    
+        
+        
     	/**
 	 * createValueObject-method. This method is used when the Dao class needs to
 	 * create new value object instance. The reason why this method exists is
@@ -25,7 +28,7 @@ public interface AnnualScheduleDao {
 	 * If you extend the valueObject class, make sure to override the clone()
 	 * method in it!
 	 */
-	public abstract AnnualSchedule createValueObject();
+	public AnnualSchedule createValueObject(Integer year,String assignedBy);
 
 	/**
 	 * getObject-method. This will create and load valueObject contents from
@@ -34,7 +37,7 @@ public interface AnnualScheduleDao {
 	 * as a parameter. Returned valueObject will be created using the
 	 * createValueObject() method.
 	 */
-	public abstract AnnualSchedule getObject(int year)
+	public abstract AnnualSchedule getObject(Integer year)
 			throws NotFoundException, SQLException;
 
 	/**
@@ -175,5 +178,7 @@ public interface AnnualScheduleDao {
 
 	public abstract AnnualSchedule searchMatching(Integer year)
 			throws SQLException;
+
+
     
 }

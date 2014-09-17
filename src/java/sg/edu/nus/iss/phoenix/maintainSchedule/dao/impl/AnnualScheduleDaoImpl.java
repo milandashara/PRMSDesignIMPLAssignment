@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl;
 
 import java.sql.Connection;
@@ -11,10 +10,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.core.dao.DBConstants;
+import sg.edu.nus.iss.phoenix.core.dao.DBUtility;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.maintainSchedule.dao.AnnualScheduleDao;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
@@ -23,26 +24,34 @@ import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
  *
  * @author Mani
  */
-public class AnnualScheduleDaoImpl implements AnnualScheduleDao{
-    
-	private static final Logger logger = Logger.getLogger(AnnualScheduleDaoImpl.class.getName());
+public class AnnualScheduleDaoImpl implements AnnualScheduleDao {
 
-	Connection connection;
-        
-        public AnnualScheduleDaoImpl()
-        {
-            super();
-            connection = openConnection();
-        }
+    private static final Logger logger = Logger.getLogger(AnnualScheduleDaoImpl.class.getName());
 
-    @Override
-    public AnnualSchedule createValueObject() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Connection connection;
+
+    public AnnualScheduleDaoImpl() {
+        super();
+        connection = DBUtility.openConnection();
     }
 
     @Override
-    public AnnualSchedule getObject(int year) throws NotFoundException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public AnnualSchedule createValueObject(Integer year, String assignedBy) {
+        return new AnnualSchedule(year, assignedBy); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public AnnualSchedule getObject(Integer year) throws NotFoundException, SQLException {
+        String sql = "SELECT * FROM `annual-schedule` where year=" + year + "ORDER BY year ASC ";
+
+        List<AnnualSchedule> searchResults = listQuery(this.connection
+                .prepareStatement(sql));
+        if (searchResults.size() > 0) {
+            return searchResults.get(0);
+        } else {
+            return null;
+        }
+
     }
 
     @Override
@@ -52,7 +61,45 @@ public class AnnualScheduleDaoImpl implements AnnualScheduleDao{
 
     @Override
     public List<AnnualSchedule> loadAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM `annual-schedule` ORDER BY year ASC ";
+        List<AnnualSchedule> searchResults = listQuery(this.connection
+                .prepareStatement(sql));
+        return searchResults;
+    }
+
+    /**
+     * databaseQuery-method. This method is a helper method for internal use. It
+     * will execute all database queries that will return multiple rows. The
+     * resultset will be converted to the List of valueObjects. If no rows were
+     * found, an empty List will be returned.
+     *
+     * @param conn This method requires working database connection.
+     * @param stmt This parameter contains the SQL statement to be excuted.
+     */
+    protected List<AnnualSchedule> listQuery(PreparedStatement stmt) throws SQLException {
+
+        ArrayList<AnnualSchedule> searchResults = new ArrayList<AnnualSchedule>();
+        ResultSet result = null;
+
+        try {
+            result = stmt.executeQuery();
+
+            while (result.next()) {
+                AnnualSchedule temp = createValueObject(result.getInt("year"), result.getString("assingedBy"));
+
+                searchResults.add(temp);
+            }
+
+        } finally {
+            if (result != null) {
+                result.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+
+        return (List<AnnualSchedule>) searchResults;
     }
 
     @Override
@@ -90,28 +137,9 @@ public class AnnualScheduleDaoImpl implements AnnualScheduleDao{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private Connection openConnection() {
-        Connection conn = null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    protected void singleQuery(PreparedStatement stmt, AnnualSchedule valueObject)
+            throws NotFoundException, SQLException {
 
-		try {
-			conn = DriverManager.getConnection(DBConstants.dbUrl, DBConstants.dbUserName,
-					DBConstants.dbPassword);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return conn;
     }
-    
-    	protected void singleQuery(PreparedStatement stmt, AnnualSchedule valueObject)
-			throws NotFoundException, SQLException {
 
-	}
-    
 }

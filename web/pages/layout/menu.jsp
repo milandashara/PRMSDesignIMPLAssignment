@@ -34,7 +34,7 @@
 
         <tr>
             <td>
-                <a href="<c:url value="/controller/schedulescreen"/>"> <fmt:message
+                <a href="<c:url value="/controller/scheduleScreen"/>"> <fmt:message
                         key="caption.menu.scheduleScreen" />
                 </a>
             </td>

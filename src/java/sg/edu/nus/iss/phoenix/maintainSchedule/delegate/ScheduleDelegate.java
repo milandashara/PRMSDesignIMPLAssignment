@@ -6,7 +6,10 @@
 
 package sg.edu.nus.iss.phoenix.maintainSchedule.delegate;
 
+import java.util.List;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
 import sg.edu.nus.iss.phoenix.maintainSchedule.service.ScheduleService;
 
 /**
@@ -23,4 +26,15 @@ public class ScheduleDelegate {
             
 		return service.deleteProgramSlot(programSlot);
 	}
+        
+        public List<AnnualSchedule> getAllAnnualScheduleList()
+        {
+            return service.getAllAnnualSchedulelist();
+        }
+
+  
+
+    public List<WeeklySchedule> getAllWeeklySchedule(Integer year) {
+        return service.getAllWeeklySchedulelist(year);
+    }
 }

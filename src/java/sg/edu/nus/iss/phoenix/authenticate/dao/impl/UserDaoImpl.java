@@ -16,6 +16,7 @@ import sg.edu.nus.iss.phoenix.authenticate.dao.UserDao;
 import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.core.dao.DBConstants;
+import sg.edu.nus.iss.phoenix.core.dao.DBUtility;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 
 /**
@@ -33,7 +34,7 @@ public class UserDaoImpl implements UserDao {
 	public UserDaoImpl() {
 		super();
 		// TODO Auto-generated constructor stub
-		connection = openConnection();
+		connection = DBUtility.openConnection();
 	}
 
 	/*
@@ -451,23 +452,5 @@ public class UserDaoImpl implements UserDao {
 		return (roleList);
 	}
 
-	private Connection openConnection() {
-		Connection conn = null;
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			conn = DriverManager.getConnection(
-					                           DBConstants.dbUrl, DBConstants.dbUserName,
-					DBConstants.dbPassword);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return conn;
-	}
+	
 }

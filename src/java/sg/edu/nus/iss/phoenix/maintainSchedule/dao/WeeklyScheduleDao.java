@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
 
 /**
@@ -26,7 +27,7 @@ public interface WeeklyScheduleDao {
 	 * If you extend the valueObject class, make sure to override the clone()
 	 * method in it!
 	 */
-	public abstract WeeklySchedule createValueObject();
+	 public  WeeklySchedule createValueObject(Date startDate,String assignedBy);
 
 	/**
 	 * getObject-method. This will create and load valueObject contents from
@@ -176,5 +177,7 @@ public interface WeeklyScheduleDao {
 
 	public abstract WeeklySchedule searchMatching(Date startDate)
 			throws SQLException;
+
+    public List<WeeklySchedule> getAllWeeklySchedule(Integer year)throws SQLException;
     
 }
