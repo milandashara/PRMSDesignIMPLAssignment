@@ -41,25 +41,26 @@
                     <td class="nowrap">${crudu.password}</td>
 
                     <td>
-                        <select>
-                            <c:forEach var="roleObject"  items="${crudu.roles}">
-                                <option><c:out value="${roleObject.role}"></c:out></option>  
-                            </c:forEach>
-                        </select>
+                        <c:forEach items="${crudu.roles}" var="roleObject" varStatus="stat">
+                            <c:set var="roleVal" value="${stat.first ? '':roleVal} ${roleObject.role}" />
+                        </c:forEach>
+                        <c:out value="${roleVal}"/>
+
                     </td>
                     <td class="nowrap">
                         <c:url var="updurl" scope="page" value="/pages/setupUser.jsp">
-                            <c:param name="Id" value="${crudu.id}"/>
-                            <c:param name="Name" value="${crudu.name}"/>
-                            <c:param name="Password" value="${crudu.password}"/>
-                            <select>
+                            <c:param name="id" value="${crudu.id}"/>
+                            <c:param name="name" value="${crudu.name}"/>
+                            <c:param name="password" value="${crudu.password}"/>
+                            <c:param name="roles"  value="${roleVal}"/>
+                       <!-- <select>
                                 <c:forEach var="roleObject"  items="${crudu.roles}">
                                     <option><c:out value="roleObject.role"></c:out></option>  
                                 </c:forEach>
-                            </select>
+                            </select>-->
 
 
-                            <c:param name="insert" value="false"/>
+                                <c:param name="insert" value="false"/>
                         </c:url>
 
                         <a href="${updurl}"><fmt:message key="label.crudu.edit"/></a>
