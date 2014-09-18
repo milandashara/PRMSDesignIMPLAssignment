@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
 import sg.edu.nus.iss.phoenix.maintainSchedule.delegate.ScheduleDelegate;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
 
 /**
@@ -72,18 +73,18 @@ public class ScheduleController extends HttpServlet {
             response.getWriter().println(jsonArray.toString());
         } else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("deleteSchedule")) {
             ScheduleDelegate sd = new ScheduleDelegate();
-			//ProgramSlot pSlot = new ProgramSlot();
-
-//			user.setId(request.getParameter("id"));
-//			user.setPassword(request.getParameter("password"));
-//			user = ad.validateUserIdPassword(user);
-//			RequestDispatcher rd;
-//			if (null != user) {
-//				request.getSession().setAttribute("user", user);
-//				rd = getServletContext().getRequestDispatcher("/pages/home.jsp");;
-//			} else
-//				rd = getServletContext().getRequestDispatcher("/pages/error.jsp");;
-//		    rd.forward(request, response);
+            ProgramSlot ps = new ProgramSlot();
+            String sId = request.getParameter("id");
+            Integer id = Integer.parseInt(sId);
+            ps.setId(id);
+            boolean ret = sd.deleteProgramSlot(ps);
+             RequestDispatcher rd;
+            if(ret){
+                 rd = getServletContext().getRequestDispatcher("/pages/home.jsp");
+            } else{
+		rd = getServletContext().getRequestDispatcher("/pages/error.jsp");
+            }
+            rd.forward(request, response);
         }
 
     }
