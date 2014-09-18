@@ -48,7 +48,7 @@ public class UserController extends HttpServlet {
 //                RequestDispatcher rd = request.getRequestDispatcher("/ReviewSelectUserController");
 //                rd.forward(request, response);
 //                break;
-            case "delete":
+            case "deleteuser":
                 MaintainUserDelegate mu = new MaintainUserDelegate();
                 String Id = request.getParameter("id");
                 User u = new User(Id);
