@@ -102,6 +102,8 @@ public class PRMSController extends HttpServlet {
                 return "/LoginController/logout";
             case "loadUser":
                 return "/UserController/loadUser";
+            case "deleteUser":
+                return "/UserController/deleteUser";
             case "reviewselectspyear":
                 return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
             default:
