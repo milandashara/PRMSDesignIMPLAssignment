@@ -63,13 +63,11 @@ public class ScheduleService {
     public boolean deleteProgramSlot(ProgramSlot programSlot) {
 
         try {
-            
-            programSlotDao.delete(programSlot);
-            return true;
+            programSlotDao.delete(programSlot); 
         } catch (NotFoundException | SQLException e) {
             return false;
         }
-
+        return true;
     }
 
     private void getObject(Integer year) {
