@@ -19,7 +19,7 @@
         <title><fmt:message key="title.setupu" /></title>
     </head>
     <body>
-        <form action="${pageContext.request.contextPath}/ReviewSelectUserController" 
+        <form action="${pageContext.request.contextPath}/controller/maintainUser" 
               method=post>
             <center>
                 <table class="borderAll" cellpadding=10 cellspacing=1 border=1 width="60">

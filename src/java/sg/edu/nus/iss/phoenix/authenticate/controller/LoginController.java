@@ -19,54 +19,59 @@ import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
  */
 @WebServlet("/LoginController/*")
 public class LoginController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     /**
-     * Default constructor. 
+     * Default constructor.
      */
     public LoginController() {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		processRequest(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		processRequest(request, response);
-	}
-	 /**
-     * Process requests from front controller. 
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
      */
-	 protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("login") ) {
-			AuthenticateDelegate ad = new AuthenticateDelegate();
-			User user = new User();
-			user.setId(request.getParameter("id"));
-			user.setPassword(request.getParameter("password"));
-			user = ad.validateUserIdPassword(user);
-			RequestDispatcher rd;
-			if (null != user) {
-				request.getSession().setAttribute("user", user);
-				rd = getServletContext().getRequestDispatcher("/pages/home.jsp");;
-			} else
-				rd = getServletContext().getRequestDispatcher("/pages/error.jsp");;
-		    rd.forward(request, response);
-		} else {
-			 HttpSession session = request.getSession();
-		     session.invalidate();
-		     RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/logout.jsp");;
-			 rd.forward(request, response);
-		}
-		
-	 }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        processRequest(request, response);
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        processRequest(request, response);
+    }
+
+    /**
+     * Process requests from front controller.
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("login")) {
+            AuthenticateDelegate ad = new AuthenticateDelegate();
+            User user = new User();
+            user.setId(request.getParameter("id"));
+            user.setPassword(request.getParameter("password"));
+            user = ad.validateUserIdPassword(user);
+            RequestDispatcher rd;
+            if (null != user) {
+                request.getSession().setAttribute("user", user);
+                rd = getServletContext().getRequestDispatcher("/pages/home.jsp");;
+            } else {
+                rd = getServletContext().getRequestDispatcher("/pages/error.jsp");
+            };
+            rd.forward(request, response);
+        } else {
+            HttpSession session = request.getSession();
+            session.invalidate();
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/logout.jsp");;
+            rd.forward(request, response);
+        }
+
+    }
 
 }

@@ -24,6 +24,8 @@ import sg.edu.nus.iss.phoenix.reviewSelectUser.controller.ReviewSelectUserContro
 @WebServlet("/UserController/*")
 public class UserController extends HttpServlet {
 
+    MaintainUserDelegate mu = new MaintainUserDelegate();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         processRequest(request, response);
@@ -42,27 +44,35 @@ public class UserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();
+        User user = new User();
+        RequestDispatcher rd;
 
         switch (selection) {
-//            case "createuser":
-//                RequestDispatcher rd = request.getRequestDispatcher("/ReviewSelectUserController");
-//                rd.forward(request, response);
-//                break;
+            case "maintainuser":
+                user.setId(request.getParameter("id"));
+                user.setName(request.getParameter("name"));
+                user.setPassword(request.getParameter("password"));
+                user.setId(request.getParameter("id"));
+                // Create User
+                if (request.getParameter("insert").equalsIgnoreCase("true")) {
+                    
+                } 
+                // Update User
+                else if (request.getParameter("insert").equalsIgnoreCase("false")) {
+
+                }
+                break;
+
             case "deleteuser":
-                MaintainUserDelegate mu = new MaintainUserDelegate();
-                String Id = request.getParameter("id");
-                User u = new User(Id);
-                mu.deleteUser(u);
-                RequestDispatcher rd2 = request.getRequestDispatcher("/ReviewSelectUserController");
-                rd2.forward(request, response);
+                user.setId(request.getParameter("id"));
+                mu.deleteUser(user);
                 break;
 
             default:
-                RequestDispatcher rd1 = request.getRequestDispatcher("/ReviewSelectUserController");
-                rd1.forward(request, response);
                 break;
-
         }
+        rd = request.getRequestDispatcher("/ReviewSelectUserController");
+        rd.forward(request, response);
     }
 
 }
