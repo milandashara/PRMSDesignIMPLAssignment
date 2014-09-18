@@ -30,7 +30,7 @@
             <tr>
                 <th><fmt:message key="label.crudu.id"/></th>
                 <th><fmt:message key="label.crudu.name"/></th>
-                <th><fmt:message key="label.crudu.password"/></th>
+                <!--<th><fmt:message key="label.crudu.password"/></th>-->
                 <th><fmt:message key="label.crudu.roles"/></th>
                 <th><fmt:message key="label.crudu.edit"/> <fmt:message key="label.crudu.delete"/></th>
             </tr>
@@ -38,7 +38,7 @@
                 <tr class="${status.index%2==0?'even':'odd'}">
                     <td class="nowrap">${crudu.id}</td>
                     <td class="nowrap">${crudu.name}</td>
-                    <td class="nowrap">${crudu.password}</td>
+                    <!--<td class="nowrap">${crudu.password}</td>-->
 
                     <td>
                         <c:forEach items="${crudu.roles}" var="roleObject" varStatus="stat">
