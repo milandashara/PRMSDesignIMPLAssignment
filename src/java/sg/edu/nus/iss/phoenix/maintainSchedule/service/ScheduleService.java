@@ -63,6 +63,7 @@ public class ScheduleService {
     public boolean deleteProgramSlot(ProgramSlot programSlot) {
 
         try {
+            
             programSlotDao.delete(programSlot);
             return true;
         } catch (NotFoundException | SQLException e) {

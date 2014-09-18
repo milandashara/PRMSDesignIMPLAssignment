@@ -35,9 +35,10 @@ public interface ProgramSlotDao {
 	 * as a parameter. Returned valueObject will be created using the
 	 * createValueObject() method.
 	 */
-	public abstract ProgramSlot getObject(Date dateOfProgram,Time startTime)
+	public abstract ProgramSlot getObject(Date dateOfProgram,Date startTime)
 			throws NotFoundException, SQLException;
-
+        public abstract ProgramSlot getObject(Integer id)
+                        throws NotFoundException, SQLException;
 	/**
 	 * load-method. This will load valueObject contents from database using
 	 * Primary-Key as identifier. Upper layer should use this so that

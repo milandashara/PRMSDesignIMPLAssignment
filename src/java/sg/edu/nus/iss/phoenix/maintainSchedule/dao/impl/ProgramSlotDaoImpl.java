@@ -26,10 +26,14 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao{
     }
 
     @Override
-    public ProgramSlot getObject(Date dateOfProgram, Time startTime) throws NotFoundException, SQLException {
+    public ProgramSlot getObject(Date dateOfProgram, Date startTime) throws NotFoundException, SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    @Override
+    public  ProgramSlot getObject(Integer id)
+                        throws NotFoundException, SQLException{
+             return null;
+    }
     @Override
     public void load(ProgramSlot valueObject) throws NotFoundException, SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

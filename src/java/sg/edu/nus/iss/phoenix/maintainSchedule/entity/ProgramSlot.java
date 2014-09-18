@@ -23,7 +23,10 @@ public class ProgramSlot {
     private RadioProgram radioProgram;
     private User presenter;
     private User producer;
-
+    //writen by like
+    public ProgramSlot(){
+    
+    }
     public ProgramSlot(Integer duration, Date dateOfProgram, Date startTime, RadioProgram radioProgram, User presenter, User producer) {
         this.duration = duration;
         this.dateOfProgram = dateOfProgram;
