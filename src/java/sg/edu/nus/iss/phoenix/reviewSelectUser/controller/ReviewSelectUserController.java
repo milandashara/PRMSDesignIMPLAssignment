@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.reviewSelectUser.delegate.UserListDelegate;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
@@ -45,11 +46,11 @@ public class ReviewSelectUserController extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         UserListDelegate ul = new UserListDelegate();
-
-        ArrayList<User> data = ul.getUserList();
-        request.setAttribute("userlist", data);
-        RequestDispatcher rd = request
-                .getRequestDispatcher("/pages/crudUser.jsp");
+        ArrayList<User> userList = ul.getUserList();
+//        ArrayList<Role> allRoles = ul.getRoleList();
+        request.setAttribute("userlist", userList);
+//        request.setAttribute("allRoles",allRoles);
+        RequestDispatcher rd = request.getRequestDispatcher("/pages/crudUser.jsp");
         rd.forward(request, response);
 
     }

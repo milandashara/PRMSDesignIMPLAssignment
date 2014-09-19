@@ -41,10 +41,16 @@
                         </tr>
                         <tr>
                             <td><fmt:message key="label.crudu.roles" /></td>
+                            <!-- <c:forEach var="role" items="${allRoles}" varStatus="status">
+                            <input type="checkbox" name="chkRole" value="${role}" 
+                                   <c:if test="${allRoles[role]}">checked="checked"</c:if>>${role}&nbsp;
+                            </c:forEach> -->
                             <td><input type="text" name="roles"
                                        value="${param['roles']}" size=20 maxlength=20></td>
                         </tr>
                 </table>
+                        <input type="hidden" name="insert" 
+                                       value="${param['insert']}">
             </center>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" value="Submit" align="right"> &nbsp;&nbsp;&nbsp;&nbsp;

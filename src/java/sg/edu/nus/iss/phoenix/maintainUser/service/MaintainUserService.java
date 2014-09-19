@@ -17,21 +17,35 @@ import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
  */
 public class MaintainUserService {
 
-    UserDao udao;
-    DAOFactoryImpl factory;
+    private UserDao udao;
+    private DAOFactoryImpl factory;
 
     public MaintainUserService() {
         super();
-        // TODO Auto-generated constructor stub
         factory = new DAOFactoryImpl();
         udao = factory.getUserDAO();
     }
 
-    public void deleteUser(User u) {
+    public void createUser(User user) {
         try {
-            udao.delete(u);
+            udao.create(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUser(User user) {
+        try {
+            udao.save(user);
         } catch (NotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUser(User user) {
+        try {
+            udao.delete(user);
+        } catch (NotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

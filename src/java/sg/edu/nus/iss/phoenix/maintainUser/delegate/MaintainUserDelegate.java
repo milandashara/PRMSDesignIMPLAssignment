@@ -14,9 +14,18 @@ import sg.edu.nus.iss.phoenix.maintainUser.service.MaintainUserService;
  */
 public class MaintainUserDelegate {
 
-    public void deleteUser(User u) {
-        MaintainUserService service = new MaintainUserService();
-        service.deleteUser(u);
+    private MaintainUserService service = new MaintainUserService();
+    
+    public void createUser(User user) {
+        service.createUser(user);
+    }
+    
+    public void updateUser(User user) {
+        service.updateUser(user);
+    }
+    
+    public void deleteUser(User user) {
+        service.deleteUser(user);
     }
 
 }

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sg.edu.nus.iss.phoenix.reviewSelectUser.delegate;
 
 import java.util.ArrayList;
+import java.util.List;
+import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.reviewSelectUser.service.UserListService;
 
@@ -16,9 +17,14 @@ import sg.edu.nus.iss.phoenix.reviewSelectUser.service.UserListService;
  */
 public class UserListDelegate {
 
+    private UserListService service = new UserListService();
+
     public ArrayList<User> getUserList() {
-        UserListService service=new UserListService();
         return service.getUserList();
     }
-    
+
+    public ArrayList<Role> getRoleList() {
+        return service.getRoleList();
+    }
+
 }

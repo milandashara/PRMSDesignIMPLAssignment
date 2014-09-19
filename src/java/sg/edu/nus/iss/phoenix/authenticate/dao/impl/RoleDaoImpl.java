@@ -101,9 +101,7 @@ public class RoleDaoImpl implements RoleDao {
     public List<Role> loadAll() throws SQLException {
         connection = openConnection();
         String sql = "SELECT * FROM role ORDER BY role ASC ";
-        List<Role> searchResults = listQuery(this.connection
-                .prepareStatement(sql));
-
+        List<Role> searchResults = listQuery(this.connection.prepareStatement(sql));
         return searchResults;
     }
 

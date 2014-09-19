@@ -21,7 +21,9 @@
             <c:param name="Id" value=""/>
             <c:param name="Name" value=""/>
             <c:param name="Password" value=""/>
-            <c:param name="Roles" value=""/>
+            <%--<c:param name="allRoles" value=""/>--%>
+            <%--<c:param name="userRoles" value=""/>--%>
+            <c:param name="roles" value=""/>
             <c:param name="insert" value="true"/>
         </c:url>
         <a href="${url}"><fmt:message key="label.crudu.add"/></a>
