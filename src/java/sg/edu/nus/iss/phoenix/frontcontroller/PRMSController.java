@@ -82,7 +82,7 @@ public class PRMSController extends HttpServlet {
 
     private String chooseUseCase(String action) {
         switch (action) {
-            case "scheduleScreen":
+             case "scheduleScreen":
                 return "/ReviewSelectSheduledProgramController/loadAllAnnualSchedule";
             case "scheduleScreen/loadAllWeeklySchedule":
                 return "/ReviewSelectSheduledProgramController/loadAllWeeklySchedule";
@@ -104,12 +104,19 @@ public class PRMSController extends HttpServlet {
                 return "/LoginController/logout";
             case "loadUser":
                 return "/UserController/loadUser";
-            case "maintainUser":
-                return "/UserController/maintainUser";
             case "deleteUser":
                 return "/UserController/deleteUser";
             case "reviewselectspyear":
                 return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
+            case "setupScheduleps":
+                return "/ScheduleController/processScheduledProgramSlot";
+            case "scheduleScreen/deleteScheduleps":
+                return "/ScheduleController/deleteSchedule";
+            case "scheduleScreen/settupps":
+                return "/pages/setupps.jsp";
+            case "crudPsScreen/loadRoles":
+                return "/ReviewSelectUserController/loadRole";
+                
             default:
                 return "/welcome.jsp";
         }

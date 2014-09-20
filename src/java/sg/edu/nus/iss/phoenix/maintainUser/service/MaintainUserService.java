@@ -6,6 +6,8 @@
 package sg.edu.nus.iss.phoenix.maintainUser.service;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sg.edu.nus.iss.phoenix.authenticate.dao.UserDao;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.core.dao.DAOFactoryImpl;
@@ -49,5 +51,16 @@ public class MaintainUserService {
             e.printStackTrace();
         }
     }
+    
+      public User searchMatching(String uid) 
+    {
+                  try {
+                      return udao.searchMatching(uid);
+                  } catch (SQLException ex) {
+                      Logger.getLogger(MaintainUserService.class.getName()).log(Level.SEVERE, null, ex);
+                  }
+                  return new User();
+    }
+    
 
 }

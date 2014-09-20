@@ -10,8 +10,10 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.ProgramSlot;
+import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 
 /**
  *
@@ -26,7 +28,12 @@ public interface ProgramSlotDao {
 	 * If you extend the valueObject class, make sure to override the clone()
 	 * method in it!
 	 */
-	public abstract ProgramSlot createValueObject();
+	public abstract ProgramSlot createValueObject(Time duration, Integer id,
+            Date dateOfProgram,
+            Time startTime,
+            RadioProgram radioProgram,
+            User presenter,
+            User producer);
 
 	/**
 	 * getObject-method. This will create and load valueObject contents from
@@ -35,7 +42,7 @@ public interface ProgramSlotDao {
 	 * as a parameter. Returned valueObject will be created using the
 	 * createValueObject() method.
 	 */
-	public abstract ProgramSlot getObject(Date dateOfProgram,Date startTime)
+	public abstract ProgramSlot getObject(Date dateAndTimeOfProgram)
 			throws NotFoundException, SQLException;
         public abstract ProgramSlot getObject(Integer id)
                         throws NotFoundException, SQLException;
@@ -177,5 +184,8 @@ public interface ProgramSlotDao {
 
 	public abstract ProgramSlot searchMatching(Date dateOfProgram,Time startTime)
 			throws SQLException;
-    
+        
+        public abstract List<ProgramSlot> getAllProgramSlots(Date week)
+			throws SQLException;
+        
 }

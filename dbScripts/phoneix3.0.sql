@@ -54,17 +54,17 @@ CREATE TABLE `program-slot` (
   `duration` time NOT NULL,
   `dateOfProgram` datetime NOT NULL,
   `startTime` datetime DEFAULT NULL,
-  `program-name` varchar(45) DEFAULT NULL,
+  `programName` varchar(45) DEFAULT NULL,
   `presenter` varchar(40) DEFAULT NULL,
   `producer` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `dateOfProgram_UNIQUE` (`dateOfProgram`),
-  KEY `name_program_slot` (`program-name`),
+  UNIQUE KEY `dateAndTimeOfProgram_UNIQUE` (`dateOfProgram`,`startTime`),
+  KEY `name_program_slot` (`programName`),
   KEY `id_idx` (`presenter`),
   KEY `producer_idx` (`producer`),
   CONSTRAINT `presenter` FOREIGN KEY (`presenter`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `producer` FOREIGN KEY (`producer`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `name` FOREIGN KEY (`program-name`) REFERENCES `radio-program` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `name` FOREIGN KEY (`programName`) REFERENCES `radio-program` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

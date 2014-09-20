@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
@@ -25,6 +26,11 @@ import sg.edu.nus.iss.phoenix.reviewSelectUser.delegate.UserListDelegate;
  */
 @WebServlet("/ReviewSelectUserController")
 public class ReviewSelectUserController extends HttpServlet {
+    UserListDelegate ul;
+
+    public ReviewSelectUserController() {
+       ul = new UserListDelegate();
+    }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -46,13 +52,24 @@ public class ReviewSelectUserController extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        UserListDelegate ul = new UserListDelegate();
+        
+         if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("loadRole"))
+         {
+
+            List<String> userList = ul.getUserList(request.getParameter("role").toString());
+            JSONArray jsonArray = new JSONArray(userList);
+            response.getWriter().println(jsonArray.toString());
+         }
+         else
+         {
+        
         ArrayList<User> userList = ul.getUserList();
         List<Role> allRoles = ul.getRoleList();
         request.setAttribute("userlist", userList);
         request.setAttribute("allRoles",allRoles);
         RequestDispatcher rd = request.getRequestDispatcher("/pages/crudUser.jsp");
         rd.forward(request, response);
+         }
 
     }
 

@@ -6,7 +6,10 @@
 package sg.edu.nus.iss.phoenix.maintainSchedule.controller;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +27,10 @@ import sg.edu.nus.iss.phoenix.maintainSchedule.delegate.ScheduleDelegate;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.ProgramSlot;
 import sg.edu.nus.iss.phoenix.maintainSchedule.entity.WeeklySchedule;
+import sg.edu.nus.iss.phoenix.maintainUser.delegate.MaintainUserDelegate;
+import sg.edu.nus.iss.phoenix.radioprogram.delegate.RPDelegate;
+import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
+import sg.edu.nus.iss.phoenix.reviewSelectSheduledProgram.delegate.ReviewSelectSheduledProgramDelegate;
 
 /**
  *
@@ -43,48 +50,58 @@ public class ScheduleController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("loadAllAnnualSchedule")) {
-            ScheduleDelegate scheduleDelegate = new ScheduleDelegate();
-            List<AnnualSchedule> annualScheduleList = scheduleDelegate.getAllAnnualScheduleList();
-            request.setAttribute("annualScheduleList", annualScheduleList);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/schedule.jsp");;
-            rd.forward(request, response);
-        } else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("loadAllWeeklySchedule")) {
-            ScheduleDelegate scheduleDelegate = new ScheduleDelegate();
-            Integer year = Integer.parseInt(request.getParameter("year").toString());
-            List<WeeklySchedule> weeklyScheduleList = scheduleDelegate.getAllWeeklySchedule(year);
-            JSONArray jsonArray = new JSONArray();
-            for (WeeklySchedule weeklySchedule : weeklyScheduleList) {
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    
-                    jsonObject.put("startDate", new SimpleDateFormat("dd-MM-yyyy").format(weeklySchedule.getStartDate()));
-                } catch (JSONException ex) {
-                    Logger.getLogger(ScheduleController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                jsonArray.put(jsonObject);
-            }
-            JSONObject jo=new JSONObject();
+        if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("processScheduledProgramSlot")) {
             try {
-                jo.put("weeklySchedules", jsonArray);
-            } catch (JSONException ex) {
+
+                // Preparing the Programslot DTO to perform insert, update or delete operation.
+                ScheduleDelegate scheduleDelegate = new ScheduleDelegate();
+                ProgramSlot ps = new ProgramSlot();
+                RPDelegate rpDelegate = new RPDelegate();
+                MaintainUserDelegate userDelegate = new MaintainUserDelegate();
+                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                long parseTime = formatter.parse(request.getParameter("duration")).getTime();
+
+                ps.setDuration(new java.sql.Time(parseTime));
+                ps.setId(Integer.parseInt(request.getParameter("id")));
+                ps.setDateOfProgram(new SimpleDateFormat("dd-MM-yyyy").parse(request.getParameter("dateOfProgram")));
+                parseTime = formatter.parse(request.getParameter("startTime")).getTime();
+                ps.setStartTime(new java.sql.Time(parseTime));
+                ps.setRadioProgram(rpDelegate.findRP(request.getParameter("radioProgram")));
+                ps.setPresenter(userDelegate.searchMatching(request.getParameter("presenter")));
+                ps.setProducer(userDelegate.searchMatching(request.getParameter("producer")));
+
+                String insert = (String) request.getParameter("insert");
+                Logger.getLogger(getClass().getName()).log(Level.INFO,
+                        "Insert Flag: " + insert);
+                if (insert.equalsIgnoreCase("true")) {
+                    scheduleDelegate.insertScheduleProgramSlot(ps);
+                } else {
+                    scheduleDelegate.updateScheduleProgramSlot(ps);
+                }
+                RequestDispatcher rd = request
+                        .getRequestDispatcher("/pages/schedule.jsp");
+
+                rd.forward(request, response);
+
+            } catch (ParseException ex) {
                 Logger.getLogger(ScheduleController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            response.getWriter().println(jsonArray.toString());
         } else if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("deleteSchedule")) {
             ScheduleDelegate sd = new ScheduleDelegate();
             ProgramSlot ps = new ProgramSlot();
             String sId = request.getParameter("id");
             Integer id = Integer.parseInt(sId);
             ps.setId(id);
-            boolean ret = sd.deleteProgramSlot(ps);
-             RequestDispatcher rd;
-            if(ret){
-                 rd = getServletContext().getRequestDispatcher("/pages/home.jsp");
-            } else{
-		rd = getServletContext().getRequestDispatcher("/pages/error.jsp");
+            boolean isDeleted = sd.deleteProgramSlot(ps);
+            RequestDispatcher rd;
+
+            if (isDeleted) {
+                response.sendRedirect("/PRMS/controller/scheduleScreen");
+            } else {
+                rd = getServletContext().getRequestDispatcher("/pages/error.jsp");
+                rd.forward(request, response);
             }
-            rd.forward(request, response);
+
         }
 
     }

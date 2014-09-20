@@ -22,9 +22,15 @@ public class UserListDelegate {
     public ArrayList<User> getUserList() {
         return service.getUserList();
     }
+    
+    public ArrayList<String> getUserList(String role) {
+        return service.getUserList(role);
+    }
 
     public List<Role> getRoleList() {
         return service.getRoleList();
     }
+    
+    
 
 }

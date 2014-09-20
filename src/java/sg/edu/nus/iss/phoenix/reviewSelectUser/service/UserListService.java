@@ -53,5 +53,26 @@ public class UserListService {
         return roleList;
 
     }
+    
+     public ArrayList<String> getUserList(String role) {
+       ArrayList<User> currentList = new ArrayList<User>();
+       ArrayList<String> currentIdList = new ArrayList<String>();
+		try {
+			currentList = (ArrayList<User>) udao.loadAll();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+                for(User u: currentList)
+                {
+                for(Role r : u.getRoles())
+                {
+                  if(r.getRole() == role)  
+		currentIdList.add(u.getId());
+                }
+                }
+                return currentIdList;
+        
+    }
 
 }

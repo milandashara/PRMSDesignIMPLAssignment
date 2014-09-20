@@ -6,6 +6,7 @@
 
 package sg.edu.nus.iss.phoenix.maintainSchedule.entity;
 
+import java.sql.Time;
 import java.util.Date;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
@@ -16,10 +17,10 @@ import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
  */
 public class ProgramSlot {
     
-    private Integer duration;
+    private Time duration;
     private Integer id;
     private Date dateOfProgram;
-    private Date startTime;
+    private Time startTime;
     private RadioProgram radioProgram;
     private User presenter;
     private User producer;
@@ -27,26 +28,27 @@ public class ProgramSlot {
     public ProgramSlot(){
     
     }
-    public ProgramSlot(Integer duration, Date dateOfProgram, Date startTime, RadioProgram radioProgram, User presenter, User producer) {
+    public ProgramSlot(Time duration, Integer id, Date dateOfProgram, Time startTime, RadioProgram radioProgram, User presenter, User producer) {
         this.duration = duration;
         this.dateOfProgram = dateOfProgram;
         this.startTime = startTime;
         this.radioProgram = radioProgram;
         this.presenter = presenter;
         this.producer = producer;
+        this.id = id;
     }
 
     /**
      * @return the duration
      */
-    public Integer getDuration() {
+    public Time getDuration() {
         return duration;
     }
 
     /**
      * @param duration the duration to set
      */
-    public void setDuration(Integer duration) {
+    public void setDuration(Time duration) {
         this.duration = duration;
     }
 
@@ -67,14 +69,14 @@ public class ProgramSlot {
     /**
      * @return the startTime
      */
-    public Date getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
     /**
      * @param startTime the startTime to set
      */
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
@@ -127,15 +129,7 @@ public class ProgramSlot {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
+     public void setId(Integer id) {
         this.id = id;
     }
-    
-    
-    
-    
-    
 }

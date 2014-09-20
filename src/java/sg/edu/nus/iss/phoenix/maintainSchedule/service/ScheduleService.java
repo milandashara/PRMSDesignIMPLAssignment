@@ -74,4 +74,24 @@ public class ScheduleService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void insertScheduleProgramSlot(ProgramSlot ps) {
+        try {
+            programSlotDao.create(ps);
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateScheduleProgramSlot(ProgramSlot ps) {
+        
+        try {
+            programSlotDao.save(ps);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(ScheduleService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ScheduleService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
 }
