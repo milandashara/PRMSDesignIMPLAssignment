@@ -1,0 +1,42 @@
+insert into `program-slot`(duration,dateOfProgram,startTime,programName,presenter,producer) values ('08:09:10','2014-12-12','2014-12-12','charity','dilbert','dogbert');
+
+insert into `program-slot`(duration,dateOfProgram,startTime,programName,presenter,producer) values ('08:09:10','2014-12-13','2014-12-13','charity','dilbert','dogbert');
+
+insert into `program-slot`(duration,dateOfProgram,startTime,programName,presenter,producer) values ('07:09:10','2014-11-12','2014-11-12 11:00:00','charity','dilbert','dogbert');
+
+insert into `program-slot`(duration,dateOfProgram,startTime,programName,presenter,producer) values ('08:09:10','2014-11-12','2014-11-12 14:00:00','charity','dilbert','dogbert');
+
+insert into `program-slot`(duration,dateOfProgram,startTime,programName,presenter,producer) values ('08:09:10','2014-12-12','2014-12-12','charity','dilbert','dogbert');
+
+
+insert into `annual-schedule`(year) values(2005);
+
+insert into `annual-schedule`(year) values(2004);
+
+insert into `annual-schedule`(year) values(2003);
+
+insert into `annual-schedule`(year) values(2002);
+
+insert into `annual-schedule`(year) values(2001);
+
+insert into `annual-schedule`(year) values(2006);
+
+insert into `annual-schedule`(year) values(2007);
+
+insert into `annual-schedule`(year) values(2008);
+insert into `annual-schedule`(year) values(2009);
+insert into `annual-schedule`(year) values(2010);
+insert into `annual-schedule`(year) values(2011);
+insert into `annual-schedule`(year) values(2012);
+insert into `annual-schedule`(year) values(2013);
+insert into `annual-schedule`(year) values(2014);
+
+insert into `weekly-schedule`(startDate) values('2014-11-05');
+insert into `weekly-schedule`(startDate) values('2014-11-06');
+insert into `weekly-schedule`(startDate) values('2014-12-05');
+insert into `weekly-schedule`(startDate) values('2013-11-05');
+insert into `weekly-schedule`(startDate) values('2012-11-05');
+insert into `weekly-schedule`(startDate) values('2011-11-05');
+insert into `weekly-schedule`(startDate) values('2010-11-05');
+insert into `weekly-schedule`(startDate) values('2009-11-05');
+insert into `weekly-schedule`(startDate) values('2008-11-05');
