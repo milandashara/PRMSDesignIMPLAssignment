@@ -23,7 +23,7 @@ public class UserListDelegate {
         return service.getUserList();
     }
 
-    public ArrayList<Role> getRoleList() {
+    public List<Role> getRoleList() {
         return service.getRoleList();
     }
 

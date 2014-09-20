@@ -29,6 +29,7 @@ public class UserListService {
         super();
         factory = new DAOFactoryImpl();
         udao = factory.getUserDAO();
+        roleDao = factory.getRoleDAO();
     }
 
     public ArrayList<User> getUserList() {
@@ -42,10 +43,10 @@ public class UserListService {
         return userList;
     }
 
-    public ArrayList<Role> getRoleList() {
-        ArrayList<Role> roleList = new ArrayList();
+    public List<Role> getRoleList() {
+        List<Role> roleList = new ArrayList();
         try {
-            roleList = (ArrayList<Role>)roleDao.loadAll();
+            roleList = roleDao.loadAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }

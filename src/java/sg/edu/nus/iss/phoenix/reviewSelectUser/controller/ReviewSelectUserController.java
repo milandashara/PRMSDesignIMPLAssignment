@@ -7,6 +7,7 @@ package sg.edu.nus.iss.phoenix.reviewSelectUser.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
-import sg.edu.nus.iss.phoenix.reviewSelectUser.delegate.UserListDelegate;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
+import sg.edu.nus.iss.phoenix.reviewSelectUser.delegate.UserListDelegate;
 
 /**
  *
@@ -47,9 +48,9 @@ public class ReviewSelectUserController extends HttpServlet {
         
         UserListDelegate ul = new UserListDelegate();
         ArrayList<User> userList = ul.getUserList();
-//        ArrayList<Role> allRoles = ul.getRoleList();
+        List<Role> allRoles = ul.getRoleList();
         request.setAttribute("userlist", userList);
-//        request.setAttribute("allRoles",allRoles);
+        request.setAttribute("allRoles",allRoles);
         RequestDispatcher rd = request.getRequestDispatcher("/pages/crudUser.jsp");
         rd.forward(request, response);
 

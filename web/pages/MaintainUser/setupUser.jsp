@@ -36,7 +36,7 @@
                         </tr>
                         <tr>
                             <td><fmt:message key="label.crudu.password" /></td>
-                            <td><input type="text" name="password"
+                            <td><input type="password" name="password"
                                        value="${param['password']}" size=20 maxlength=20></td>
                         </tr>
                         <tr>
