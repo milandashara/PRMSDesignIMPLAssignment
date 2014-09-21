@@ -21,14 +21,13 @@
             <input type="submit" value="<fmt:message key="label.crudu.add"/>" align="center">
         </form>
 
-        <br/><br/>
+        <br/>
+        <center><span id="msg" class="error" >${msg}</span></center>
+        <br>
         <table class="borderAll">
             <tr>
                 <th align="right"><fmt:message key="label.crudu.id"/></th>
                 <th align="center"><fmt:message key="label.crudu.name"/></th>
-                <!-- <th align="leftAlign">
-                <%--<fmt:message key="label.crudu.password"/>--%>
-                </th> -->
                 <th align="center"><fmt:message key="label.crudu.roles"/></th>
                 <th align="center"><fmt:message key="label.crudu.edit"/> </th>
                 <th align="center"><fmt:message key="label.crudu.delete"/></th>
@@ -60,22 +59,6 @@
                 <a href="${delurl}" class="button"><fmt:message key="label.crudu.delete"/></a>
 
             </td>
-<!--<td><input type="hidden" name="password" value="${crudu.password}" readonly="readonly" /></td>-->
-
-            <!--<td >-->
-
-            <%--<c:url var="updurl" scope="page" value="/pages/setupUser.jsp">--%>
-            <%--<c:param name="id" value="${crudu.id}"/>--%>
-            <%--<c:param name="name" value="${crudu.name}"/>--%>
-            <%--<c:param name="password" value="${crudu.password}"/>--%>
-            <%--<c:param name="roles"  value="${roleVal}"/>--%>
-            <%--<c:param name="allRoles" value="${all}"/>--%>
-            <%--<c:param name="insert" value="false"/>--%>
-            <%--</c:url>--%>
-
-                        <!--<a href="${updurl}">-->
-            <%--<fmt:message key="label.crudu.edit"/>--%>
-            <!--</a>-->                        
         </tr>
     </c:forEach>
 </table>

@@ -84,6 +84,12 @@ public class UserController extends HttpServlet {
 
             case "deleteuser":
                 user.setId(request.getParameter("id"));
+               if(mud.deleteUser(user)) {
+               request.setAttribute("msg", "User deleted Successfully");
+               }
+               else{
+               request.setAttribute("msg", "Error !! User is assigned to Schedule, Please unassign first and Try again !!");
+               }
                 mud.deleteUser(user);
                 rd = getServletContext().getRequestDispatcher("/ReviewSelectUserController/users");
                 break;

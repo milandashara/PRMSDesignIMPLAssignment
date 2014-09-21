@@ -44,11 +44,13 @@ public class MaintainUserService {
         }
     }
 
-    public void deleteUser(User user) {
+    public boolean deleteUser(User user) {
         try {
             udao.delete(user);
+            return true;
         } catch (NotFoundException | SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
     

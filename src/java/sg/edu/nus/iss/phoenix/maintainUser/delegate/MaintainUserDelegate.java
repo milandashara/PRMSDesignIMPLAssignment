@@ -24,8 +24,8 @@ public class MaintainUserDelegate {
         service.updateUser(user);
     }
 
-    public void deleteUser(User user) {
-        service.deleteUser(user);
+    public boolean deleteUser(User user) {
+        return service.deleteUser(user);
     }
 
     public User searchMatching(String uid) {
