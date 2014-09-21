@@ -48,6 +48,7 @@ public class UserController extends HttpServlet {
         User user = new User();
         RequestDispatcher rd = null;
         ArrayList<Role> roleList = new ArrayList<>();
+        String result = "";
 
         switch (selection) {
             case "createuser":
@@ -61,7 +62,7 @@ public class UserController extends HttpServlet {
                 request.getSession().setAttribute("insert", "false");
                 rd = getServletContext().getRequestDispatcher("/pages/setupUser.jsp");
                 break;
-                
+
             case "updateuser":
                 user.setId(request.getParameter("id"));
                 user.setName(request.getParameter("name"));
@@ -74,24 +75,30 @@ public class UserController extends HttpServlet {
                 user.setRoles(roleList);
                 // Create User
                 if (request.getParameter("insert").equalsIgnoreCase("true")) {
-                    mud.createUser(user);
+                    if (mud.createUser(user)) {
+                        result = "User created Successfully";
+                    } else {
+                        result = "Error while creating User, Please refresh and try again !!";
+                    }
                 } // Update User
                 else if (request.getParameter("insert").equalsIgnoreCase("false")) {
-                    mud.updateUser(user);
+                    if (mud.updateUser(user)) {
+                        result = "User updated Successfully";
+                    } else {
+                        result = "Error while updating User, Please refresh and try again !!";
+                    }
                 }
                 rd = getServletContext().getRequestDispatcher("/ReviewSelectUserController/users");
                 break;
 
             case "deleteuser":
                 user.setId(request.getParameter("id"));
-               if(mud.deleteUser(user)) {
-               request.setAttribute("msg", "User deleted Successfully");
-               }
-               else{
-               request.setAttribute("msg", "Error !! Either User does not Exist or is assigned to Schedule, "
-                       + "Please refresh or unassign and Try again !!");
-               
-               }
+                if (mud.deleteUser(user)) {
+                    result = "User deleted Successfully";
+                } else {
+                    result = "Error !! Either User does not Exist or is assigned to Schedule, "
+                            + "Please refresh or unassign and Try again !!";
+                }
                 mud.deleteUser(user);
                 rd = getServletContext().getRequestDispatcher("/ReviewSelectUserController/users");
                 break;
@@ -100,7 +107,7 @@ public class UserController extends HttpServlet {
                 rd = request.getRequestDispatcher("/ReviewSelectUserController/users");
                 break;
         }
-//        rd = request.getRequestDispatcher("/ReviewSelectUserController");
+        request.setAttribute("msg", result);
         rd.forward(request, response);
     }
 

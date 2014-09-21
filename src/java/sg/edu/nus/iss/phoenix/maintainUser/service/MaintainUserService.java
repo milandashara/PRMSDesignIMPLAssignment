@@ -28,19 +28,24 @@ public class MaintainUserService {
         udao = factory.getUserDAO();
     }
 
-    public void createUser(User user) {
+    public boolean createUser(User user) {
+
         try {
             udao.create(user);
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public void updateUser(User user) {
+    public boolean updateUser(User user) {
         try {
             udao.save(user);
+            return true;
         } catch (NotFoundException | SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -53,16 +58,14 @@ public class MaintainUserService {
             return false;
         }
     }
-    
-      public User searchMatching(String uid) 
-    {
-                  try {
-                      return udao.searchMatching(uid);
-                  } catch (SQLException ex) {
-                      Logger.getLogger(MaintainUserService.class.getName()).log(Level.SEVERE, null, ex);
-                  }
-                  return new User();
+
+    public User searchMatching(String uid) {
+        try {
+            return udao.searchMatching(uid);
+        } catch (SQLException ex) {
+            Logger.getLogger(MaintainUserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new User();
     }
-    
 
 }
