@@ -33,6 +33,15 @@
                 alert("Please Enter only alphabets in text");
             }
         }
+
+        function checkSubmit(e) {
+            if ($("input[type=checkbox]:checked").length === 0) {
+                e.preventDefault();
+                alert('Error Role cannot be empty..!! ');
+                return false;
+            }
+        }
+
     </script>
 
     <body onload="onLoadBody();">
@@ -57,27 +66,35 @@
                         </tr>
                         <tr>
                             <td><fmt:message key="label.crudu.roles" /></td>
-                            <!--                                <td>
-                                                                <ul>
-                            <%--<c:forEach items="${param['allRoles']}" var="role" varStatus="status">--%>
-                                <li><input type="checkbox" name="chkRole" value="${role}"/>
-                                </li>
-                            <%--</c:forEach>--%>
-                        </ul>
-                    </td>-->
+                            <td>
+                                <c:forEach var="r" items="${sessionScope.allUserRoles}">
+                                    <c:set var="isChecked" value="1" scope="page" />                            
+                                    <c:if test = "${isChecked == '1'}">
+                                        <c:forEach var="ur" items="${edituser.roles}">                                
+                                            <c:if test = "${ur.role == r.role}"> 
+                                                <c:set var="isChecked" value="0" scope="page" />
+                                                <input type="checkbox" name="roles" id="roles" value="${r.role}" checked>${r.accessPrivilege}
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:if>
 
-                            <td><input type="text" name="roles"
-                                       value="${sessionScope.edituser.roles}" required size=20 maxlength=20></td>
-                        </tr>
-                </table>
-                <input type="hidden" name="insert" value="${sessionScope.insert}">
-            </center>
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="submit" value="Submit" align="right"> &nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="reset" value="Reset" align="center">
-        </form>
+                                    <c:if test = "${isChecked == '1'}">
+                                        <c:if test = "${ur.role != r.role}">
+                                            <c:set var="isChecked" value="0" scope="page" />
+                                            <input type="checkbox" name="roles" id="roles" value="${r.role}">${r.accessPrivilege}
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            </table>
+                        <input type="hidden" name="insert" value="${sessionScope.insert}">
+                    </center>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Submit" align="right" onclick=" return checkSubmit(event)"> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="reset" value="Reset" align="center">
+                    </form>
 
-    </body>
+                    </body>
 
 
-</html>
+                    </html>

@@ -66,7 +66,7 @@ public class UserController extends HttpServlet {
                 user.setId(request.getParameter("id"));
                 user.setName(request.getParameter("name"));
                 user.setPassword(request.getParameter("password"));
-                for (String urole : request.getParameter("roles").split(":")) {
+                for (String urole : request.getParameterValues("roles")) {
                     Role newRole = new Role();
                     newRole.setRole(urole);
                     roleList.add(newRole);
@@ -88,7 +88,9 @@ public class UserController extends HttpServlet {
                request.setAttribute("msg", "User deleted Successfully");
                }
                else{
-               request.setAttribute("msg", "Error !! User is assigned to Schedule, Please unassign first and Try again !!");
+               request.setAttribute("msg", "Error !! Either User does not Exist or is assigned to Schedule, "
+                       + "Please refresh or unassign and Try again !!");
+               
                }
                 mud.deleteUser(user);
                 rd = getServletContext().getRequestDispatcher("/ReviewSelectUserController/users");

@@ -40,7 +40,8 @@
                     <td class="nowrap">${crudu.name}</td>
                     <td>
                         <c:forEach items="${crudu.roles}" var="roleObject" varStatus="stat">
-                            <c:set var="roleVal" value="${stat.first ? '':roleVal} ${roleObject.role}" />
+                            <c:set var="roleVal" 
+                                   value="${stat.first ? '':roleVal}${roleObject.role}${stat.last ? '':', '}" />
                         </c:forEach>
                         <c:out value="${roleVal}"/>
                     </td>
