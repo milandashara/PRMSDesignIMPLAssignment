@@ -29,11 +29,18 @@ public class ReviewSelectUserController extends HttpServlet {
 
     UserListDelegate ul;
 
+    /**
+     *
+     */
     public ReviewSelectUserController() {
         ul = new UserListDelegate();
     }
 
     /**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
@@ -43,6 +50,10 @@ public class ReviewSelectUserController extends HttpServlet {
     }
 
     /**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      * response)
      */

@@ -25,6 +25,9 @@ public class RoleDaoImpl implements RoleDao {
 
     Connection connection;
 
+    /**
+     *
+     */
     public RoleDaoImpl() {
         super();
         // TODO Auto-generated constructor stub
@@ -278,6 +281,12 @@ public class RoleDaoImpl implements RoleDao {
         return allRows;
     }
 
+    /**
+     *
+     * @param role
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Role searchMatching(String role) throws SQLException {
         try {
@@ -342,6 +351,8 @@ public class RoleDaoImpl implements RoleDao {
      *
      * @param conn This method requires working database connection.
      * @param stmt This parameter contains the SQL statement to be excuted.
+     * @return 
+     * @throws java.sql.SQLException 
      */
     protected int databaseUpdate(PreparedStatement stmt) throws SQLException {
 
@@ -359,6 +370,8 @@ public class RoleDaoImpl implements RoleDao {
      * @param conn This method requires working database connection.
      * @param stmt This parameter contains the SQL statement to be excuted.
      * @param valueObject Class-instance where resulting data will be stored.
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
      */
     protected void singleQuery(PreparedStatement stmt, Role valueObject)
             throws NotFoundException, SQLException {
@@ -397,6 +410,8 @@ public class RoleDaoImpl implements RoleDao {
      *
      * @param conn This method requires working database connection.
      * @param stmt This parameter contains the SQL statement to be excuted.
+     * @return 
+     * @throws java.sql.SQLException 
      */
     protected List<Role> listQuery(PreparedStatement stmt) throws SQLException {
 

@@ -27,6 +27,14 @@ public interface ProgramSlotDao {
 	 * then this method can be overrided to return extended valueObject. NOTE:
 	 * If you extend the valueObject class, make sure to override the clone()
 	 * method in it!
+     * @param duration
+     * @param id
+     * @param radioProgram
+     * @param producer
+     * @param dateOfProgram
+     * @param presenter
+     * @param startTime
+     * @return 
 	 */
 	public abstract ProgramSlot createValueObject(Time duration, Integer id,
             Date dateOfProgram,
@@ -41,10 +49,22 @@ public interface ProgramSlotDao {
 	 * convenience method for the real load-method which accepts the valueObject
 	 * as a parameter. Returned valueObject will be created using the
 	 * createValueObject() method.
+     * @param dateAndTimeOfProgram
+     * @return 
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException 
+     * @throws java.sql.SQLException 
 	 */
 	public abstract ProgramSlot getObject(Date dateAndTimeOfProgram)
 			throws NotFoundException, SQLException;
-        public abstract ProgramSlot getObject(Integer id)
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws NotFoundException
+     * @throws SQLException
+     */
+    public abstract ProgramSlot getObject(Integer id)
                         throws NotFoundException, SQLException;
 	/**
 	 * load-method. This will load valueObject contents from database using
@@ -55,11 +75,11 @@ public interface ProgramSlotDao {
 	 * runtime variables. If load can not find matching row, NotFoundException
 	 * will be thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be loaded.
 	 *            Primary-key field must be set for this to work properly.
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
 	 */
 	public abstract void load(ProgramSlot valueObject)
 			throws NotFoundException, SQLException;
@@ -70,8 +90,8 @@ public interface ProgramSlotDao {
 	 * consume huge amounts of resources if table has lot's of rows. This should
 	 * only be used when target tables have only small amounts of data.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
+     * @return 
+     * @throws java.sql.SQLException 
 	 */
 	public abstract List<ProgramSlot> loadAll() throws SQLException;
 
@@ -83,8 +103,6 @@ public interface ProgramSlotDao {
 	 * this method will read the generated primary-key back to valueObject if
 	 * automatic surrogate-keys were used.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be created. If
 	 *            automatic surrogate-keys are not used the Primary-key field
@@ -102,8 +120,6 @@ public interface ProgramSlotDao {
 	 * database. If save can not find matching row, NotFoundException will be
 	 * thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be saved.
 	 *            Primary-key field must be set for this to work properly.
@@ -122,8 +138,6 @@ public interface ProgramSlotDao {
 	 * what it was in the deleted object. If delete can not find matching row,
 	 * NotFoundException will be thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be deleted.
 	 *            Primary-key field must be set for this to work properly.
@@ -144,8 +158,6 @@ public interface ProgramSlotDao {
 	 * implementation of this method should be different with different DB
 	 * backends.)
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
      * @throws java.sql.SQLException
 	 */
 	public abstract void deleteAll() throws SQLException;
@@ -157,8 +169,7 @@ public interface ProgramSlotDao {
 	 * value is 0. This method should be used before calling loadAll, to make
 	 * sure table has not too many rows.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
+     * @return 
      * @throws java.sql.SQLException
 	 */
 	public abstract int countAll() throws SQLException;
@@ -172,19 +183,22 @@ public interface ProgramSlotDao {
 	 * those criteria you specified. Those instance-variables that have NULL
 	 * values are excluded in search-criteria.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance where search will
 	 *            be based. Primary-key field should not be set.
+     * @return 
      * @throws java.sql.SQLException
 	 */
 	public abstract List<ProgramSlot> searchMatching(ProgramSlot valueObject)
 			throws SQLException;
 
-	
-        
-        public abstract List<ProgramSlot> getAllProgramSlots(Date week)
+    /**
+     *
+     * @param week
+     * @return
+     * @throws SQLException
+     */
+    public abstract List<ProgramSlot> getAllProgramSlots(Date week)
 			throws SQLException;
         
     /**
@@ -195,6 +209,13 @@ public interface ProgramSlotDao {
      * @throws SQLException
      */
     public List<ProgramSlot> searchMatching(Date dateOfProgram, Time startTime) throws SQLException;
+
+    /**
+     *
+     * @param dateOfProgram
+     * @param startTime
+     * @return
+     */
     public  boolean checkOverlappingTimeSlot(Date dateOfProgram, Time startTime );
         
 }

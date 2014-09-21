@@ -32,7 +32,11 @@ public class User implements Cloneable, Serializable {
 
 	}
 
-	public User(String idIn) {
+    /**
+     *
+     * @param idIn
+     */
+    public User(String idIn) {
 
 		this.id = idIn;
 
@@ -42,37 +46,66 @@ public class User implements Cloneable, Serializable {
 	 * Get- and Set-methods for persistent variables. The default behaviour does
 	 * not make any checks against malformed data, so these might require some
 	 * manual additions.
+     * @return 
 	 */
 
 	public String getId() {
 		return this.id;
 	}
 
-	public void setId(String idIn) {
+    /**
+     *
+     * @param idIn
+     */
+    public void setId(String idIn) {
 		this.id = idIn;
 	}
 
-	public String getPassword() {
+    /**
+     *
+     * @return
+     */
+    public String getPassword() {
 		return this.password;
 	}
 
-	public void setPassword(String passwordIn) {
+    /**
+     *
+     * @param passwordIn
+     */
+    public void setPassword(String passwordIn) {
 		this.password = passwordIn;
 	}
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		return this.name;
 	}
 
-	public void setName(String nameIn) {
+    /**
+     *
+     * @param nameIn
+     */
+    public void setName(String nameIn) {
 		this.name = nameIn;
 	}
 
-	public ArrayList<Role> getRoles() {
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(ArrayList<Role> roles) {
+    /**
+     *
+     * @param roles
+     */
+    public void setRoles(ArrayList<Role> roles) {
 		this.roles = roles;
 	}
 
@@ -81,6 +114,10 @@ public class User implements Cloneable, Serializable {
 	 * useful, when all data is available and it is needed to set the initial
 	 * state of this object. Note that this method will directly modify instance
 	 * variales, without going trough the individual set-methods.
+     * @param idIn
+     * @param roleIn
+     * @param nameIn
+     * @param passwordIn
 	 */
 
 	public void setAll(String idIn, String passwordIn, String nameIn,
@@ -98,6 +135,8 @@ public class User implements Cloneable, Serializable {
 	 * hasEqualMapping returns true, it does not mean the objects are the same
 	 * instance. However it does mean that in that moment, they are mapped to
 	 * the same row in database.
+     * @param valueObject
+     * @return 
 	 */
 	public boolean hasEqualMapping(User valueObject) {
 
@@ -147,6 +186,7 @@ public class User implements Cloneable, Serializable {
 	 * this method is different than the clone() which is defined in
 	 * java.lang.Object. Here, the returned cloned object will also have all its
 	 * attributes cloned.
+     * @return 
 	 */
 	public Object clone() {
 		User cloned = new User();

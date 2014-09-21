@@ -1,26 +1,60 @@
 package sg.edu.nus.iss.phoenix.radioprogram.entity;
 
+/**
+ *
+ * @author Milan
+ */
 public class RPSearchObject {
 	  private String name;
 	    private String description;
-		public RPSearchObject() {
+
+    /**
+     *
+     */
+    public RPSearchObject() {
 			super();
 		}
-		public RPSearchObject(String name, String description) {
+
+    /**
+     *
+     * @param name
+     * @param description
+     */
+    public RPSearchObject(String name, String description) {
 			super();
 			this.name = name;
 			this.description = description;
 		}
-		public String getName() {
+
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 			return name;
 		}
-		public void setName(String name) {
+
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name) {
 			this.name = name;
 		}
-		public String getDescription() {
+
+    /**
+     *
+     * @return
+     */
+    public String getDescription() {
 			return description;
 		}
-		public void setDescription(String description) {
+
+    /**
+     *
+     * @param description
+     */
+    public void setDescription(String description) {
 			this.description = description;
 		}
 }

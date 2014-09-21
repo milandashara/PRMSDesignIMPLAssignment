@@ -28,6 +28,9 @@ public class WeeklyScheduleDaoImpl implements WeeklyScheduleDao{
 
     Connection connection;
 
+    /**
+     *
+     */
     public WeeklyScheduleDaoImpl() {
          super();
             connection = DBUtility.openConnection();
@@ -78,10 +81,10 @@ public class WeeklyScheduleDaoImpl implements WeeklyScheduleDao{
 	 * resultset will be converted to the List of valueObjects. If no rows were
 	 * found, an empty List will be returned.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param stmt
 	 *            This parameter contains the SQL statement to be excuted.
+     * @return 
+     * @throws java.sql.SQLException 
 	 */
 	protected List<WeeklySchedule> listQuery(PreparedStatement stmt) throws SQLException {
 
@@ -141,6 +144,12 @@ public class WeeklyScheduleDaoImpl implements WeeklyScheduleDao{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param startDate
+     * @return
+     * @throws SQLException
+     */
     @Override
     public WeeklySchedule searchMatching(Date startDate) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

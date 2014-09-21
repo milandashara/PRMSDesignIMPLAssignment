@@ -25,12 +25,23 @@ import sg.edu.nus.iss.phoenix.maintainUser.delegate.MaintainUserDelegate;
 @WebServlet("/UserController/*")
 public class UserController extends HttpServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         processRequest(request, response);
     }
 
     /**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      * response)
      */
@@ -40,6 +51,13 @@ public class UserController extends HttpServlet {
 
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String selection = FCUtilities.stripPath(request.getPathInfo()).toLowerCase();

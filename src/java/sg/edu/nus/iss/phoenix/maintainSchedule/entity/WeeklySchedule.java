@@ -19,6 +19,11 @@ public class WeeklySchedule {
     private String assignedBy;
     private List<ProgramSlot> programSlotList = new ArrayList<ProgramSlot>();
 
+    /**
+     *
+     * @param startDate
+     * @param assignedBy
+     */
     public WeeklySchedule(Date startDate, String assignedBy) {
         this.startDate = startDate;
         this.assignedBy = assignedBy;

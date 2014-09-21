@@ -27,6 +27,9 @@ public interface AnnualScheduleDao {
 	 * then this method can be overrided to return extended valueObject. NOTE:
 	 * If you extend the valueObject class, make sure to override the clone()
 	 * method in it!
+     * @param year
+     * @param assignedBy
+     * @return 
 	 */
 	public AnnualSchedule createValueObject(Integer year,String assignedBy);
 
@@ -36,6 +39,10 @@ public interface AnnualScheduleDao {
 	 * convenience method for the real load-method which accepts the valueObject
 	 * as a parameter. Returned valueObject will be created using the
 	 * createValueObject() method.
+     * @param year
+     * @return 
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException 
+     * @throws java.sql.SQLException 
 	 */
 	public abstract AnnualSchedule getObject(Integer year)
 			throws NotFoundException, SQLException;
@@ -49,11 +56,11 @@ public interface AnnualScheduleDao {
 	 * runtime variables. If load can not find matching row, NotFoundException
 	 * will be thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be loaded.
 	 *            Primary-key field must be set for this to work properly.
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
 	 */
 	public abstract void load(AnnualSchedule valueObject)
 			throws NotFoundException, SQLException;
@@ -64,8 +71,8 @@ public interface AnnualScheduleDao {
 	 * consume huge amounts of resources if table has lot's of rows. This should
 	 * only be used when target tables have only small amounts of data.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
+     * @return 
+     * @throws java.sql.SQLException
 	 */
 	public abstract List<AnnualSchedule> loadAll() throws SQLException;
 
@@ -77,8 +84,6 @@ public interface AnnualScheduleDao {
 	 * this method will read the generated primary-key back to valueObject if
 	 * automatic surrogate-keys were used.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be created. If
 	 *            automatic surrogate-keys are not used the Primary-key field
@@ -96,8 +101,6 @@ public interface AnnualScheduleDao {
 	 * database. If save can not find matching row, NotFoundException will be
 	 * thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be saved.
 	 *            Primary-key field must be set for this to work properly.
@@ -116,8 +119,6 @@ public interface AnnualScheduleDao {
 	 * what it was in the deleted object. If delete can not find matching row,
 	 * NotFoundException will be thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be deleted.
 	 *            Primary-key field must be set for this to work properly.
@@ -138,8 +139,6 @@ public interface AnnualScheduleDao {
 	 * implementation of this method should be different with different DB
 	 * backends.)
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
      * @throws java.sql.SQLException
 	 */
 	public abstract void deleteAll() throws SQLException;
@@ -151,8 +150,7 @@ public interface AnnualScheduleDao {
 	 * value is 0. This method should be used before calling loadAll, to make
 	 * sure table has not too many rows.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
+     * @return 
      * @throws java.sql.SQLException
 	 */
 	public abstract int countAll() throws SQLException;
@@ -166,17 +164,22 @@ public interface AnnualScheduleDao {
 	 * those criteria you specified. Those instance-variables that have NULL
 	 * values are excluded in search-criteria.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance where search will
 	 *            be based. Primary-key field should not be set.
+     * @return 
      * @throws java.sql.SQLException
 	 */
 	public abstract List<AnnualSchedule> searchMatching(AnnualSchedule valueObject)
 			throws SQLException;
 
-	public abstract AnnualSchedule searchMatching(Integer year)
+    /**
+     *
+     * @param year
+     * @return
+     * @throws SQLException
+     */
+    public abstract AnnualSchedule searchMatching(Integer year)
 			throws SQLException;
 
 

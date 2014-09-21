@@ -34,7 +34,11 @@ public class RadioProgramDAOImpl implements RadioProgramDAO {
 		return new RadioProgram(name, description, typicalDuration);
 	}
         
-        public RadioProgram createValueObject()
+    /**
+     *
+     * @return
+     */
+    public RadioProgram createValueObject()
         {
             return new RadioProgram();
         }
@@ -300,10 +304,10 @@ public class RadioProgramDAOImpl implements RadioProgramDAO {
 	 * value indicates how many rows were affected. This method will also make
 	 * sure that if cache is used, it will reset when data changes.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param stmt
 	 *            This parameter contains the SQL statement to be excuted.
+     * @return 
+     * @throws java.sql.SQLException 
 	 */
 	protected int databaseUpdate(PreparedStatement stmt) throws SQLException {
 
@@ -318,12 +322,12 @@ public class RadioProgramDAOImpl implements RadioProgramDAO {
 	 * resultset will be converted to valueObject. If no rows were found,
 	 * NotFoundException will be thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param stmt
 	 *            This parameter contains the SQL statement to be excuted.
 	 * @param valueObject
 	 *            Class-instance where resulting data will be stored.
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
 	 */
 	protected void singleQuery(PreparedStatement stmt, RadioProgram valueObject)
 			throws NotFoundException, SQLException {
@@ -363,6 +367,8 @@ public class RadioProgramDAOImpl implements RadioProgramDAO {
 	 *            This method requires working database connection.
 	 * @param stmt
 	 *            This parameter contains the SQL statement to be excuted.
+     * @return 
+     * @throws java.sql.SQLException
 	 */
 	protected List<RadioProgram> listQuery(PreparedStatement stmt) throws SQLException {
 
@@ -420,6 +426,10 @@ public class RadioProgramDAOImpl implements RadioProgramDAO {
 		}
 	}
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<RadioProgram> getAllRadioProgram() {
         openConnection();

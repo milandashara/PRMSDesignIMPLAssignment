@@ -34,6 +34,10 @@ public class ProcessController extends HttpServlet {
 	}
 
 	/**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -44,6 +48,10 @@ public class ProcessController extends HttpServlet {
 	}
 
 	/**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -53,7 +61,14 @@ public class ProcessController extends HttpServlet {
 		processRequest(request, response);
 	}
 
-	protected void processRequest(HttpServletRequest request,
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String selection = FCUtilities.stripPath(request.getPathInfo())
 				.toLowerCase();

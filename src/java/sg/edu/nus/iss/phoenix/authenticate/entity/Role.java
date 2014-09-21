@@ -30,7 +30,11 @@ public class Role implements Cloneable, Serializable {
 
 	}
 
-	public Role(String roleIn) {
+    /**
+     *
+     * @param roleIn
+     */
+    public Role(String roleIn) {
 
 		this.role = roleIn;
 
@@ -40,20 +44,33 @@ public class Role implements Cloneable, Serializable {
 	 * Get- and Set-methods for persistent variables. The default behaviour does
 	 * not make any checks against malformed data, so these might require some
 	 * manual additions.
+     * @return 
 	 */
 	public String getRole() {
 		return this.role;
 	}
 
-	public void setRole(String roleIn) {
+    /**
+     *
+     * @param roleIn
+     */
+    public void setRole(String roleIn) {
 		this.role = roleIn;
 	}
 
-	public String getAccessPrivilege() {
+    /**
+     *
+     * @return
+     */
+    public String getAccessPrivilege() {
 		return this.accessPrivilege;
 	}
 
-	public void setAccessPrivilege(String accessPrivilegeIn) {
+    /**
+     *
+     * @param accessPrivilegeIn
+     */
+    public void setAccessPrivilege(String accessPrivilegeIn) {
 		this.accessPrivilege = accessPrivilegeIn;
 	}
 
@@ -62,6 +79,8 @@ public class Role implements Cloneable, Serializable {
 	 * useful, when all data is available and it is needed to set the initial
 	 * state of this object. Note that this method will directly modify instance
 	 * variales, without going trough the individual set-methods.
+     * @param roleIn
+     * @param accessPrivilegeIn
 	 */
 
 	public void setAll(String roleIn, String accessPrivilegeIn) {
@@ -75,6 +94,8 @@ public class Role implements Cloneable, Serializable {
 	 * hasEqualMapping returns true, it does not mean the objects are the same
 	 * instance. However it does mean that in that moment, they are mapped to
 	 * the same row in database.
+     * @param valueObject
+     * @return 
 	 */
 	public boolean hasEqualMapping(Role valueObject) {
 
@@ -114,6 +135,7 @@ public class Role implements Cloneable, Serializable {
 	 * this method is different than the clone() which is defined in
 	 * java.lang.Object. Here, the retuned cloned object will also have all its
 	 * attributes cloned.
+     * @return 
 	 */
 	public Object clone() {
 		Role cloned = new Role();

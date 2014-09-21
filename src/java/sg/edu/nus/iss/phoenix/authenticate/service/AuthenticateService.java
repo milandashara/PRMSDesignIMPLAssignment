@@ -13,6 +13,10 @@ import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.core.dao.DAOFactoryImpl;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 
+/**
+ *
+ * @author Milan
+ */
 public class AuthenticateService {
 
 	private static final Logger logger = 
@@ -22,7 +26,10 @@ public class AuthenticateService {
 	UserDao udao;
 	RoleDao rdao;
 
-	public AuthenticateService() {
+    /**
+     *
+     */
+    public AuthenticateService() {
 		super();
 		// TODO Auto-generated constructor stub
 		factory = new DAOFactoryImpl();
@@ -52,7 +59,13 @@ public class AuthenticateService {
 */
 	//The user that we pass in to authenticate is different from the
 	//instance that is returned
-	public User validateUserIdPassword(final User toAuth) {
+
+    /**
+     *
+     * @param toAuth
+     * @return
+     */
+    	public User validateUserIdPassword(final User toAuth) {
 		User found = null;
 		try {
 			found = udao.searchMatching(toAuth.getId());
@@ -78,7 +91,12 @@ public class AuthenticateService {
 		return (found);
 	}
 
-	public User evaluateAccessPreviledge(User user) {
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public User evaluateAccessPreviledge(User user) {
 		try {
 			Role role = rdao.getObject(user.getRoles().get(0).getRole());
 			//user.setAccessPrivilege(role.getAccessPrivilege());

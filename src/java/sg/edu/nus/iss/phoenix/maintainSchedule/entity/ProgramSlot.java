@@ -25,9 +25,23 @@ public class ProgramSlot {
     private User presenter;
     private User producer;
     //writen by like
-    public ProgramSlot(){
+
+    /**
+     *
+     */
+        public ProgramSlot(){
     
     }
+
+    /**
+     *
+     * @param duration
+     * @param dateOfProgram
+     * @param startTime
+     * @param radioProgram
+     * @param presenter
+     * @param producer
+     */
     public ProgramSlot(Time duration, Date dateOfProgram, Time startTime, RadioProgram radioProgram, User presenter, User producer) {
         this.duration = duration;
         this.dateOfProgram = dateOfProgram;
@@ -38,6 +52,16 @@ public class ProgramSlot {
         this.id = id;
     }
     
+    /**
+     *
+     * @param duration
+     * @param id
+     * @param dateOfProgram
+     * @param startTime
+     * @param radioProgram
+     * @param presenter
+     * @param producer
+     */
     public ProgramSlot(Time duration,Integer id, Date dateOfProgram, Time startTime, RadioProgram radioProgram, User presenter, User producer) {
         this.duration = duration;
         this.dateOfProgram = dateOfProgram;
@@ -139,7 +163,11 @@ public class ProgramSlot {
         return id;
     }
 
-     public void setId(Integer id) {
+    /**
+     *
+     * @param id
+     */
+    public void setId(Integer id) {
         this.id = id;
     }
 }

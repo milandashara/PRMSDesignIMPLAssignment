@@ -16,6 +16,13 @@ import sg.edu.nus.iss.phoenix.reviewSelectPresenterProducer.service.reviewPresen
  * @author sakthi
  */
 public class reviewPresenterProducerDelegate {
+
+    /**
+     *
+     * @param role
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<PresenterProducer> getAllPresenterProducer(String role) throws SQLException {
 		reviewPresenterProducerService service = new reviewPresenterProducerService();
 		return service.getAllPresenterProducer(role);

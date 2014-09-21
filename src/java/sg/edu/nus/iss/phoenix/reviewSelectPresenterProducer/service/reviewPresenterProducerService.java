@@ -21,12 +21,22 @@ public class reviewPresenterProducerService {
     DAOFactoryImpl factory;
 	ReviewSelectPresenterProducerDAO ppdao;
 
-	public reviewPresenterProducerService() {
+    /**
+     *
+     */
+    public reviewPresenterProducerService() {
 		super();
 		// TODO Auto-generated constructor stub
 		factory = new DAOFactoryImpl();
 		ppdao = factory.getReviewSelectPresenterProducerDAO();
 	}
+
+    /**
+     *
+     * @param role
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<PresenterProducer> getAllPresenterProducer(String role) throws SQLException {
 		ArrayList<PresenterProducer> currentList = new ArrayList<PresenterProducer>();
                 currentList = (ArrayList<PresenterProducer>) ppdao.getAllPresenterProducer(role);

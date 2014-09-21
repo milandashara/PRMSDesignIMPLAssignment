@@ -25,6 +25,9 @@ public class UserListService {
     private RoleDao roleDao;
     private UserDao udao;
 
+    /**
+     *
+     */
     public UserListService() {
         super();
         factory = new DAOFactoryImpl();
@@ -35,6 +38,10 @@ public class UserListService {
 //Returns a arraylist of user objects
 //handles sql exception
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<User> getUserList() {
         ArrayList<User> userList = new ArrayList();
         try {
@@ -46,6 +53,10 @@ public class UserListService {
         return userList;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Role> getRoleList() {
         List<Role> roleList = new ArrayList();
         try {
@@ -57,6 +68,11 @@ public class UserListService {
 
     }
 
+    /**
+     *
+     * @param role
+     * @return
+     */
     public ArrayList<String> getUserList(String role) {
         ArrayList<User> currentList = new ArrayList<User>();
         ArrayList<String> currentIdList = new ArrayList<String>();

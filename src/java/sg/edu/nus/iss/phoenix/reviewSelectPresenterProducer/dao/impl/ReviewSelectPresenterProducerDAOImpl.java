@@ -24,13 +24,21 @@ import sg.edu.nus.iss.phoenix.reviewSelectPresenterProducer.entity.PresenterProd
 public class ReviewSelectPresenterProducerDAOImpl  implements  ReviewSelectPresenterProducerDAO{
     Connection connection;
     
+    /**
+     *
+     * @return
+     */
     @Override
 	public PresenterProducer createValueObject() {
 		return new PresenterProducer();
 	}  
 	
-    
-    
+    /**
+     *
+     * @param stmt
+     * @return
+     * @throws SQLException
+     */
     protected List<PresenterProducer> listQuery(PreparedStatement stmt) throws SQLException {
 
 		ArrayList<PresenterProducer> searchResults = new ArrayList<PresenterProducer>();
@@ -87,6 +95,12 @@ public class ReviewSelectPresenterProducerDAOImpl  implements  ReviewSelectPrese
 		}
 	}
 
+    /**
+     *
+     * @param role
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<PresenterProducer> getAllPresenterProducer(String role) throws SQLException {
                 openConnection();

@@ -30,6 +30,9 @@ public class AnnualScheduleDaoImpl implements AnnualScheduleDao {
 
     Connection connection;
 
+    /**
+     *
+     */
     public AnnualScheduleDaoImpl() {
         super();
         connection = DBUtility.openConnection();
@@ -73,8 +76,9 @@ public class AnnualScheduleDaoImpl implements AnnualScheduleDao {
      * resultset will be converted to the List of valueObjects. If no rows were
      * found, an empty List will be returned.
      *
-     * @param conn This method requires working database connection.
      * @param stmt This parameter contains the SQL statement to be excuted.
+     * @return 
+     * @throws java.sql.SQLException 
      */
     protected List<AnnualSchedule> listQuery(PreparedStatement stmt) throws SQLException {
 
@@ -132,11 +136,24 @@ public class AnnualScheduleDaoImpl implements AnnualScheduleDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param year
+     * @return
+     * @throws SQLException
+     */
     @Override
     public AnnualSchedule searchMatching(Integer year) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param stmt
+     * @param valueObject
+     * @throws NotFoundException
+     * @throws SQLException
+     */
     protected void singleQuery(PreparedStatement stmt, AnnualSchedule valueObject)
             throws NotFoundException, SQLException {
 

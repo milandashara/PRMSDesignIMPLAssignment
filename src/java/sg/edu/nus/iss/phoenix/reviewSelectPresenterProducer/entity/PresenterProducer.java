@@ -16,26 +16,50 @@ public class PresenterProducer {
     private String id;
     private String role;
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRole() {
         return role;
     }
 
+    /**
+     *
+     * @param role
+     */
     public void setRole(String role) {
         this.role = role;
     }

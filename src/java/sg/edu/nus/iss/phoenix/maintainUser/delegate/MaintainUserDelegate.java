@@ -17,15 +17,28 @@ public class MaintainUserDelegate {
     
     private MaintainUserService service;
     
+    /**
+     *
+     */
     public MaintainUserDelegate() {
         super();
         service = new MaintainUserService();
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean createUser(User user) {
         return service.createUser(user);
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean updateUser(User user) {
         return service.updateUser(user);
     }
@@ -33,10 +46,21 @@ public class MaintainUserDelegate {
 // Returns boolean value as acknowledgement
 // Called from Usercontroller servlet class
 // Calls delete user method in service class
-    public boolean deleteUser(User user) {
+
+    /**
+     *
+     * @param user
+     * @return
+     */
+        public boolean deleteUser(User user) {
         return service.deleteUser(user);
     }
 
+    /**
+     *
+     * @param uid
+     * @return
+     */
     public User searchMatching(String uid) {
         return service.searchMatching(uid);
     }

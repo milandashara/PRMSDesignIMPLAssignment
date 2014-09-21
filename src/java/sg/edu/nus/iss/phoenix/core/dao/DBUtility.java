@@ -20,6 +20,10 @@ import javax.sql.DataSource;
  */
 public class DBUtility {
 
+    /**
+     *
+     * @return
+     */
     public static Connection openConnection() {
        Connection conn = null;
 

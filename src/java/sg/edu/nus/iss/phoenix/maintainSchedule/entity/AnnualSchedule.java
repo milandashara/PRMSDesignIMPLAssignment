@@ -21,6 +21,11 @@ public class AnnualSchedule {
 
     private List<WeeklySchedule> weeklyScheduleList=new ArrayList<WeeklySchedule>();
     
+    /**
+     *
+     * @param year
+     * @param assignedBy
+     */
     public AnnualSchedule(Integer year, String assignedBy) {
         this.year = year;
         this.assignedBy = assignedBy;

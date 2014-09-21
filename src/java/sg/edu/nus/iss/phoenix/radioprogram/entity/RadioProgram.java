@@ -3,6 +3,10 @@ package sg.edu.nus.iss.phoenix.radioprogram.entity;
 import java.io.Serializable;
 import java.sql.Time;
 
+/**
+ *
+ * @author Milan
+ */
 public class RadioProgram implements Cloneable, Serializable {
 
     /**
@@ -31,14 +35,22 @@ public class RadioProgram implements Cloneable, Serializable {
 
     }
 
+    /**
+     *
+     * @param name
+     * @param description
+     * @param typicalDuration
+     */
     public RadioProgram(String name, String description, Time typicalDuration) {
         this.name = name;
         this.description = description;
         this.typicalDuration = typicalDuration;
     }
     
-    
-
+    /**
+     *
+     * @param nameIn
+     */
     public RadioProgram (String nameIn) {
 
           this.name = nameIn;
@@ -50,25 +62,49 @@ public class RadioProgram implements Cloneable, Serializable {
      * Get- and Set-methods for persistent variables. The default
      * behaviour does not make any checks against malformed data,
      * so these might require some manual additions.
+     * @return 
      */
 
     public String getName() {
           return this.name;
     }
+
+    /**
+     *
+     * @param nameIn
+     */
     public void setName(String nameIn) {
           this.name = nameIn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
           return this.description;
     }
+
+    /**
+     *
+     * @param descriptionIn
+     */
     public void setDescription(String descriptionIn) {
           this.description = descriptionIn;
     }
 
+    /**
+     *
+     * @return
+     */
     public Time getTypicalDuration() {
           return this.typicalDuration;
     }
+
+    /**
+     *
+     * @param typicalDurationIn
+     */
     public void setTypicalDuration(Time typicalDurationIn) {
           this.typicalDuration = typicalDurationIn;
     }
@@ -81,6 +117,9 @@ public class RadioProgram implements Cloneable, Serializable {
      * set the initial state of this object. Note that this method will
      * directly modify instance variables, without going trough the 
      * individual set-methods.
+     * @param nameIn
+     * @param descriptionIn
+     * @param typicalDurationIn
      */
 
     public void setAll(String nameIn,
@@ -98,6 +137,8 @@ public class RadioProgram implements Cloneable, Serializable {
      * variables. If hasEqualMapping returns true, it does not mean the objects
      * are the same instance. However it does mean that in that moment, they 
      * are mapped to the same row in database.
+     * @param valueObject
+     * @return 
      */
     public boolean hasEqualMapping(RadioProgram valueObject) {
 
@@ -146,6 +187,7 @@ public class RadioProgram implements Cloneable, Serializable {
      * Note, that this method is different than the clone() which
      * is defined in java.lang.Object. Here, the returned cloned object
      * will also have all its attributes cloned.
+     * @return 
      */
     public Object clone() {
         RadioProgram cloned = new RadioProgram();

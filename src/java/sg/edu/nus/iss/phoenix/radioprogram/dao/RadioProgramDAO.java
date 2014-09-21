@@ -8,6 +8,10 @@ import java.util.List;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 
+/**
+ *
+ * @author Milan
+ */
 public interface RadioProgramDAO {
 
 	/**
@@ -15,17 +19,28 @@ public interface RadioProgramDAO {
 	 * create new value object instance. The reason why this method exists is
 	 * that sometimes the programmer may want to extend also the valueObject and
 	 * then this method can be over-rided to return extended valueObject.
+     * @param name
+     * @param description
+     * @param typicalDuration
+     * @return 
 	 */
 	public RadioProgram createValueObject(String name, String description, Time typicalDuration);
         
-        
-        public RadioProgram createValueObject();
+    /**
+     *
+     * @return
+     */
+    public RadioProgram createValueObject();
 	/**
 	 * getObject-method. This will create and load valueObject contents from
 	 * database using given Primary-Key as identifier. This method is just a
 	 * convenience method for the real load-method which accepts the valueObject
 	 * as a parameter. Returned valueObject will be created using the
 	 * createValueObject() method.
+     * @param name
+     * @return 
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
 	 */
 	public abstract RadioProgram getObject(String name)
 			throws NotFoundException, SQLException;
@@ -39,11 +54,11 @@ public interface RadioProgramDAO {
 	 * runtime variables. If load can not find matching row, NotFoundException
 	 * will be thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be loaded.
 	 *            Primary-key field must be set for this to work properly.
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
 	 */
 	public abstract void load(RadioProgram valueObject)
 			throws NotFoundException, SQLException;
@@ -54,8 +69,8 @@ public interface RadioProgramDAO {
 	 * consume huge amounts of resources if table has lot's of rows. This should
 	 * only be used when target tables have only small amounts of data.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
+     * @return 
+     * @throws java.sql.SQLException 
 	 */
 	public abstract List<RadioProgram> loadAll() throws SQLException;
 
@@ -67,12 +82,11 @@ public interface RadioProgramDAO {
 	 * this method will read the generated primary-key back to valueObject if
 	 * automatic surrogate-keys were used.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be created. If
 	 *            automatic surrogate-keys are not used the Primary-key field
 	 *            must be set for this to work properly.
+     * @throws java.sql.SQLException
 	 */
 	public abstract void create(RadioProgram valueObject) throws SQLException;
 
@@ -84,11 +98,11 @@ public interface RadioProgramDAO {
 	 * database. If save can not find matching row, NotFoundException will be
 	 * thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be saved.
 	 *            Primary-key field must be set for this to work properly.
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
 	 */
 	public abstract void save(RadioProgram valueObject)
 			throws NotFoundException, SQLException;
@@ -102,11 +116,11 @@ public interface RadioProgramDAO {
 	 * what it was in the deleted object. If delete can not find matching row,
 	 * NotFoundException will be thrown.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance to be deleted.
 	 *            Primary-key field must be set for this to work properly.
+     * @throws sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException
+     * @throws java.sql.SQLException
 	 */
 	public abstract void delete(RadioProgram valueObject)
 			throws NotFoundException, SQLException;
@@ -124,6 +138,7 @@ public interface RadioProgramDAO {
 	 * 
 	 * @param conn
 	 *            This method requires working database connection.
+     * @throws java.sql.SQLException
 	 */
 	public abstract void deleteAll(Connection conn) throws SQLException;
 
@@ -134,8 +149,8 @@ public interface RadioProgramDAO {
 	 * value is 0. This method should be used before calling loadAll, to make
 	 * sure table has not too many rows.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
+     * @return 
+     * @throws java.sql.SQLException 
 	 */
 	public abstract int countAll() throws SQLException;
 
@@ -148,15 +163,19 @@ public interface RadioProgramDAO {
 	 * those criteria you specified. Those instance-variables that have NULL
 	 * values are excluded in search-criteria.
 	 * 
-	 * @param conn
-	 *            This method requires working database connection.
 	 * @param valueObject
 	 *            This parameter contains the class instance where search will
 	 *            be based. Primary-key field should not be set.
+     * @return 
+     * @throws java.sql.SQLException
 	 */
 	public abstract List<RadioProgram> searchMatching(RadioProgram valueObject)
 			throws SQLException;
 
+    /**
+     *
+     * @return
+     */
     public List<RadioProgram> getAllRadioProgram();
 
 }

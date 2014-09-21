@@ -17,16 +17,40 @@ import sg.edu.nus.iss.phoenix.radioprogram.dao.RadioProgramDAO;
  */
 public interface DAOFactory {
 
-	RadioProgramDAO getRadioProgramDAO();
+    /**
+     *
+     * @return
+     */
+    RadioProgramDAO getRadioProgramDAO();
 
-	RoleDao getRoleDAO();
+    /**
+     *
+     * @return
+     */
+    RoleDao getRoleDAO();
 
-	UserDao getUserDAO();
+    /**
+     *
+     * @return
+     */
+    UserDao getUserDAO();
         
-        AnnualScheduleDao getAnnualScheduleDAO();
+    /**
+     *
+     * @return
+     */
+    AnnualScheduleDao getAnnualScheduleDAO();
         
-        WeeklyScheduleDao getWeeklyScheduleDAO();
+    /**
+     *
+     * @return
+     */
+    WeeklyScheduleDao getWeeklyScheduleDAO();
         
-        ProgramSlotDao getProgramSlotDAO();
+    /**
+     *
+     * @return
+     */
+    ProgramSlotDao getProgramSlotDAO();
 	
 }

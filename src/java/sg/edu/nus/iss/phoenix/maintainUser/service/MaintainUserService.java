@@ -22,12 +22,20 @@ public class MaintainUserService {
     private UserDao udao;
     private DAOFactoryImpl factory;
 
+    /**
+     *
+     */
     public MaintainUserService() {
         super();
         factory = new DAOFactoryImpl();
         udao = factory.getUserDAO();
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean createUser(User user) {
 
         try {
@@ -39,6 +47,11 @@ public class MaintainUserService {
         }
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public boolean updateUser(User user) {
         try {
             udao.save(user);
@@ -54,6 +67,13 @@ Handles Exceptions-NotFoundException,SQLException
 Called from MaintainUserDelagate class
 Calls delete method in user dao
 */
+
+    /**
+     *
+     * @param user
+     * @return
+     */
+    
     public boolean deleteUser(User user) {
         try {
             udao.delete(user);
@@ -64,7 +84,11 @@ Calls delete method in user dao
         }
     }
     
-
+    /**
+     *
+     * @param uid
+     * @return
+     */
     public User searchMatching(String uid) {
         try {
             return udao.searchMatching(uid);

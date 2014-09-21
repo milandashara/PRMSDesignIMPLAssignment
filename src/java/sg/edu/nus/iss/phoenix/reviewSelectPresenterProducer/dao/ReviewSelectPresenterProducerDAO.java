@@ -16,8 +16,18 @@ import sg.edu.nus.iss.phoenix.reviewSelectPresenterProducer.entity.PresenterProd
  */
 public interface ReviewSelectPresenterProducerDAO {
     
+    /**
+     *
+     * @return
+     */
     public abstract PresenterProducer createValueObject();
     
+    /**
+     *
+     * @param role
+     * @return
+     * @throws SQLException
+     */
     public abstract List<PresenterProducer> getAllPresenterProducer(String role) throws SQLException;
     
 }

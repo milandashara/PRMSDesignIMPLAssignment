@@ -37,6 +37,9 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
 
     Connection connection;
 
+    /**
+     *
+     */
     public ProgramSlotDaoImpl() {
         super();
         connection = DBUtility.openConnection();
@@ -58,6 +61,13 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws NotFoundException
+     * @throws SQLException
+     */
     @Override
     public ProgramSlot getObject(Integer id)
             throws NotFoundException, SQLException {
@@ -210,6 +220,12 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         return searchResults;
     }
 
+    /**
+     *
+     * @param dateOfProgram
+     * @param startTime
+     * @return
+     */
     public boolean checkOverlappingTimeSlot(Date dateOfProgram, Time startTime) {
         List<ProgramSlot> searchResults = null;
         try {
@@ -235,6 +251,8 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
      *
      * @param conn This method requires working database connection.
      * @param stmt This parameter contains the SQL statement to be excuted.
+     * @return 
+     * @throws java.sql.SQLException 
      */
     protected int databaseUpdate(PreparedStatement stmt) throws SQLException {
 
@@ -243,6 +261,12 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         return result;
     }
 
+    /**
+     *
+     * @param week
+     * @return
+     * @throws SQLException
+     */
     @Override
     public List<ProgramSlot> getAllProgramSlots(Date week) throws SQLException {
         String sql = "SELECT * FROM phoenix.`program-slot` a where dateOfProgram BETWEEN ? and ADDDATE(?,7)";
@@ -260,6 +284,13 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         return searchResults;
     }
 
+    /**
+     *
+     * @param stmt
+     * @return
+     * @throws SQLException
+     * @throws NotFoundException
+     */
     protected List<ProgramSlot> listQuery(PreparedStatement stmt) throws SQLException, NotFoundException {
 
         ArrayList<ProgramSlot> searchResults = new ArrayList<ProgramSlot>();

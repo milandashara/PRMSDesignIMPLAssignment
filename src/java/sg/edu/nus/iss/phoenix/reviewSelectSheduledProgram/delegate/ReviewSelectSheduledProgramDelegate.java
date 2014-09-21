@@ -21,18 +21,35 @@ public class ReviewSelectSheduledProgramDelegate {
     
             ReviewSelectSheduledProgramService service;
 
+    /**
+     *
+     */
     public ReviewSelectSheduledProgramDelegate() {
         this.service = new ReviewSelectSheduledProgramService();
     }
        
-         public List<WeeklySchedule> getAllWeeklySchedule(Integer year) {
+    /**
+     *
+     * @param year
+     * @return
+     */
+    public List<WeeklySchedule> getAllWeeklySchedule(Integer year) {
         return service.getAllWeeklySchedulelist(year);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<AnnualSchedule> getAllAnnualScheduleList() {
          return service.getAllAnnualSchedulelist();
     }
 
+    /**
+     *
+     * @param week
+     * @return
+     */
     public List<ProgramSlot> getAllProgramSlots(Date week) {
         return service.getAllProgramSlots(week);
     }

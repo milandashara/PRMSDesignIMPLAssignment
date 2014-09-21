@@ -8,18 +8,30 @@ import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.RadioProgramDAO;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 
+/**
+ *
+ * @author Milan
+ */
 public class RadioProgramService {
 	DAOFactoryImpl factory;
 	RadioProgramDAO rpdao;
 
-	public RadioProgramService() {
+    /**
+     *
+     */
+    public RadioProgramService() {
 		super();
 		// TODO Auto-generated constructor stub
 		factory = new DAOFactoryImpl();
 		rpdao = factory.getRadioProgramDAO();
 	}
 
-	public ArrayList<RadioProgram> searchPrograms(RadioProgram rpso) {
+    /**
+     *
+     * @param rpso
+     * @return
+     */
+    public ArrayList<RadioProgram> searchPrograms(RadioProgram rpso) {
 		ArrayList<RadioProgram> list = new ArrayList<RadioProgram>();
 		try {
 			list = (ArrayList<RadioProgram>) rpdao.searchMatching(rpso);
@@ -30,7 +42,12 @@ public class RadioProgramService {
 		return list;
 	}
 
-	public ArrayList<RadioProgram> findRPByCriteria(RadioProgram rp) {
+    /**
+     *
+     * @param rp
+     * @return
+     */
+    public ArrayList<RadioProgram> findRPByCriteria(RadioProgram rp) {
 		ArrayList<RadioProgram> currentList = new ArrayList<RadioProgram>();
 
 		try {
@@ -44,7 +61,12 @@ public class RadioProgramService {
 
 	}
 
-	public RadioProgram findRP(String rpName) {
+    /**
+     *
+     * @param rpName
+     * @return
+     */
+    public RadioProgram findRP(String rpName) {
 		RadioProgram currentrp = new RadioProgram();
 		currentrp.setName(rpName);
 		try {
@@ -59,7 +81,11 @@ public class RadioProgramService {
 
 	}
 
-	public ArrayList<RadioProgram> findAllRP() {
+    /**
+     *
+     * @return
+     */
+    public ArrayList<RadioProgram> findAllRP() {
 		ArrayList<RadioProgram> currentList = new ArrayList<RadioProgram>();
 		try {
 			currentList = (ArrayList<RadioProgram>) rpdao.loadAll();
@@ -71,7 +97,11 @@ public class RadioProgramService {
 
 	}
 
-	public void insertRP(RadioProgram rp) {
+    /**
+     *
+     * @param rp
+     */
+    public void insertRP(RadioProgram rp) {
 		try {
 			rpdao.create(rp);
 		} catch (SQLException e) {
@@ -80,7 +110,11 @@ public class RadioProgramService {
 		}
 	}
 
-	public void updateRP(RadioProgram rp) {
+    /**
+     *
+     * @param rp
+     */
+    public void updateRP(RadioProgram rp) {
 		
 			try {
 				rpdao.save(rp);
@@ -94,7 +128,11 @@ public class RadioProgramService {
 		
 	}
 
-	public void deleteRP(RadioProgram rp) {
+    /**
+     *
+     * @param rp
+     */
+    public void deleteRP(RadioProgram rp) {
 
 			try {
 				rpdao.delete(rp);

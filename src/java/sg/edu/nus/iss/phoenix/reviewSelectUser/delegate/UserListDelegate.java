@@ -22,14 +22,28 @@ public class UserListDelegate {
     //Method of delegate class to fetch the list of users from the db
 //Returns a arraylist of user objects
 
+    /**
+     *
+     * @return
+     */
+    
     public ArrayList<User> getUserList() {
         return service.getUserList();
     }
     
+    /**
+     *
+     * @param role
+     * @return
+     */
     public ArrayList<String> getUserList(String role) {
         return service.getUserList(role);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Role> getRoleList() {
         return service.getRoleList();
     }
