@@ -17,7 +17,8 @@ import sg.edu.nus.iss.phoenix.reviewSelectPresenterProducer.service.reviewPresen
  */
 public class reviewPresenterProducerDelegate {
 
-    /**
+    /**getAllPresenterProducer-method. This method calls the service function which
+     * returns a list of presenters or producers based on the role parameter passed.
      *
      * @param role
      * @return

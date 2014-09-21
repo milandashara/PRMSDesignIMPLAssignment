@@ -22,7 +22,8 @@ public class UserListDelegate {
     //Method of delegate class to fetch the list of users from the db
 //Returns a arraylist of user objects
 
-    /**
+    /**getUserList-method. Method of delegate class to fetch the list of users 
+     * from the db Returns a arraylist of user objects.
      *
      * @return
      */
@@ -31,7 +32,8 @@ public class UserListDelegate {
         return service.getUserList();
     }
     
-    /**
+    /**getUserList-method. This delegate method calls the service function which
+     * retrieves all the user list based on their role from the database
      *
      * @param role
      * @return
@@ -40,7 +42,8 @@ public class UserListDelegate {
         return service.getUserList(role);
     }
 
-    /**
+    /**getRoleList-method. This delegate method calls the service function which
+     * retrieves all the role list from the database.
      *
      * @return
      */

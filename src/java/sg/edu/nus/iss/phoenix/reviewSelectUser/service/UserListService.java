@@ -34,12 +34,12 @@ public class UserListService {
         udao = factory.getUserDAO();
         roleDao = factory.getRoleDAO();
     }
-    //Method of service class to fetch the list of users from the db
-//Returns a arraylist of user objects
-//handles sql exception
+  
 
-    /**
+    /**getUserList-method. Method of service class to fetch the list of users 
+     * from the db Returns a arraylist of user objects handles sql exception.
      *
+
      * @return
      */
     public ArrayList<User> getUserList() {
@@ -53,7 +53,8 @@ public class UserListService {
         return userList;
     }
 
-    /**
+    /**getRoleList-method. This service method retrieves all the role list from
+     * the database.
      *
      * @return
      */
@@ -68,7 +69,8 @@ public class UserListService {
 
     }
 
-    /**
+    /**getUserList-method. This service method returns a list of users based on
+     * the role that is provided as parameter
      *
      * @param role
      * @return

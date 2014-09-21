@@ -26,7 +26,8 @@ public class RadioProgramService {
 		rpdao = factory.getRadioProgramDAO();
 	}
 
-    /**
+    /** searchPrograms-method. This service method searches for a list of
+     * matching radio programs by name from the database.
      *
      * @param rpso
      * @return
@@ -42,10 +43,11 @@ public class RadioProgramService {
 		return list;
 	}
 
-    /**
+    /**findRPByCriteria. This service method searches for a list of
+     * matching radio programs by criteria from the database.
      *
      * @param rp
-     * @return
+     * @return 
      */
     public ArrayList<RadioProgram> findRPByCriteria(RadioProgram rp) {
 		ArrayList<RadioProgram> currentList = new ArrayList<RadioProgram>();
@@ -61,7 +63,8 @@ public class RadioProgramService {
 
 	}
 
-    /**
+    /**findRP-method. This service method returns a radio program when provided
+     * its name as parameter.
      *
      * @param rpName
      * @return
@@ -81,7 +84,8 @@ public class RadioProgramService {
 
 	}
 
-    /**
+    /**findAllR-method. This service method returns all the radio programs in
+     * the database.
      *
      * @return
      */
@@ -97,7 +101,7 @@ public class RadioProgramService {
 
 	}
 
-    /**
+    /**insertRP-method. This service method creates a radio program in the database
      *
      * @param rp
      */
@@ -110,7 +114,8 @@ public class RadioProgramService {
 		}
 	}
 
-    /**
+    /**updateRP-method. This service method updates the existing radio program
+     * in the database.
      *
      * @param rp
      */
@@ -128,7 +133,7 @@ public class RadioProgramService {
 		
 	}
 
-    /**
+    /**deleteRP-method. This service method deletes an existing radio program.
      *
      * @param rp
      */

@@ -24,7 +24,11 @@ import sg.edu.nus.iss.phoenix.reviewSelectPresenterProducer.entity.PresenterProd
 public class ReviewSelectPresenterProducerDAOImpl  implements  ReviewSelectPresenterProducerDAO{
     Connection connection;
     
-    /**
+     /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.ReviewSelectPresenterProducer.dao.impl.RoleDao#createValueObject
      *
      * @return
      */
@@ -33,7 +37,9 @@ public class ReviewSelectPresenterProducerDAOImpl  implements  ReviewSelectPrese
 		return new PresenterProducer();
 	}  
 	
-    /**
+    /**listQuery-method. This method takes the prepared statement as parameter
+     * and returns a list of presenter or producer. This is called from
+     * getAllPresenterProducer method.
      *
      * @param stmt
      * @return
@@ -95,8 +101,8 @@ public class ReviewSelectPresenterProducerDAOImpl  implements  ReviewSelectPrese
 		}
 	}
 
-    /**
-     *
+    /**getAllPresenterProducer-method. This method takes the role as parameter
+     * and returns a list of presenter or producer. This method calls listQuery  method.
      * @param role
      * @return
      * @throws SQLException

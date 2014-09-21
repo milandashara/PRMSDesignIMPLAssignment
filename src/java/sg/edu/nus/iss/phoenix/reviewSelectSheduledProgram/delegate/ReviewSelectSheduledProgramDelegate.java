@@ -28,7 +28,9 @@ public class ReviewSelectSheduledProgramDelegate {
         this.service = new ReviewSelectSheduledProgramService();
     }
        
-    /**
+    /**getAllWeeklySchedule-method. This method invokes the service function 
+     * by calling the service method and by passing the year parameter to retrieve
+     * a list of weekly schedules
      *
      * @param year
      * @return
@@ -37,7 +39,8 @@ public class ReviewSelectSheduledProgramDelegate {
         return service.getAllWeeklySchedulelist(year);
     }
 
-    /**
+    /**getAllAnnualScheduleList. This method invokes the service function 
+     * by calling the service method to retrieve the list of annual schedule objects.
      *
      * @return
      */
@@ -45,7 +48,9 @@ public class ReviewSelectSheduledProgramDelegate {
          return service.getAllAnnualSchedulelist();
     }
 
-    /**
+    /**getAllProgramSlots. This method invokes the service function 
+     * by calling the service method to retrieve the list of schedule program
+     * objects based on the week.
      *
      * @param week
      * @return

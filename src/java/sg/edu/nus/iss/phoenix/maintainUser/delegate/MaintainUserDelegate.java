@@ -25,7 +25,8 @@ public class MaintainUserDelegate {
         service = new MaintainUserService();
     }
 
-    /**
+    /**createUser-method. This method call invokes a service method to create a
+     * user and save into the data base.
      *
      * @param user
      * @return
@@ -34,7 +35,8 @@ public class MaintainUserDelegate {
         return service.createUser(user);
     }
 
-    /**
+    /**updateUser-method. This method call invokes a service method to update a
+     * existing user and save in the database.
      *
      * @param user
      * @return
@@ -47,7 +49,8 @@ public class MaintainUserDelegate {
 // Called from Usercontroller servlet class
 // Calls delete user method in service class
 
-    /**
+    /**deleteUser-method. This method call invokes a service method to delete a
+     * existing user from the database.
      *
      * @param user
      * @return
@@ -56,8 +59,8 @@ public class MaintainUserDelegate {
         return service.deleteUser(user);
     }
 
-    /**
-     *
+    /**searchMatching-method. This method call invokes a service method that returns a
+     * existing user with a matching id from the database.
      * @param uid
      * @return
      */

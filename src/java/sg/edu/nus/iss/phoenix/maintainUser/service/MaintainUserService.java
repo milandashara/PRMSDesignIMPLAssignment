@@ -31,7 +31,8 @@ public class MaintainUserService {
         udao = factory.getUserDAO();
     }
 
-    /**
+    /**createUser-method. This service method creates a new user and saves 
+     * in the database.
      *
      * @param user
      * @return
@@ -47,7 +48,7 @@ public class MaintainUserService {
         }
     }
 
-    /**
+    /**updateUser-method. This service method updates the user data in the database
      *
      * @param user
      * @return
@@ -61,14 +62,15 @@ public class MaintainUserService {
             return false;
         }
     }
-/*Method in service class to delete a user
-Returns boolean value as acknowledgement
-Handles Exceptions-NotFoundException,SQLException
-Called from MaintainUserDelagate class
-Calls delete method in user dao
+/*
 */
 
-    /**
+    /**deleteUser-method. 
+     * Method in service class to delete a user.
+     * Returns boolean value as acknowledgement
+     * Handles Exceptions-NotFoundException,SQLException
+     * Called from MaintainUserDelagate class
+     * Calls delete method in user dao
      *
      * @param user
      * @return
@@ -84,7 +86,8 @@ Calls delete method in user dao
         }
     }
     
-    /**
+    /** searchMatching-method. The service method that returns a user match 
+     *from the data base.
      *
      * @param uid
      * @return

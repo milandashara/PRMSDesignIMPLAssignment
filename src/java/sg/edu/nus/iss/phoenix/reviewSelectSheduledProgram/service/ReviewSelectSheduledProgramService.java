@@ -47,7 +47,8 @@ public class ReviewSelectSheduledProgramService {
         this.weeklyScheduleDao = new WeeklyScheduleDaoImpl();
     }
     
-    /**
+    /**getAllAnnualSchedulelist-method. This service method retrieves a list of 
+     * Annual schedules from the database.
      *
      * @return
      */
@@ -60,7 +61,8 @@ public class ReviewSelectSheduledProgramService {
         return new ArrayList<AnnualSchedule>(); 
     }
 
-    /**
+    /**getAllWeeklySchedulelist-method. This service method by passing the year 
+     * parameter retrieves a list of weekly schedules
      *
      * @param year
      * @return
@@ -76,7 +78,8 @@ public class ReviewSelectSheduledProgramService {
         return new ArrayList<WeeklySchedule>();
     }
 
-    /**
+    /**getAllProgramSlots-method. This service method by passing the wyeareek 
+     * parameter retrieves a list of Program schedule slots.
      *
      * @param week
      * @return

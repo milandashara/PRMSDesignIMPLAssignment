@@ -12,7 +12,9 @@ import sg.edu.nus.iss.phoenix.radioprogram.service.RadioProgramService;
  */
 public class RPDelegate {
 
-    /**
+    /**searchPrograms-method. This method calls a service method to search through
+     * the existing database to find all the radio programs with the matching 
+     *  name.
      *
      * @param rpso
      * @return
@@ -24,7 +26,9 @@ public class RPDelegate {
 		return service.searchPrograms(rp);	
 	}
 	
-    /**
+    /** findRPByCriteria-method.  This method calls a service method to search through
+     * the existing database to find all the radio programs with the matching 
+     *  description.
      *
      * @param rpso
      * @return
@@ -36,7 +40,8 @@ public class RPDelegate {
 		return service.searchPrograms(rp);	
 	}
 	
-    /**
+    /** findRP-method. This method calls the service function to retrieve a 
+     * radio program by its name.
      *
      * @param rpName
      * @return
@@ -48,7 +53,8 @@ public class RPDelegate {
 		
 	}
 
-    /**
+    /**findAllRP-method. This method calls the service function which returns a 
+     * list of all the ratio programs.
      *
      * @return
      */
@@ -58,7 +64,8 @@ public class RPDelegate {
 		
 	}
 	
-    /**
+    /**insertRP-method. This method calls the service function which inserts a
+     * radio program slot into the database.
      *
      * @param rp
      */
@@ -68,7 +75,8 @@ public class RPDelegate {
 		
 	}
 
-    /**
+    /**updateRP-method. This method calls the service function which updates a radio
+     * program value from an existing value in the database.
      *
      * @param rp
      */
@@ -78,7 +86,8 @@ public class RPDelegate {
 		
 	}
 
-    /**
+    /**deleteRP-method. This method calls the service function which deletes a
+     * radio program slot from the database.
      *
      * @param rp
      */

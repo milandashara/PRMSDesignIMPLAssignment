@@ -31,7 +31,8 @@ public class reviewPresenterProducerService {
 		ppdao = factory.getReviewSelectPresenterProducerDAO();
 	}
 
-    /**
+    /** getAllPresenterProducer-method. This service method retrieved all the
+     * presenters or producers based on the role parameter passed as argument.
      *
      * @param role
      * @return
