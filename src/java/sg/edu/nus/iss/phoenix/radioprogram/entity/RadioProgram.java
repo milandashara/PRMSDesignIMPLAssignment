@@ -31,6 +31,14 @@ public class RadioProgram implements Cloneable, Serializable {
 
     }
 
+    public RadioProgram(String name, String description, Time typicalDuration) {
+        this.name = name;
+        this.description = description;
+        this.typicalDuration = typicalDuration;
+    }
+    
+    
+
     public RadioProgram (String nameIn) {
 
           this.name = nameIn;

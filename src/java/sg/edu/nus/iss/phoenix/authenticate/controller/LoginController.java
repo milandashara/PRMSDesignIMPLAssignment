@@ -29,6 +29,10 @@ public class LoginController extends HttpServlet {
     }
 
 	/**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,6 +41,10 @@ public class LoginController extends HttpServlet {
 	}
 
 	/**
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,6 +53,10 @@ public class LoginController extends HttpServlet {
 	}
 	 /**
      * Process requests from front controller. 
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
      */
 	 protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("login") ) {

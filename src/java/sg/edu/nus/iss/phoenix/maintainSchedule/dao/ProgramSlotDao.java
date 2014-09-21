@@ -44,13 +44,6 @@ public interface ProgramSlotDao {
 	 */
 	public abstract ProgramSlot getObject(Date dateAndTimeOfProgram)
 			throws NotFoundException, SQLException;
-        /**
-         * 
-         * @param id program slot id number
-         * @return program slot by specified id
-         * @throws NotFoundException
-         * @throws SQLException 
-         */
         public abstract ProgramSlot getObject(Integer id)
                         throws NotFoundException, SQLException;
 	/**
@@ -121,7 +114,7 @@ public interface ProgramSlotDao {
 			throws NotFoundException, SQLException;
 
 	/**
-	 * delete-method. This method will remove the information from database(program-slot) as
+	 * delete-method. This method will remove the information from database as
 	 * identified by by primary-key in supplied valueObject. Once valueObject
 	 * has been deleted it can not be restored by calling save. Restoring can
 	 * only be done using create method but if database is using automatic
@@ -189,10 +182,19 @@ public interface ProgramSlotDao {
 	public abstract List<ProgramSlot> searchMatching(ProgramSlot valueObject)
 			throws SQLException;
 
-	public abstract ProgramSlot searchMatching(Date dateOfProgram,Time startTime)
-			throws SQLException;
+	
         
         public abstract List<ProgramSlot> getAllProgramSlots(Date week)
 			throws SQLException;
+        
+    /**
+     *
+     * @param dateOfProgram
+     * @param startTime
+     * @return
+     * @throws SQLException
+     */
+    public List<ProgramSlot> searchMatching(Date dateOfProgram, Time startTime) throws SQLException;
+    public  boolean checkOverlappingTimeSlot(Date dateOfProgram, Time startTime );
         
 }

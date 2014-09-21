@@ -17,116 +17,63 @@
 
 
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-
-        <script>
-            $(document).ready(function() {
-                    
-                $("#annualScheduleYear").change(function() {
-              
-                    var year = $("#annualScheduleYear option:selected").text();
-                    var url = "scheduleScreen/loadAllWeeklySchedule?year=" + year;
-                    $.get(url, function(data, status) {
-                        var listItems = "";
-
-                        var i=0;
-                        var array=JSON.parse(data);
-                        for (var i = 0; i < array.length; i++) {
-                            listItems += "<option value='" + array[i].startDate + "'>" + array[i].startDate + "</option>";
-                        }
-
-                        $("#weeklySchedule").html(listItems);
-
-                         $("#weeklySchedule").val(array[0].startDate);
-                            
-                            $("#weeklySchedule").trigger('change') ;
-
-                    })
-                }).change();
-                
-                  $("#weeklySchedule").change(function() {
-              
-                    var week = $("#weeklySchedule option:selected").text();
-                    if(week == null || week=="")
-                        return;
-                    var url = "scheduleScreen/loadAllProgramSlots?week=" + week;
-                    $.get(url, function(data, status) {
-                        var listItems = "";
-
-                        var i=0;
-                        var arrayProgramSlots=JSON.parse(data);
-                        
-                        for (var i = 0; i < arrayProgramSlots.length; i++) {
-                            var arrayProgramSlotEncoded = $.param( arrayProgramSlots[i] );
-//                            var radioProgramEncoded = $.param(arrayProgramSlots[i].radioProgram);
-                            listItems += "<tr class="+(i%2==0?"even":"odd")+">";
-                            listItems += "<td class=\"nowrap\">"+arrayProgramSlots[i].duration+"</td>"
-                            listItems +="<td class=\"nowrap\">"+arrayProgramSlots[i].dateOfProgram+"</td>";
-                            listItems +="<td class=\"nowrap\">"+arrayProgramSlots[i].startTime+"</td>";
-                            listItems +="<td class=\"nowrap\">"+arrayProgramSlots[i].radioProgram+"</td>";
-                            listItems +="<td class=\"nowrap\">"+arrayProgramSlots[i].presenter+"</td>";
-                            listItems +="<td class=\"nowrap\">"+arrayProgramSlots[i].producer+"</td>";
-                            listItems +="<td class=\"nowrap\"><a href='scheduleScreen/settupps?"+arrayProgramSlotEncoded+"&insert=false'</a>Modify</td>";
-			    listItems +="<td class=\"nowrap\"><a href='scheduleScreen/settupps?"+arrayProgramSlotEncoded+"&insert = true'</a>Copy</td>";
-                            listItems +="<td class=\"nowrap\"><a href='scheduleScreen/deleteScheduleps?id="+arrayProgramSlots[i].id+"'</a>Delete</td>";
-                        }
-
-                        $("#programslottbl").find("tbody").html(listItems);
-                        
-
-
-                    });
-                });
-            });
-        </script>
-
-
-
+        <script src="/PRMS/js/schedule.js"></script>
     </head>
     <body>
         <h1>Maintain Schedule</h1>
+        <form action="/PRMS/controller/scheduleScreen/createSchedule">
         <div>
             <span> Year :   </span>
             <select id="annualScheduleYear" name='annualScheduleYear' >
-                
+
                 <c:forEach items="${annualScheduleList}" var="annualSchedule">
 
                     <option value="${annualSchedule.year}">${annualSchedule.year}</option>
 
                 </c:forEach>
             </select>
+           
+
+        </div>
+        <input type='hidden' value='id'
+               <div>
+            <span> Week :   </span>
+            <select id="weeklySchedule" name="weeklySchedule">
+            </select>   
+        </div>
+               <div>
+                   <input id="createSchedule" type="submit" value="Create Schedule" />
+                   <span id="createSuccessMsg" name="createSuccessMsg" style="color: green;">${createSuccessMsg}</span>
+        </div>
+        </form>
+
+        <div>
+            <span> Program Slots :   </span>
+            <table id='programslottbl' class="borderAll">
+                <thead>
+                    <tr>
+                        <th><fmt:message key="label.programslot.duration" /></th>
+                        <th><fmt:message key="label.programslot.dateOfProgram" /></th>
+                        <th><fmt:message key="label.programslot.startTime" /></th>
+                        <th><fmt:message key="label.programslot.programName" /></th>
+                        <th><fmt:message key="label.programslot.presenter" /></th>
+                        <th><fmt:message key="label.programslot.producer" /></th>
+                        <th><fmt:message key="label.programslot.modify" /></th>
+                        <th><fmt:message key="label.programslot.copy" /></th>
+                        <th><fmt:message key="label.programslot.delete" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+            </table>
+            
 
             
         </div>
-        <input type='hidden' value='id'
-        <div>
-            <span> Week :   </span>
-            <select id="weeklySchedule">
-            </select>   
-        </div>
-        
-                <div>
-            <span> Program Slots :   </span>
-		<table id='programslottbl' class="borderAll">
-                    <thead>
-			<tr>
-                            	<th><fmt:message key="label.programslot.duration" /></th>
-				<th><fmt:message key="label.programslot.dateOfProgram" /></th>
-				<th><fmt:message key="label.programslot.startTime" /></th>
-                                <th><fmt:message key="label.programslot.programName" /></th>
-                                <th><fmt:message key="label.programslot.presenter" /></th>
-                                <th><fmt:message key="label.programslot.producer" /></th>
-                                <th><fmt:message key="label.programslot.modify" /></th>
-                                <th><fmt:message key="label.programslot.copy" /></th>
-                                <th><fmt:message key="label.programslot.delete" /></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-		</table>
-        </div>
-         
-        
+
+
 
     </body>
 </html>

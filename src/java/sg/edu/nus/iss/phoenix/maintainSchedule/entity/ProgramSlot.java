@@ -28,7 +28,17 @@ public class ProgramSlot {
     public ProgramSlot(){
     
     }
-    public ProgramSlot(Time duration, Integer id, Date dateOfProgram, Time startTime, RadioProgram radioProgram, User presenter, User producer) {
+    public ProgramSlot(Time duration, Date dateOfProgram, Time startTime, RadioProgram radioProgram, User presenter, User producer) {
+        this.duration = duration;
+        this.dateOfProgram = dateOfProgram;
+        this.startTime = startTime;
+        this.radioProgram = radioProgram;
+        this.presenter = presenter;
+        this.producer = producer;
+        this.id = id;
+    }
+    
+    public ProgramSlot(Time duration,Integer id, Date dateOfProgram, Time startTime, RadioProgram radioProgram, User presenter, User producer) {
         this.duration = duration;
         this.dateOfProgram = dateOfProgram;
         this.startTime = startTime;

@@ -12,6 +12,8 @@ import sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDaoImpl;
 import sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.WeeklyScheduleDaoImpl;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.RadioProgramDAO;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.impl.RadioProgramDAOImpl;
+import sg.edu.nus.iss.phoenix.reviewSelectPresenterProducer.dao.impl.ReviewSelectPresenterProducerDAOImpl;
+import sg.edu.nus.iss.phoenix.reviewSelectPresenterProducer.dao.ReviewSelectPresenterProducerDAO;
 
 public class DAOFactoryImpl implements DAOFactory {
 
@@ -53,6 +55,10 @@ public class DAOFactoryImpl implements DAOFactory {
     @Override
     public ProgramSlotDao getProgramSlotDAO() {
         return programslotdao;
+    }
+
+    public ReviewSelectPresenterProducerDAO getReviewSelectPresenterProducerDAO() {
+        return new ReviewSelectPresenterProducerDAOImpl();
     }
 
 }

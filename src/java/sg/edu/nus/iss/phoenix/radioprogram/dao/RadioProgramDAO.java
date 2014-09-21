@@ -2,6 +2,7 @@ package sg.edu.nus.iss.phoenix.radioprogram.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.List;
 
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
@@ -15,8 +16,10 @@ public interface RadioProgramDAO {
 	 * that sometimes the programmer may want to extend also the valueObject and
 	 * then this method can be over-rided to return extended valueObject.
 	 */
-	public abstract RadioProgram createValueObject();
-
+	public RadioProgram createValueObject(String name, String description, Time typicalDuration);
+        
+        
+        public RadioProgram createValueObject();
 	/**
 	 * getObject-method. This will create and load valueObject contents from
 	 * database using given Primary-Key as identifier. This method is just a
@@ -153,5 +156,7 @@ public interface RadioProgramDAO {
 	 */
 	public abstract List<RadioProgram> searchMatching(RadioProgram valueObject)
 			throws SQLException;
+
+    public List<RadioProgram> getAllRadioProgram();
 
 }

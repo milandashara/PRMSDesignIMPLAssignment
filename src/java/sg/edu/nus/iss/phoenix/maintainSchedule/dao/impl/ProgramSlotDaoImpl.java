@@ -61,7 +61,23 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
     @Override
     public ProgramSlot getObject(Integer id)
             throws NotFoundException, SQLException {
-        return null;
+        String sql = "SELECT * FROM phoenix.`program-slot` a where id =  ?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+
+        ps.setInt(1, id);
+
+        List<ProgramSlot> searchResults = null;
+        try {
+            searchResults = listQuery(ps);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(ProgramSlotDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (searchResults == null) {
+            return null;
+        } else {
+            return searchResults.get(0);
+        }
+
     }
 
     @Override
@@ -76,37 +92,38 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
 
     @Override
     public void create(ProgramSlot valueObject) throws SQLException {
-       		String sql = "";
-		PreparedStatement stmt = null;
-		try {
-			sql = "INSERT INTO `program-slot` (`duration`, `dateOfProgram`, `startTime`,`programName`, `presenter`, `producer`) VALUES (?,?,?,?,?,?); ";
-			stmt = this.connection.prepareStatement(sql);
-                  stmt.setTime(1, valueObject.getStartTime());
+        String sql = "";
+        PreparedStatement stmt = null;
+        try {
+            sql = "INSERT INTO `program-slot` (`duration`, `dateOfProgram`, `startTime`,`programName`, `presenter`, `producer`) VALUES (?,?,?,?,?,?); ";
+            stmt = this.connection.prepareStatement(sql);
+            stmt.setTime(1, valueObject.getStartTime());
             stmt.setDate(2, new java.sql.Date(valueObject.getDateOfProgram().getTime()));
             stmt.setDate(3, new java.sql.Date(valueObject.getStartTime().getTime()));
             stmt.setString(4, valueObject.getRadioProgram().getName());
             stmt.setString(5, valueObject.getPresenter().getId());
             stmt.setString(6, valueObject.getProducer().getId());
-            stmt.setInt(6, valueObject.getId());;
-			int rowcount = databaseUpdate(stmt);
-			if (rowcount != 1) {
-				// System.out.println("PrimaryKey Error when updating DB!");
-				throw new SQLException("PrimaryKey Error when updating DB!");
-			}
+            //stmt.setInt(6, valueObject.getId());;
+            int rowcount = databaseUpdate(stmt);
+            if (rowcount != 1) {
+                // System.out.println("PrimaryKey Error when updating DB!");
+                throw new SQLException("PrimaryKey Error when updating DB!");
+            }
 
-		} finally {
-			if (stmt != null)
-				stmt.close();
-		
-		}
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+
+        }
     }
 
     @Override
     public void save(ProgramSlot valueObject) throws NotFoundException, SQLException {
-         String sql = "UPDATE `program-slot` SET `duration`= ? , `dateOfProgram` = ?, `startTime` = ? , `programName` = ? , `presenter` = ? , `producer` = ? WHERE (`id` = ? );";
+        String sql = "UPDATE `program-slot` SET `duration`= ? , `dateOfProgram` = ?, `startTime` = ? , `programName` = ? , `presenter` = ? , `producer` = ? WHERE (`id` = ? );";
         PreparedStatement stmt = null;
         try {
-   
+
             stmt = this.connection.prepareStatement(sql);
             stmt.setTime(1, valueObject.getStartTime());
             stmt.setDate(2, new java.sql.Date(valueObject.getDateOfProgram().getTime()));
@@ -176,8 +193,37 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
     }
 
     @Override
-    public ProgramSlot searchMatching(Date dateOfProgram, Time startTime) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<ProgramSlot> searchMatching(Date dateOfProgram, Time startTime) throws SQLException {
+
+        String sql = "SELECT * FROM phoenix.`program-slot` a where dateOfProgram =  ? and startTime=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setDate(0, new java.sql.Date(dateOfProgram.getTime()));
+        ps.setTime(1, startTime);
+
+        List<ProgramSlot> searchResults = null;
+        try {
+            searchResults = listQuery(ps);
+        } catch (NotFoundException ex) {
+            Logger.getLogger(ProgramSlotDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return searchResults;
+    }
+
+    public boolean checkOverlappingTimeSlot(Date dateOfProgram, Time startTime) {
+        List<ProgramSlot> searchResults = null;
+        try {
+            searchResults = searchMatching(dateOfProgram, startTime);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProgramSlotDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (searchResults == null) {
+            return false;
+        }
+        if (searchResults.size() == 0) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -228,7 +274,7 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
                 RadioProgram rpTemp = rpDao.getObject(result.getString(DBConstants.ps_programName));
                 User presenterTemp = userDao.getObject(result.getString(DBConstants.ps_presenter));
                 User producerTemp = userDao.getObject(result.getString(DBConstants.ps_producer));
-                ProgramSlot temp = createValueObject(result.getTime(DBConstants.ps_duration),result.getInt(DBConstants.ps_id), result.getDate(DBConstants.ps_dateOfProgram),result.getTime(DBConstants.ps_startTime),rpTemp, presenterTemp, producerTemp);
+                ProgramSlot temp = createValueObject(result.getTime(DBConstants.ps_duration), result.getInt(DBConstants.ps_id), result.getDate(DBConstants.ps_dateOfProgram), result.getTime(DBConstants.ps_startTime), rpTemp, presenterTemp, producerTemp);
 
                 searchResults.add(temp);
             }

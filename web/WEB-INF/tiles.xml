@@ -12,6 +12,16 @@
        <definition name="schedulePage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/schedule.jsp" />
 	</definition>
+        <definition name="createSchedulePage" extends="homePage">
+		<put-attribute name="body" value="/pages/tilepages/createSchedule.jsp" />
+	</definition>
+        <definition name="modifyCopyProgramSlotPage" extends="homePage">
+        <put-attribute name="body" value="/pages/tilepages/modifyCopyProgramSlot.jsp" />
+        </definition>
+        
+        <definition name="presenterProducerPage" extends="homePage">
+		<put-attribute name="body" value="/pages/tilepages/PresenterProducer.jsp" />
+	</definition>
         
 	<definition name="loginPage" extends="homePage">
 		<put-attribute name="body" value="/pages/tilepages/login.jsp" />

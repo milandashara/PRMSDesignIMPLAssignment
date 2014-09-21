@@ -5,11 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import sg.edu.nus.iss.phoenix.core.dao.DBConstants;
 import sg.edu.nus.iss.phoenix.core.exceptions.NotFoundException;
+import sg.edu.nus.iss.phoenix.maintainSchedule.entity.AnnualSchedule;
 import sg.edu.nus.iss.phoenix.radioprogram.dao.RadioProgramDAO;
 import sg.edu.nus.iss.phoenix.radioprogram.entity.RadioProgram;
 
@@ -26,10 +30,15 @@ public class RadioProgramDAOImpl implements RadioProgramDAO {
 	 * @see sg.edu.nus.iss.phoenix.radioprogram.dao.impl.RadioProgramDAO#createValueObject()
 	 */
 	@Override
-	public RadioProgram createValueObject() {
-		return new RadioProgram();
+	public RadioProgram createValueObject(String name, String description, Time typicalDuration) {
+		return new RadioProgram(name, description, typicalDuration);
 	}
-
+        
+        public RadioProgram createValueObject()
+        {
+            return new RadioProgram();
+        }
+        
 	/* (non-Javadoc)
 	 * @see sg.edu.nus.iss.phoenix.radioprogram.dao.impl.RadioProgramDAO#getObject(java.lang.String)
 	 */
@@ -410,4 +419,23 @@ public class RadioProgramDAOImpl implements RadioProgramDAO {
 			e.printStackTrace();
 		}
 	}
+
+    @Override
+    public List<RadioProgram> getAllRadioProgram() {
+        openConnection();
+        String sql = "SELECT * FROM `radio-program`  ";
+        List<RadioProgram> searchResults=new ArrayList<RadioProgram>();
+            try {
+                searchResults = listQuery(this.connection
+                        .prepareStatement(sql));
+            } catch (SQLException ex) {
+                Logger.getLogger(RadioProgramDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+                closeConnection();
+            }
+        closeConnection();
+        return searchResults;
+    }
+     
+     
+        
 }

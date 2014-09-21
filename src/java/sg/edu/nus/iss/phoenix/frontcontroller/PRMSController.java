@@ -85,9 +85,20 @@ public class PRMSController extends HttpServlet {
             case "scheduleScreen":
                 return "/ReviewSelectSheduledProgramController/loadAllAnnualSchedule";
             case "scheduleScreen/loadAllWeeklySchedule":
+                
                 return "/ReviewSelectSheduledProgramController/loadAllWeeklySchedule";
             case "scheduleScreen/loadAllProgramSlots":
                 return "/ReviewSelectSheduledProgramController/loadAllScheduleProgramSlots";
+            case "scheduleScreen/modifyCopyProgramSlot":
+                return "/ScheduleController/modifyCopyProgramSlot";
+            case "scheduleScreen/createSchedule":
+                return "/ScheduleController/createSchedule";
+            case "scheduleScreen/createScheduleSubmit":
+                return "/ScheduleController/createScheduleSubmit";
+            case "scheduleScreen/modifyScheduleSubmit":
+                return "/ScheduleController/modifyScheduleSubmit";
+            case "PresenterProducer":
+                return "/reviewSelectPresenterProducerController";
             case "login":
                 return "/LoginController/login";
             case "searchrp":

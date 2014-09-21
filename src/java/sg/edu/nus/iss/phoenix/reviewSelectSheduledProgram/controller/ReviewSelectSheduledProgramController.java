@@ -100,7 +100,7 @@ public class ReviewSelectSheduledProgramController extends HttpServlet {
                 try {
                     jsonObject.put("duration", new SimpleDateFormat("HH:mm:ss").format(programSlot.getDuration()));
                     jsonObject.put("id", programSlot.getId());
-                     jsonObject.put("dateOfProgram", new SimpleDateFormat("dd-MM-yyyy").format(programSlot.getDateOfProgram()));
+                     jsonObject.put("dateOfProgram", new SimpleDateFormat("MM/dd/yyyy").format(programSlot.getDateOfProgram()));
                      jsonObject.put("startTime", programSlot.getStartTime());
                      jsonObject.put("radioProgram", programSlot.getRadioProgram().getName());
                      jsonObject.put("presenter", programSlot.getPresenter().getId());
