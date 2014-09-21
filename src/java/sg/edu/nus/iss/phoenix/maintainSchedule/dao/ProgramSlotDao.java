@@ -44,6 +44,13 @@ public interface ProgramSlotDao {
 	 */
 	public abstract ProgramSlot getObject(Date dateAndTimeOfProgram)
 			throws NotFoundException, SQLException;
+        /**
+         * 
+         * @param id program slot id number
+         * @return program slot by specified id
+         * @throws NotFoundException
+         * @throws SQLException 
+         */
         public abstract ProgramSlot getObject(Integer id)
                         throws NotFoundException, SQLException;
 	/**
@@ -114,7 +121,7 @@ public interface ProgramSlotDao {
 			throws NotFoundException, SQLException;
 
 	/**
-	 * delete-method. This method will remove the information from database as
+	 * delete-method. This method will remove the information from database(program-slot) as
 	 * identified by by primary-key in supplied valueObject. Once valueObject
 	 * has been deleted it can not be restored by calling save. Restoring can
 	 * only be done using create method but if database is using automatic
