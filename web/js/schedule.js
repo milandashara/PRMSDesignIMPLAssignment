@@ -63,7 +63,7 @@
                 listItems += "<td class=\"nowrap\">" + arrayProgramSlots[i].presenter + "</td>";
                 listItems += "<td class=\"nowrap\">" + arrayProgramSlots[i].producer + "</td>";
                 listItems += "<td class=\"nowrap\"><a href='/PRMS/controller/scheduleScreen/modifyCopyProgramSlot?" + arrayProgramSlotEncoded + "&annualScheduleYear="+$("#annualScheduleYear").val()+"&weeklySchedule="+$("#weeklySchedule").val()+"&insert=false'</a>Modify</td>";
-                listItems += "<td class=\"nowrap\"><a href='scheduleScreen/settupps?" + arrayProgramSlotEncoded + "&insert = true'</a>Copy</td>";
+                listItems += "<td class=\"nowrap\"><a href='/PRMS/controller/scheduleScreen/modifyCopyProgramSlot?" + arrayProgramSlotEncoded + "&annualScheduleYear="+$("#annualScheduleYear").val()+"&weeklySchedule="+$("#weeklySchedule").val()+"&insert=true'</a>Copy</td>";
                 listItems += "<td class=\"nowrap\"><a href='scheduleScreen/deleteScheduleps?id=" + arrayProgramSlots[i].id + "'</a>Delete</td>";
             }
 

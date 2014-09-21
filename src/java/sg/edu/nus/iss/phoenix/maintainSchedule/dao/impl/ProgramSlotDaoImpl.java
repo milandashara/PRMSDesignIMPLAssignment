@@ -45,6 +45,13 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         connection = DBUtility.openConnection();
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#createValueObject
+     * 
+     */
     @Override
     public ProgramSlot createValueObject(Time duration, Integer id,
             Date dateOfProgram,
@@ -56,12 +63,24 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
                 radioProgram, presenter, producer);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#getObject
+     * 
+     */
     @Override
     public ProgramSlot getObject(Date dateAndTimeOfProgram) throws NotFoundException, SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#getObject
+     * 
      *
      * @param id
      * @return
@@ -90,16 +109,37 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
 
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#load
+     * 
+     */
     @Override
     public void load(ProgramSlot valueObject) throws NotFoundException, SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#loadAll
+     * 
+     */
     @Override
     public List<ProgramSlot> loadAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#create
+     * 
+     */
     @Override
     public void create(ProgramSlot valueObject) throws SQLException {
         String sql = "";
@@ -127,6 +167,14 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
 
         }
     }
+    
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#save
+     * 
+     */
 
     @Override
     public void save(ProgramSlot valueObject) throws NotFoundException, SQLException {
@@ -159,8 +207,14 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
             }
         }
     }
-//written by li ke
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#delete
+     * 
+     */
     @Override
     public void delete(ProgramSlot valueObject) throws NotFoundException, SQLException {
         String sql = "DELETE FROM `program-slot` WHERE (id = ? ) ";
@@ -186,22 +240,50 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         }
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#deleteAll
+     * 
+     */
     @Override
     public void deleteAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#countAll
+     * 
+     */
     @Override
     public int countAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#searchMatching
+     * 
+     */
     @Override
     public List<ProgramSlot> searchMatching(ProgramSlot valueObject) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#searchMatching
+     * 
+     */
     @Override
     public List<ProgramSlot> searchMatching(Date dateOfProgram, Time startTime) throws SQLException {
 
@@ -249,7 +331,6 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
      * value indicates how many rows were affected. This method will also make
      * sure that if cache is used, it will reset when data changes.
      *
-     * @param conn This method requires working database connection.
      * @param stmt This parameter contains the SQL statement to be excuted.
      * @return 
      * @throws java.sql.SQLException 
@@ -261,7 +342,12 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         return result;
     }
 
-    /**
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * sg.edu.nus.iss.phoenix.maintainSchedule.dao.impl.ProgramSlotDao#getAllProgramSlots
+     * 
      *
      * @param week
      * @return
@@ -284,7 +370,8 @@ public class ProgramSlotDaoImpl implements ProgramSlotDao {
         return searchResults;
     }
 
-    /**
+    /**listQuery-method. Returns a list of scheduled program slots based on the 
+     * prepared statement which is passed as argument.
      *
      * @param stmt
      * @return

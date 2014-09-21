@@ -151,7 +151,7 @@ public class ScheduleController extends HttpServlet {
             String week = request.getParameter("weeklySchedule");
             String year = request.getParameter("annualScheduleYear");
             String programSlotId = request.getParameter("id");
-
+            String modifyOrCopy = request.getParameter("insert");
             ScheduleDelegate scheduleDelegate = new ScheduleDelegate();
             ProgramSlot programSlot = scheduleDelegate.findProgramSlot(Integer.parseInt(programSlotId));
             request.setAttribute("annualScheduleYear", year);
@@ -161,7 +161,7 @@ public class ScheduleController extends HttpServlet {
             request.setAttribute("modifyStartTimeHr", programSlot.getStartTime().getHours() + "hr");
             request.setAttribute("createProgramDurationMt", programSlot.getDuration().getMinutes() + "mt");
             request.setAttribute("createProgramDurationHr", programSlot.getDuration().getHours() + "hr");
-
+            request.setAttribute("modifyOrCopy", modifyOrCopy);
             RPDelegate rpDelegate = new RPDelegate();
             List<RadioProgram> radioProgramList = rpDelegate.findAllRP();
             request.setAttribute("radioProgramList", radioProgramList);
@@ -186,6 +186,7 @@ public class ScheduleController extends HttpServlet {
             String week = request.getParameter("weeklySchedule");
             String year = request.getParameter("annualScheduleYear");
             String programSlotId=request.getParameter("programSlotId");
+            String insert = request.getParameter("insert");
 
             ScheduleDelegate scheduleDelegate = new ScheduleDelegate();
             String errorMessage = scheduleDelegate.validate(hr, mt, startTimeHr, startTimetMt, dateOfProgramStr, programName, presenterStr, producerStr, week);
@@ -201,14 +202,23 @@ public class ScheduleController extends HttpServlet {
                 rd.forward(request, response);
 
             } else {
-
                 ProgramSlot programSlot = scheduleDelegate.getProgramSlot(hr, mt, startTimeHr, startTimetMt, dateOfProgramStr, programName, presenterStr, producerStr);
                 programSlot.setId(Integer.parseInt(programSlotId));
                 errorMessage = scheduleDelegate.checkTimeSlotConstraint(programSlot, week);
                 if (errorMessage.equals("success")) {
-                    scheduleDelegate.updateScheduleProgramSlot(programSlot);
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/ReviewSelectSheduledProgramController/loadAllAnnualSchedule");
+                    if(insert.equalsIgnoreCase("false"))
+                    {
+                    scheduleDelegate.updateScheduleProgramSlot(programSlot);
                     request.setAttribute("createSuccessMsg", "Schedule Updated successfully");
+                    }
+                    else
+                    {
+                      scheduleDelegate.createSchedule(programSlot);
+                      request.setAttribute("createSuccessMsg", "Schedule Created successfully");
+                    }
+                   
+                    
                     rd.forward(request, response);
                 } else {
 

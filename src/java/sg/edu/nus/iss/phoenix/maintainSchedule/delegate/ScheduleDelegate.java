@@ -29,7 +29,8 @@ public class ScheduleDelegate {
         service = new ScheduleService();
     }
 
-    /**
+    /**deleteProgramSlot-method. This method deletes the program slot which is
+     * passed as argument from the database.
      *
      * @param programSlot
      * @return
@@ -39,7 +40,8 @@ public class ScheduleDelegate {
         return service.deleteProgramSlot(programSlot);
     }
 
-    /**
+    /**getAllAnnualScheduleList-method. This method calls the service function
+     * which returns a list of all the annual schedule objects.
      *
      * @return
      */
@@ -47,7 +49,8 @@ public class ScheduleDelegate {
         return service.getAllAnnualSchedulelist();
     }
 
-    /**
+    /**getAllWeeklySchedule-method. This method returns the list of weekly 
+     * schedules when a year is passed as argument.
      *
      * @param year
      * @return
@@ -56,7 +59,8 @@ public class ScheduleDelegate {
         return service.getAllWeeklySchedulelist(year);
     }
 
-    /**
+    /**insertScheduleProgramSlot-method. This method calls the method of the 
+     * service which inserts a program slot into the database.
      *
      * @param ps
      */
@@ -64,7 +68,9 @@ public class ScheduleDelegate {
         service.insertScheduleProgramSlot(ps);
     }
 
-    /**
+    /**updateScheduleProgramSlot-method. This method updates the program slot details
+     * in the database.
+     * 
      *
      * @param ps
      */
@@ -72,7 +78,7 @@ public class ScheduleDelegate {
          service.updateScheduleProgramSlot(ps);
     }
 
-    /**
+    /**getAllRadioProgram-method. This method returns a list of radio programs
      *
      * @return
      */
@@ -80,7 +86,8 @@ public class ScheduleDelegate {
        return service.getAllRadioProgram();
     }
 
-    /**
+    /**findUser-method. This method calls the service to retrieve a particular user 
+     * object when a user id is passed as argument.
      *
      * @param user
      * @return
@@ -89,7 +96,8 @@ public class ScheduleDelegate {
         return service.findUser(user);
     }
 
-    /**
+    /**validate-method. This method calls the service method which performs other
+     * business validations apart from the time slot constraint validations.
      *
      * @param hr
      * @param mt
@@ -107,7 +115,10 @@ public class ScheduleDelegate {
         
     }
 
-    /**
+    /**getProgramSlot-method. This method calls the method of service 
+     * which returns a program slot with all the attributes assigned to it. 
+     * 
+     * All the attribute objects of the program slot object are loaded from this call.
      *
      * @param hr
      * @param mt
@@ -123,7 +134,8 @@ public class ScheduleDelegate {
         return service.createProgramSlotObject(hr, mt, startTimeHr, startTimetMt, dateOfProgramStr, programName, presenterStr, producerStr);
     }
 
-    /**
+    /**checkTimeSlotConstraint-method. This method performs the business 
+     * validations related to the program slot.
      *
      * @param programSlot
      * @param week
@@ -134,7 +146,8 @@ public class ScheduleDelegate {
        return service.checkTimeSlotConstraint(programSlot, week);
     }
 
-    /**
+    /**createSchedule-method. This method calls the service method which creates
+     * a program slot and saves it in the database.
      *
      * @param programSlot
      */
@@ -142,7 +155,8 @@ public class ScheduleDelegate {
         service.createSchedule(programSlot);
     }
 
-    /**
+    /**findProgramSlot-method. To call the method of the service which returns
+     * a program slot based on the program slot id.
      *
      * @param programSlotId
      * @return

@@ -73,7 +73,7 @@ public class ReviewSelectSheduledProgramController extends HttpServlet {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     
-                    jsonObject.put("startDate", new SimpleDateFormat("dd-MM-yyyy").format(weeklySchedule.getStartDate()));
+                    jsonObject.put("startDate", new SimpleDateFormat("MM/dd/yyyy").format(weeklySchedule.getStartDate()));
                 } catch (JSONException ex) {
                     Logger.getLogger(ScheduleController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -91,7 +91,7 @@ public class ReviewSelectSheduledProgramController extends HttpServlet {
              Date week = null;
              try {
                 
-                 week = new SimpleDateFormat("dd-MM-yyyy").parse(request.getParameter("week"));
+                 week = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("week"));
             
              } catch (ParseException ex) {
                  Logger.getLogger(ReviewSelectSheduledProgramController.class.getName()).log(Level.SEVERE, null, ex);

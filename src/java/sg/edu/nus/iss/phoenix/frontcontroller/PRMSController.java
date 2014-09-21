@@ -82,13 +82,19 @@ public class PRMSController extends HttpServlet {
 
     private String chooseUseCase(String action) {
         switch (action) {
+            
+            // Review Select Schedule realted redirect urls.
             case "scheduleScreen":
                 return "/ReviewSelectSheduledProgramController/loadAllAnnualSchedule";
-            case "scheduleScreen/loadAllWeeklySchedule":
-                
+            case "scheduleScreen/loadAllWeeklySchedule":               
                 return "/ReviewSelectSheduledProgramController/loadAllWeeklySchedule";
             case "scheduleScreen/loadAllProgramSlots":
                 return "/ReviewSelectSheduledProgramController/loadAllScheduleProgramSlots";
+            case "reviewselectspyear":
+                return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
+                
+            // Create, Modify, Copy related redirect urls.
+                
             case "scheduleScreen/modifyCopyProgramSlot":
                 return "/ScheduleController/modifyCopyProgramSlot";
             case "scheduleScreen/createSchedule":
@@ -97,10 +103,30 @@ public class PRMSController extends HttpServlet {
                 return "/ScheduleController/createScheduleSubmit";
             case "scheduleScreen/modifyScheduleSubmit":
                 return "/ScheduleController/modifyScheduleSubmit";
+            case "setupScheduleps":
+                return "/ScheduleController/processScheduledProgramSlot";
+            case "scheduleScreen/deleteScheduleps":
+                return "/ScheduleController/deleteSchedule";
+            case "scheduleScreen/settupps":
+                return "/pages/setupps.jsp";
+            case "crudPsScreen/loadRoles":
+                return "/ReviewSelectUserController/loadRole";    
+            
+            
+            // Review select presenter producer related url
+                
             case "PresenterProducer":
                 return "/reviewSelectPresenterProducerController";
+                
+            // Login related url    
+                
             case "login":
                 return "/LoginController/login";
+            case "logout":
+                return "/LoginController/logout";
+            
+            // Radio Program related urls
+                
             case "searchrp":
                 return "/ProcessController/search";
             case "setuprp":
@@ -111,8 +137,7 @@ public class PRMSController extends HttpServlet {
                 return "/ProcessController/load";
             case "deleterp":
                 return "/ProcessController/delete";
-            case "logout":
-                return "/LoginController/logout";
+
 
             // Maintain User Operations
             case "loadUser":
@@ -126,16 +151,8 @@ public class PRMSController extends HttpServlet {
             case "deleteUser":
                 return "/UserController/deleteUser";
 
-            case "reviewselectspyear":
-                return "/ReviewSelectScheduleController/reviewselectscheduledprogram";
-            case "setupScheduleps":
-                return "/ScheduleController/processScheduledProgramSlot";
-            case "scheduleScreen/deleteScheduleps":
-                return "/ScheduleController/deleteSchedule";
-            case "scheduleScreen/settupps":
-                return "/pages/setupps.jsp";
-            case "crudPsScreen/loadRoles":
-                return "/ReviewSelectUserController/loadRole";
+           
+            
 
             default:
                 return "/welcome.jsp";

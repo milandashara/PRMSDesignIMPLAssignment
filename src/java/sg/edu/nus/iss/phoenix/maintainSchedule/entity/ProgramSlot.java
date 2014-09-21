@@ -49,7 +49,6 @@ public class ProgramSlot {
         this.radioProgram = radioProgram;
         this.presenter = presenter;
         this.producer = producer;
-        this.id = id;
     }
     
     /**

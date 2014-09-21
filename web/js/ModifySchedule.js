@@ -41,8 +41,8 @@ $(document).ready(function() {
 
             var EnteredDate = $("#modifyDateOfProgram").val(); // For JQuery
 
-            var date = EnteredDate.substring(0, 2);
-            var month = EnteredDate.substring(3, 5);
+            var date = EnteredDate.substring(3, 5);
+            var month = EnteredDate.substring(0, 2);
             var year = EnteredDate.substring(6, 10);
 
             var myDate = new Date(year, month - 1, date);
@@ -54,7 +54,7 @@ $(document).ready(function() {
             }
             else {
                 var output = (today.getMonth()<10 ? '0' : '') + today.getMonth() + '/' +
-                (today.getDate()<10 ? '0' : '') + today.getDate() + '/'+today.getFullYear() ;
+                (today.getDate()()<10 ? '0' : '') + today.getDate() + '/'+today.getFullYear() ;
                 $("#modifyDateOfProgram").val(output);
                 alert("Entered date is less than today's date ");
             }

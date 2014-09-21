@@ -57,7 +57,8 @@ public class ScheduleService {
         userDao = factory.getUserDAO();
     }
 
-    /**
+    /**getAllAnnualSchedulelist-method. This service method loads all the annual
+     * schedule objects from the database.
      *
      * @return
      */
@@ -70,7 +71,8 @@ public class ScheduleService {
         return new ArrayList<AnnualSchedule>();
     }
 
-    /**
+    /**getAllWeeklySchedulelist-method. This service method loads all the weekly
+     * schedule objects when the year is passed as argument.
      *
      * @param year
      * @return
@@ -86,7 +88,8 @@ public class ScheduleService {
         return new ArrayList<WeeklySchedule>();
     }
 
-    /**
+    /**deleteProgramSlot-method. This service method is responsible for the
+     * deletion of the program slot from the database.
      *
      * @param programSlot
      * @return
@@ -105,7 +108,8 @@ public class ScheduleService {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
+    /**insertScheduleProgramSlot-method. This service method inserts the program
+     * slot into the database.
      *
      * @param ps
      */
@@ -117,7 +121,8 @@ public class ScheduleService {
         }
     }
 
-    /**
+    /**updateScheduleProgramSlot-method. This service method updates the program
+     * slot details in the database.
      *
      * @param ps
      */
@@ -133,7 +138,8 @@ public class ScheduleService {
 
     }
 
-    /**
+    /**getAllRadioProgram-method. This service method returns a list of all the
+     * radio program slots.
      *
      * @return
      */
@@ -141,7 +147,8 @@ public class ScheduleService {
         return radioProgramDao.getAllRadioProgram();
     }
 
-    /**
+    /**findUser-method. This service method returns a user object based on the
+     * id passed as argument.
      *
      * @param user
      * @return
@@ -157,7 +164,8 @@ public class ScheduleService {
         return null;
     }
 
-    /**
+    /**validate-method. This service method validates the rules such as empty and
+     * null constraints.
      *
      * @param hr
      * @param mt
@@ -228,7 +236,8 @@ public class ScheduleService {
         return "success";
     }
 
-    /**
+    /**getTime-method. This service method returns a time object when a hour and
+     * minute values are passed as arguments.
      *
      * @param hr
      * @param mt
@@ -243,7 +252,8 @@ public class ScheduleService {
         return new Time(date.getTime());
     }
 
-    /**
+    /**createProgramSlotObject-method. This method constructs a program slot object
+     * when the parameters are passed.
      *
      * @param hr
      * @param mt
@@ -291,7 +301,8 @@ public class ScheduleService {
 
     }
 
-    /**
+    /**checkTimeSlotConstraint-method. This service method checks for the 
+     * business rule constraints on the scheduled program slot.
      *
      * @param programSlot
      * @param week
@@ -307,7 +318,7 @@ public class ScheduleService {
                 return "duration should  be multiple of 30";
             }
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
             Date weekDate = dateFormat.parse(week);
             
@@ -341,7 +352,8 @@ public class ScheduleService {
                  / (1000 * 60 * 60 * 24) );
     }
 
-    /**
+    /**createSchedule-method. This service method inserts a program slot into 
+     * the database.
      *
      * @param programSlot
      */
@@ -353,7 +365,8 @@ public class ScheduleService {
         }
     }
 
-    /**
+    /**findProgramSlot-method. This service method returns a program slot object
+     * based on its id.
      *
      * @param programSlotId
      * @return

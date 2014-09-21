@@ -31,7 +31,7 @@
 
     </head>
     <body>
-        <h1>Modify Schedule</h1>
+        <h1>Modify/Copy Schedule</h1>
         <form action="/PRMS/controller/scheduleScreen/modifyScheduleSubmit">
             <div>
                 <div>
@@ -148,8 +148,15 @@
                             <td> <input id="createProducer"  name="createProducer" value="${createProducer}" readonly/></td></tr>
                     </table>
                 </div>
-                    <input type="submit" value="Modify Schedule"/>
-                    <input type="submit" value="Copy Schedule"/>
+                    <input type="hidden" name="insert" value="${param['insert']}"/>
+                            <c:if test="${param['insert']=='false'}">
+                                <input type="submit" value="Modify Schedule"/>
+                            </c:if>
+                                 <c:if test="${param['insert']=='true'}">
+                                <input type="submit" value="Copy Schedule"/>
+                            </c:if>
+                   
+                  
                  <span id="errorMessage" name="errorMessage" style="color: red;">${errorMessage}</span>
             </div>
             <td>

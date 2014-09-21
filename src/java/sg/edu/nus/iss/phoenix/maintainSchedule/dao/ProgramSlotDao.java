@@ -192,7 +192,8 @@ public interface ProgramSlotDao {
 	public abstract List<ProgramSlot> searchMatching(ProgramSlot valueObject)
 			throws SQLException;
 
-    /**
+    /**getAllProgramSlots-method. This method returns a list of program slots in 
+     * a week. It takes week as an argument.
      *
      * @param week
      * @return
@@ -201,7 +202,8 @@ public interface ProgramSlotDao {
     public abstract List<ProgramSlot> getAllProgramSlots(Date week)
 			throws SQLException;
         
-    /**
+    /**searchMatching-method. This method returns a list of program slots based 
+     * on the date of Program and start time.
      *
      * @param dateOfProgram
      * @param startTime
@@ -210,7 +212,9 @@ public interface ProgramSlotDao {
      */
     public List<ProgramSlot> searchMatching(Date dateOfProgram, Time startTime) throws SQLException;
 
-    /**
+    /**checkOverlappingTimeSlot-method. This method takes date of program and
+     * its start time as argument and checks the program slot overlaps with the
+     * existing scheduled program slots in the database.
      *
      * @param dateOfProgram
      * @param startTime
