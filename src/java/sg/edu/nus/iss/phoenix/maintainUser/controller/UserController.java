@@ -47,20 +47,29 @@ public class UserController extends HttpServlet {
 
         MaintainUserDelegate mud = new MaintainUserDelegate();
         User user = new User();
-        Role role = new Role();
-        RequestDispatcher rd;
+        RequestDispatcher rd = null;
         ArrayList<Role> roleList = new ArrayList<>();
 
         switch (selection) {
-            case "maintainuser":
+            case "createuser":
+                request.getSession().setAttribute("edituser", user);
+                request.getSession().setAttribute("insert", "true");
+                rd = getServletContext().getRequestDispatcher("/pages/setupUser.jsp");
+                break;
+            case "modifyuser":
+                user = mud.searchMatching(request.getParameter("id"));
+                request.getSession().setAttribute("edituser", user);
+                request.getSession().setAttribute("insert", "false");
+                rd = getServletContext().getRequestDispatcher("/pages/setupUser.jsp");
+                break;
+            case "updateuser":
                 user.setId(request.getParameter("id"));
                 user.setName(request.getParameter("name"));
                 user.setPassword(request.getParameter("password"));
-                for (String s : request.getParameter("roles").split(":")) {
-                    if (s != null){
-                        role.setRole(s);
-                        roleList.add(role);
-                    }
+                for (String urole : request.getParameter("roles").split(":")) {
+                    Role newRole = new Role();
+                    newRole.setRole(urole);
+                    roleList.add(newRole);
                 }
                 user.setRoles(roleList);
                 // Create User
@@ -70,19 +79,20 @@ public class UserController extends HttpServlet {
                 else if (request.getParameter("insert").equalsIgnoreCase("false")) {
                     mud.updateUser(user);
                 }
+                rd = getServletContext().getRequestDispatcher("/ReviewSelectUserController/users");
                 break;
 
             case "deleteuser":
                 user.setId(request.getParameter("id"));
                 mud.deleteUser(user);
+                rd = getServletContext().getRequestDispatcher("/ReviewSelectUserController/users");
                 break;
 
             default:
-                rd = request.getRequestDispatcher("/ReviewSelectUserController");
-                rd.forward(request, response);
+                rd = request.getRequestDispatcher("/ReviewSelectUserController/users");
                 break;
         }
-        rd = request.getRequestDispatcher("/ReviewSelectUserController");
+//        rd = request.getRequestDispatcher("/ReviewSelectUserController");
         rd.forward(request, response);
     }
 

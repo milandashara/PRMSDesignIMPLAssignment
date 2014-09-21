@@ -24,12 +24,13 @@ import sg.edu.nus.iss.phoenix.reviewSelectUser.delegate.UserListDelegate;
  *
  * @author Siva
  */
-@WebServlet("/ReviewSelectUserController")
+@WebServlet("/ReviewSelectUserController/*")
 public class ReviewSelectUserController extends HttpServlet {
+
     UserListDelegate ul;
 
     public ReviewSelectUserController() {
-       ul = new UserListDelegate();
+        ul = new UserListDelegate();
     }
 
     /**
@@ -51,26 +52,30 @@ public class ReviewSelectUserController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        
-         if (FCUtilities.stripPath(request.getPathInfo()).equalsIgnoreCase("loadRole"))
-         {
 
-            List<String> userList = ul.getUserList(request.getParameter("role").toString());
-            JSONArray jsonArray = new JSONArray(userList);
-            response.getWriter().println(jsonArray.toString());
-         }
-         else
-         {
-        
-        ArrayList<User> userList = ul.getUserList();
-        List<Role> allRoles = ul.getRoleList();
-        request.setAttribute("userlist", userList);
-        request.setAttribute("allRoles",allRoles);
-        RequestDispatcher rd = request.getRequestDispatcher("/pages/crudUser.jsp");
-        rd.forward(request, response);
-         }
+        String selection = FCUtilities.stripPath(request.getPathInfo());
+        RequestDispatcher rd;
 
+        switch (selection) {
+            case "loadrole":
+                List<String> userList = ul.getUserList(request.getParameter("role").toString());
+                JSONArray jsonArray = new JSONArray(userList);
+                response.getWriter().println(jsonArray.toString());
+                break;
+
+            case "users":
+                ArrayList<User> allUserList = ul.getUserList();
+                List<Role> allRoles = ul.getRoleList();
+                request.setAttribute("userlist", allUserList);
+                request.getSession().setAttribute("allUserRoles", allRoles);
+                rd = request.getRequestDispatcher("/pages/crudUser.jsp");
+                rd.forward(request, response);
+                break;
+            default:
+                rd = request.getRequestDispatcher("/pages/crudUser.jsp");
+                rd.forward(request, response);
+                break;
+        }
     }
 
 }

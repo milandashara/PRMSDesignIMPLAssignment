@@ -15,21 +15,20 @@ import sg.edu.nus.iss.phoenix.maintainUser.service.MaintainUserService;
 public class MaintainUserDelegate {
 
     private MaintainUserService service = new MaintainUserService();
-    
+
     public void createUser(User user) {
         service.createUser(user);
     }
-    
+
     public void updateUser(User user) {
         service.updateUser(user);
     }
-    
+
     public void deleteUser(User user) {
         service.deleteUser(user);
     }
-    
-     public User searchMatching(String uid) 
-    {
+
+    public User searchMatching(String uid) {
         return service.searchMatching(uid);
     }
 

@@ -13,44 +13,64 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
         <fmt:setBundle basename="ApplicationResources" />
-
         <title><fmt:message key="title.setupu" /></title>
     </head>
-    <body>
-        <form action="${pageContext.request.contextPath}/controller/maintainUser" 
-              method=post>
+
+    <script type="text/javascript">
+        function onLoadBody() {
+            if (${insert} === true) {
+                document.getElementById('id').readOnly = false; // Create User
+            } else if (${insert} === false) {
+                document.getElementById('id').readOnly = true;  // Modify User
+            }
+        }
+        function AllowAlphabet() {
+            if (!form.name.value.match(/^[a-zA-Z]+$/) && form.name.value !== "")
+            {
+                form.name.value = "";
+                form.name.focus();
+                alert("Please Enter only alphabets in text");
+            }
+        }
+    </script>
+
+    <body onload="onLoadBody();">
+        <form id="form" action="${pageContext.request.contextPath}/controller/updateUser" method=post>
             <center>
                 <table class="borderAll" cellpadding=10 cellspacing=1 border=1 width="60">
                     <center>
                         <tr>
                             <td><fmt:message key="label.crudu.id"/></td>
-                            <td><input type="text" name="id" 
-                                       value="${param['id']}" size=20 maxlength=20></td>
+                            <td><input type="text" name="id" id="id"
+                                       value="${sessionScope.edituser.id}" required size=20 maxlength=20></td>
                         </tr>
                         <tr>
                             <td><fmt:message key="label.crudu.name" /></td>
-                            <td><input type="text" name="name"
-                                       value="${param['name']}" size=20 maxlength=20></td>
+                            <td><input type="text" name="name" onblur="AllowAlphabet()"
+                                       value="${sessionScope.edituser.name}" required size=20 maxlength=20></td>
                         </tr>
                         <tr>
                             <td><fmt:message key="label.crudu.password" /></td>
                             <td><input type="password" name="password"
-                                       value="${param['password']}" size=20 maxlength=20></td>
+                                       value="${sessionScope.edituser.password}" required size=20 maxlength=20></td>
                         </tr>
                         <tr>
                             <td><fmt:message key="label.crudu.roles" /></td>
-                            <!-- <c:forEach var="role" items="${allRoles}" varStatus="status">
-                            <input type="checkbox" name="chkRole" value="${role}" 
-                                   <c:if test="${allRoles[role]}">checked="checked"</c:if>>${role}&nbsp;
-                            </c:forEach> -->
+                            <!--                                <td>
+                                                                <ul>
+                            <%--<c:forEach items="${param['allRoles']}" var="role" varStatus="status">--%>
+                                <li><input type="checkbox" name="chkRole" value="${role}"/>
+                                </li>
+                            <%--</c:forEach>--%>
+                        </ul>
+                    </td>-->
+
                             <td><input type="text" name="roles"
-                                       value="${param['roles']}" size=20 maxlength=20></td>
+                                       value="${sessionScope.edituser.roles}" required size=20 maxlength=20></td>
                         </tr>
                 </table>
-                        <input type="hidden" name="insert" 
-                                       value="${param['insert']}">
+                <input type="hidden" name="insert" value="${sessionScope.insert}">
             </center>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" value="Submit" align="right"> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,4 +78,6 @@
         </form>
 
     </body>
+
+
 </html>

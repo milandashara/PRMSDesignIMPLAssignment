@@ -7,11 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import sg.edu.nus.iss.phoenix.authenticate.dao.UserDao;
 import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
@@ -127,9 +127,14 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(1, valueObject.getId());
             stmt.setString(2, valueObject.getPassword());
             stmt.setString(3, valueObject.getName());
-            for (Role r : valueObject.getRoles()) {
-                roles += r.getRole() + ":";
+            for (Iterator<Role> itr = valueObject.getRoles().iterator(); itr.hasNext();) {
+                Role r = itr.next();
+                roles += r.getRole();
+                if (itr.hasNext()) {
+                    roles += ":";
+                }
             }
+            
             stmt.setString(4, roles);
 
             int rowcount = databaseUpdate(stmt);
@@ -158,13 +163,20 @@ public class UserDaoImpl implements UserDao {
 
         String sql = "UPDATE user SET password = ?, name = ?, role = ? WHERE (id = ? ) ";
         PreparedStatement stmt = null;
+        String roles = "";
 
         try {
             stmt = this.connection.prepareStatement(sql);
             stmt.setString(1, valueObject.getPassword());
             stmt.setString(2, valueObject.getName());
-            stmt.setString(3, valueObject.getRoles().get(0).getRole());
-
+            for (Iterator<Role> itr = valueObject.getRoles().iterator(); itr.hasNext();) {
+                Role r = itr.next();
+                roles += r.getRole();
+                if (itr.hasNext()) {
+                    roles += ":";
+                }
+            }
+            stmt.setString(3, roles);
             stmt.setString(4, valueObject.getId());
 
             int rowcount = databaseUpdate(stmt);
