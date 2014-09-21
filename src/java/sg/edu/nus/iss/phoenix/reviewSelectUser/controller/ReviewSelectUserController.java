@@ -58,7 +58,7 @@ public class ReviewSelectUserController extends HttpServlet {
 
         switch (selection) {
             case "loadrole":
-                List<String> userList = ul.getUserList(request.getParameter("role").toString());
+                List<String> userList = ul.getUserList(request.getParameter("role"));
                 JSONArray jsonArray = new JSONArray(userList);
                 response.getWriter().println(jsonArray.toString());
                 break;

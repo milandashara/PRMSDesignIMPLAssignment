@@ -17,7 +17,6 @@ import sg.edu.nus.iss.phoenix.authenticate.entity.Role;
 import sg.edu.nus.iss.phoenix.authenticate.entity.User;
 import sg.edu.nus.iss.phoenix.frontcontroller.FCUtilities;
 import sg.edu.nus.iss.phoenix.maintainUser.delegate.MaintainUserDelegate;
-import sg.edu.nus.iss.phoenix.reviewSelectUser.controller.ReviewSelectUserController;
 
 /**
  *
@@ -62,6 +61,7 @@ public class UserController extends HttpServlet {
                 request.getSession().setAttribute("insert", "false");
                 rd = getServletContext().getRequestDispatcher("/pages/setupUser.jsp");
                 break;
+                
             case "updateuser":
                 user.setId(request.getParameter("id"));
                 user.setName(request.getParameter("name"));
