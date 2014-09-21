@@ -90,7 +90,11 @@ public class UserController extends HttpServlet {
                 }
                 rd = getServletContext().getRequestDispatcher("/ReviewSelectUserController/users");
                 break;
-
+//This case is invoked from the main controller
+//Invoked when delete user opton is selected
+//Gets the user id from the request and sets to an user
+// Calls the user object to the delagate
+// Sets message to be displayed in jsp for the two possibilities
             case "deleteuser":
                 user.setId(request.getParameter("id"));
                 if (mud.deleteUser(user)) {

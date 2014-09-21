@@ -29,7 +29,10 @@ public class MaintainUserDelegate {
     public boolean updateUser(User user) {
         return service.updateUser(user);
     }
-
+// Method in delegate class to delete a user
+// Returns boolean value as acknowledgement
+// Called from Usercontroller servlet class
+// Calls delete user method in service class
     public boolean deleteUser(User user) {
         return service.deleteUser(user);
     }

@@ -48,7 +48,12 @@ public class MaintainUserService {
             return false;
         }
     }
-
+/*Method in service class to delete a user
+Returns boolean value as acknowledgement
+Handles Exceptions-NotFoundException,SQLException
+Called from MaintainUserDelagate class
+Calls delete method in user dao
+*/
     public boolean deleteUser(User user) {
         try {
             udao.delete(user);
@@ -58,6 +63,7 @@ public class MaintainUserService {
             return false;
         }
     }
+    
 
     public User searchMatching(String uid) {
         try {

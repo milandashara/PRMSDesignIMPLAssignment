@@ -18,6 +18,9 @@ import sg.edu.nus.iss.phoenix.reviewSelectUser.service.UserListService;
 public class UserListDelegate {
 
     private UserListService service = new UserListService();
+    
+    //Method of delegate class to fetch the list of users from the db
+//Returns a arraylist of user objects
 
     public ArrayList<User> getUserList() {
         return service.getUserList();

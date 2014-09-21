@@ -95,7 +95,9 @@ public class UserDaoImpl implements UserDao {
      * @see
      * sg.edu.nus.iss.phoenix.authenticate.dao.impl.UserDao#loadAll(java.sql
      * .Connection)
-     */
+     * Method which implements the abstract method loadAll of user dao
+* Fires a query to select all the users from the user table
+*/
     @Override
     public List<User> loadAll() throws SQLException {
 
@@ -203,6 +205,11 @@ public class UserDaoImpl implements UserDao {
      * @see
      * sg.edu.nus.iss.phoenix.authenticate.dao.impl.UserDao#delete(java.sql.
      * Connection, sg.edu.nus.iss.phoenix.authenticate.entity.User)
+     * Method which implements the abstract method delete form user dao.
+     * Takes user object as input,fires a query with the user id to delete the user from database
+     * Throws exceptions if record not found or record could not be deleted because of foreign key constraint
+     *Exceptions-NotFoundException, SQLException
+
      */
     @Override
     public void delete(User valueObject) throws NotFoundException, SQLException {

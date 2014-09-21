@@ -62,6 +62,8 @@ public class ReviewSelectUserController extends HttpServlet {
                 JSONArray jsonArray = new JSONArray(userList);
                 response.getWriter().println(jsonArray.toString());
                 break;
+            //This use case is redirected from the main controller when the maintain user use case is selected
+//Sets the list if users in the request so that its fetched from the jsp
 
             case "users":
                 ArrayList<User> allUserList = ul.getUserList();
